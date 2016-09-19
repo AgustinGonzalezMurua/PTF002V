@@ -68,13 +68,13 @@ namespace Servicio.Modelo
             get { return _precio; }
             set 
             {
-                if (value >= 0)
+                if (value > 0)
                 {
                     _precio = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Precio no puede ser menor a 0");
+                    throw new ArgumentException("Precio no puede ser 0 o menor");
                 }
             }
         }
