@@ -53,7 +53,7 @@ namespace Servicio.Modelo
             {
                 if (ValidadorDatos.ValidarCadena(value))
                 {
-                    _nombre = value;
+                    _sector = value;
                 }
                 else
                 {

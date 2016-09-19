@@ -8,17 +8,17 @@ namespace Servicio.Modelo
 {
     public class Organizacion : IFuncionesCRUD
     {
-        private string _rut;
+        private string _run;
 
-        public string Rut
+        public string Run
         {
-            get { return _rut; }
+            get { return _run; }
             set 
             { 
-                if(ValidadorDatos.ValidarRut(value)){
-                    _rut = value; 
+                if(ValidadorDatos.ValidarRun(value)){
+                    _run = value; 
                 }else{
-                    throw new ArgumentException("Rut no válido");
+                    throw new ArgumentException("Run no válido");
                 }
             }
         }

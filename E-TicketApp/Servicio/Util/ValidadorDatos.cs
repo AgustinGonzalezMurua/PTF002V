@@ -78,14 +78,14 @@ namespace Servicio.Util
 
         }
 
-        public static bool ValidarRut(string rut)
+        public static bool ValidarRun(string run)
         {
             try
             {
-                if(String.IsNullOrEmpty(rut.Trim())){
+                if(String.IsNullOrEmpty(run.Trim())){
                     return false;
                 }else{
-                    return new Regex(@"^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$").IsMatch(rut);
+                    return new Regex(@"^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$").IsMatch(run);
                 }
             }catch(Exception){
                 return false;
