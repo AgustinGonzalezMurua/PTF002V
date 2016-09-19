@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Servicio.Util;
 
 namespace Servicio.Modelo
 {
@@ -13,7 +14,17 @@ namespace Servicio.Modelo
         public string Nombre
         {
             get { return _nombre; }
-            set { _nombre = value; }
+            set
+            {
+                if (ValidadorDatos.ValidarCadena(value))
+                {
+                    _nombre = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Nombre inválido.");
+                }
+            }
         }
 
         private string _email;
@@ -21,7 +32,15 @@ namespace Servicio.Modelo
         public string Email
         {
             get { return _email; }
-            set { _email = value; }
+            set 
+            { 
+                if(ValidadorDatos.ValidarCorreo(value)){
+                    _email = value;
+                }else{
+                    throw new ArgumentException("Correo no válido.");
+                }
+            }
+            
         }
         
         public int Tipo { get; set; }
@@ -30,7 +49,17 @@ namespace Servicio.Modelo
         public string Fono
         {
             get { return _fono; }
-            set { _fono = value; }
+            set 
+            {
+                if (ValidadorDatos.ValidarFono(value))
+                {
+                    _fono = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Fono no válido");
+                }
+            }
         }
 
         public void Recuperar()

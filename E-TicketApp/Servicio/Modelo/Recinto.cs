@@ -48,7 +48,17 @@ namespace Servicio.Modelo
         public string Fono
         {
             get { return _fono; }
-            set { _fono = value; }
+            set
+            {
+                if (ValidadorDatos.ValidarFono(value.Trim()))
+                {
+                    _fono = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Teléfono no válido");
+                }
+            }
         }
         
         public void Recuperar()

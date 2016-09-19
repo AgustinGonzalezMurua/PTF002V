@@ -2,39 +2,81 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Servicio.Util;
 
 namespace Servicio.Modelo
 {
     public class Asiento
     {
         public int Codigo { get; set; }
+
         private string _nombre;
 
         public string Nombre
         {
             get { return _nombre; }
-            set { _nombre = value; }
+            set
+            {
+                if (ValidadorDatos.ValidarCadena(value))
+                {
+                    _nombre = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Nombre no válido");
+                }
+            }
         }
         private string _tipo;
 
         public string Tipo
         {
             get { return _tipo; }
-            set { _tipo = value; }
+            set
+            {
+                if (ValidadorDatos.ValidarCadena(value))
+                {
+                    _tipo = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Tipo no válido");
+                }
+            }
         }
         private string _sector;
 
         public string Sector
         {
             get { return _sector; }
-            set { _sector = value; }
+            set
+            {
+                if (ValidadorDatos.ValidarCadena(value))
+                {
+                    _nombre = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Sector no válido");
+                }
+            }
         }
         private int _precio;
 
         public int Precio
         {
             get { return _precio; }
-            set { _precio = value; }
+            set 
+            {
+                if (value >= 0)
+                {
+                    _precio = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Precio no puede ser menor a 0");
+                }
+            }
         }
 
         public bool Estado { get; set; }

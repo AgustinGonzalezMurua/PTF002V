@@ -43,7 +43,7 @@ namespace Servicio.Util
                     return false;
                 }
                 else
-                {
+                { 
                     return new Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?").IsMatch(correo);
                 }
             }
@@ -76,6 +76,20 @@ namespace Servicio.Util
                 return false;
             }
 
+        }
+
+        public static bool ValidarRut(string rut)
+        {
+            try
+            {
+                if(String.IsNullOrEmpty(rut.Trim())){
+                    return false;
+                }else{
+                    return new Regex(@"^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$").IsMatch(rut);
+                }
+            }catch(Exception){
+                return false;
+            }
         }
     }
 }
