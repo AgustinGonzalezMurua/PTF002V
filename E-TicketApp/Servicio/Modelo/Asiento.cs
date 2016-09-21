@@ -6,7 +6,7 @@ using Servicio.Util;
 
 namespace Servicio.Modelo
 {
-    public class Asiento
+    public class Asiento : IFuncionesCRUD
     {
         public int Codigo { get; set; }
 
@@ -80,5 +80,25 @@ namespace Servicio.Modelo
         }
 
         public bool Estado { get; set; }
+
+        public void Recuperar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Agregar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Modificar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Eliminar()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
