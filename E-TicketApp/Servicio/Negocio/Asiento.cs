@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Servicio.Util;
 
-namespace Servicio.Modelo
+namespace Servicio.Negocio
 {
     public class Asiento : Ubicacion
     {
@@ -83,22 +83,22 @@ namespace Servicio.Modelo
         #endregion
 
         #region metodos
-        public override void Recuperar(int codigo)
+        public void Recuperar(int codigo)
         {
             throw new NotImplementedException();
         }
 
-        public override void Agregar(Asiento asiento)
+        public void Agregar(Asiento asiento)
         {
             throw new NotImplementedException();
         }
 
-        public override void Modificar()
+        public void Modificar()
         {
             throw new NotImplementedException();
         }
 
-        public override void Eliminar()
+        public void Eliminar()
         {
             throw new NotImplementedException();
         }

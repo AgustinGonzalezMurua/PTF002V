@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Servicio.Util;
 
-namespace Servicio.Modelo
+namespace Servicio.Negocio
 {
     public class Sector : IFuncionesCRUD
     {

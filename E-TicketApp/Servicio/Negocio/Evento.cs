@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Servicio.Util;
 
-namespace Servicio.Modelo
+namespace Servicio.Negocio
 {
     public class Evento : IFuncionesCRUD
     {

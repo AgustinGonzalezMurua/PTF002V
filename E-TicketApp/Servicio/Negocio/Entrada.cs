@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Servicio.Modelo
+namespace Servicio.Negocio
 {
     public class Entrada : IFuncionesCRUD
     {

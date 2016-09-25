@@ -4,14 +4,30 @@ using System.Linq;
 using System.Text;
 using Servicio.Util;
 
-namespace Servicio.Modelo
+namespace Servicio.Negocio
 {
-    public class Recinto : IFuncionesCRUD
+    public class Usuario : IFuncionesCRUD
     {
-        #region propiedades
+        #region propiedades 
         public int Codigo { get; set; }
-
         private string _nombre;
+
+        private string _nombreUsuario;
+        public string NombreUsuario
+        {
+            get { return _nombreUsuario; }
+            set 
+            { 
+                if (ValidadorDatos.ValidarCadena(value))
+                {
+                    _nombreUsuario = value;
+                }else
+                {
+                    throw new ArgumentException("Usuario inválido");
+                }   
+            }
+        }
+        
         public string Nombre
         {
             get { return _nombre; }
@@ -23,49 +39,47 @@ namespace Servicio.Modelo
                 }
                 else
                 {
-                    throw new ArgumentException("Nombre ingresado inválido.");
+                    throw new ArgumentException("Nombre inválido.");
                 }
             }
         }
-        
-        private string _direccion;
-        public string Direccion
+
+        private string _email;
+        public string Email
         {
-            get { return _direccion; }
-            set
-            {
-                if (ValidadorDatos.ValidarCadena(value))
-                {
-                    _direccion = value;
+            get { return _email; }
+            set 
+            { 
+                if(ValidadorDatos.ValidarCorreo(value)){
+                    _email = value;
                 }else{
-                    throw new ArgumentException("Dirección ingresada inválida");
+                    throw new ArgumentException("Correo no válido.");
                 }
             }
+            
         }
         
-        public int CapacidadMaxima { get; set; }
+        public int Tipo { get; set; }
 
         private string _fono;
         public string Fono
         {
             get { return _fono; }
-            set
+            set 
             {
-                if (ValidadorDatos.ValidarFono(value.Trim()))
+                if (ValidadorDatos.ValidarFono(value))
                 {
                     _fono = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Teléfono no válido");
+                    throw new ArgumentException("Fono no válido");
                 }
             }
         }
-
-        public List<Ubicacion> Ubicaciones { get; set; }
         #endregion
 
-        #region propiedades
+        #region metodos
         public void Recuperar()
         {
             throw new NotImplementedException();
@@ -86,14 +100,9 @@ namespace Servicio.Modelo
             throw new NotImplementedException();
         }
 
-        public List<Evento> ListarEventos()
+        public List<Compra> ListarCompras()
         {
             throw new NotImplementedException();
-        }
-
-        public List<Ubicacion> ListarUbicacionesDisponibles(Evento evento)
-        {
-            return (List<Ubicacion>)evento.Recinto.Ubicaciones.Select(ubicacion => ubicacion.Habilitado);
         }
         #endregion
     }

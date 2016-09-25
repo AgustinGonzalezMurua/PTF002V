@@ -4,30 +4,18 @@ using System.Linq;
 using System.Text;
 using Servicio.Util;
 
-namespace Servicio.Modelo
+namespace Servicio.Negocio
 {
-    public class Organizacion : IFuncionesCRUD
+    public class Recinto : IFuncionesCRUD
     {
         #region propiedades
-        private string _run;
-        public string Run
-        {
-            get { return _run; }
-            set 
-            { 
-                if(ValidadorDatos.ValidarRun(value)){
-                    _run = value; 
-                }else{
-                    throw new ArgumentException("Run no válido");
-                }
-            }
-        }
+        public int Codigo { get; set; }
 
         private string _nombre;
         public string Nombre
         {
             get { return _nombre; }
-            set 
+            set
             {
                 if (ValidadorDatos.ValidarCadena(value))
                 {
@@ -35,28 +23,11 @@ namespace Servicio.Modelo
                 }
                 else
                 {
-                    throw new ArgumentException("Nombre no válido");
+                    throw new ArgumentException("Nombre ingresado inválido.");
                 }
             }
         }
-
-        private string _razonSocial;
-        public string RazonSocial
-        {
-            get { return _razonSocial; }
-            set
-            {
-                if (ValidadorDatos.ValidarCadena(value))
-                {
-                    _razonSocial = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Nombre no válido");
-                }
-            }
-        }
-
+        
         private string _direccion;
         public string Direccion
         {
@@ -66,35 +37,35 @@ namespace Servicio.Modelo
                 if (ValidadorDatos.ValidarCadena(value))
                 {
                     _direccion = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Nombre no válido");
+                }else{
+                    throw new ArgumentException("Dirección ingresada inválida");
                 }
             }
         }
+        
+        public int CapacidadMaxima { get; set; }
 
-        private string _telefono;
-        public string Telefono
+        private string _fono;
+        public string Fono
         {
-            get { return _telefono; }
+            get { return _fono; }
             set
             {
-                if (ValidadorDatos.ValidarFono(value))
+                if (ValidadorDatos.ValidarFono(value.Trim()))
                 {
-                    _telefono = value;
+                    _fono = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Nombre no válido");
+                    throw new ArgumentException("Teléfono no válido");
                 }
             }
         }
 
-        public bool Estado { get; set; }
+        public List<Ubicacion> Ubicaciones { get; set; }
         #endregion
 
-        #region metodos
+        #region propiedades
         public void Recuperar()
         {
             throw new NotImplementedException();
@@ -118,6 +89,11 @@ namespace Servicio.Modelo
         public List<Evento> ListarEventos()
         {
             throw new NotImplementedException();
+        }
+
+        public List<Ubicacion> ListarUbicacionesDisponibles(Evento evento)
+        {
+            return (List<Ubicacion>)evento.Recinto.Ubicaciones.Select(ubicacion => ubicacion.Habilitado);
         }
         #endregion
     }
