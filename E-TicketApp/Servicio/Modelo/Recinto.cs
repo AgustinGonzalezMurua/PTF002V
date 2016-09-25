@@ -8,6 +8,7 @@ namespace Servicio.Modelo
 {
     public class Recinto : IFuncionesCRUD
     {
+        #region propiedades
         public int Codigo { get; set; }
 
         private string _nombre;
@@ -60,7 +61,11 @@ namespace Servicio.Modelo
                 }
             }
         }
-        
+
+        public List<Ubicacion> Ubicaciones { get; set; }
+        #endregion
+
+        #region propiedades
         public void Recuperar()
         {
             throw new NotImplementedException();
@@ -80,5 +85,16 @@ namespace Servicio.Modelo
         {
             throw new NotImplementedException();
         }
+
+        public List<Evento> ListarEventos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Ubicacion> ListarUbicacionesDisponibles(Evento evento)
+        {
+            return (List<Ubicacion>)evento.Recinto.Ubicaciones.Select(ubicacion => ubicacion.Habilitado);
+        }
+        #endregion
     }
 }

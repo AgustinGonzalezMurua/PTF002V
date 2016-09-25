@@ -6,12 +6,12 @@ using Servicio.Util;
 
 namespace Servicio.Modelo
 {
-    public class Asiento : IFuncionesCRUD
+    public class Asiento : Ubicacion
     {
+        #region propiedades
         public int Codigo { get; set; }
 
         private string _nombre;
-
         public string Nombre
         {
             get { return _nombre; }
@@ -27,8 +27,8 @@ namespace Servicio.Modelo
                 }
             }
         }
-        private string _tipo;
 
+        private string _tipo;
         public string Tipo
         {
             get { return _tipo; }
@@ -44,8 +44,8 @@ namespace Servicio.Modelo
                 }
             }
         }
-        private string _sector;
 
+        private string _sector;
         public string Sector
         {
             get { return _sector; }
@@ -61,8 +61,8 @@ namespace Servicio.Modelo
                 }
             }
         }
-        private int _precio;
 
+        private int _precio;
         public int Precio
         {
             get { return _precio; }
@@ -80,25 +80,38 @@ namespace Servicio.Modelo
         }
 
         public bool Estado { get; set; }
+        #endregion
 
-        public void Recuperar()
+        #region metodos
+        public override void Recuperar(int codigo)
         {
             throw new NotImplementedException();
         }
 
-        public void Agregar()
+        public override void Agregar(Asiento asiento)
         {
             throw new NotImplementedException();
         }
 
-        public void Modificar()
+        public override void Modificar()
         {
             throw new NotImplementedException();
         }
 
-        public void Eliminar()
+        public override void Eliminar()
         {
             throw new NotImplementedException();
         }
+
+        public Evento MostrarEvento()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CambiarEstado(bool estado)
+        {
+            this.Estado = estado;
+        }
+        #endregion
     }
 }

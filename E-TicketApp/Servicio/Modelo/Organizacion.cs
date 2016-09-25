@@ -8,8 +8,8 @@ namespace Servicio.Modelo
 {
     public class Organizacion : IFuncionesCRUD
     {
+        #region propiedades
         private string _run;
-
         public string Run
         {
             get { return _run; }
@@ -22,8 +22,8 @@ namespace Servicio.Modelo
                 }
             }
         }
-        private string _nombre;
 
+        private string _nombre;
         public string Nombre
         {
             get { return _nombre; }
@@ -39,8 +39,8 @@ namespace Servicio.Modelo
                 }
             }
         }
-        private string _razonSocial;
 
+        private string _razonSocial;
         public string RazonSocial
         {
             get { return _razonSocial; }
@@ -56,8 +56,8 @@ namespace Servicio.Modelo
                 }
             }
         }
-        private string _direccion;
 
+        private string _direccion;
         public string Direccion
         {
             get { return _direccion; }
@@ -73,8 +73,8 @@ namespace Servicio.Modelo
                 }
             }
         }
-        private string _telefono;
 
+        private string _telefono;
         public string Telefono
         {
             get { return _telefono; }
@@ -90,8 +90,11 @@ namespace Servicio.Modelo
                 }
             }
         }
-        public bool Estado { get; set; }
 
+        public bool Estado { get; set; }
+        #endregion
+
+        #region metodos
         public void Recuperar()
         {
             throw new NotImplementedException();
@@ -111,5 +114,11 @@ namespace Servicio.Modelo
         {
             throw new NotImplementedException();
         }
+
+        public List<Evento> ListarEventos()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }

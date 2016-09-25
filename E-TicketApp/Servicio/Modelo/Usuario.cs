@@ -6,11 +6,28 @@ using Servicio.Util;
 
 namespace Servicio.Modelo
 {
-    public class Usuario : IFuncionesCRUD   
+    public class Usuario : IFuncionesCRUD
     {
+        #region propiedades 
         public int Codigo { get; set; }
         private string _nombre;
 
+        private string _usuario;
+        public string Usuario
+        {
+            get { return _usuario; }
+            set 
+            { 
+                if (ValidadorDatos.ValidarCadena(value))
+                {
+                    _usuario = value;
+                }else
+                {
+                    throw new ArgumentException("Usuario inválido");
+                }   
+            }
+        }
+        
         public string Nombre
         {
             get { return _nombre; }
@@ -28,7 +45,6 @@ namespace Servicio.Modelo
         }
 
         private string _email;
-
         public string Email
         {
             get { return _email; }
@@ -44,8 +60,8 @@ namespace Servicio.Modelo
         }
         
         public int Tipo { get; set; }
-        private string _fono;
 
+        private string _fono;
         public string Fono
         {
             get { return _fono; }
@@ -61,7 +77,9 @@ namespace Servicio.Modelo
                 }
             }
         }
+        #endregion
 
+        #region metodos
         public void Recuperar()
         {
             throw new NotImplementedException();
@@ -81,5 +99,11 @@ namespace Servicio.Modelo
         {
             throw new NotImplementedException();
         }
+
+        public List<Compra> ListarCompras()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }
