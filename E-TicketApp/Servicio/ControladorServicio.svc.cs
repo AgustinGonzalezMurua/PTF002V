@@ -28,5 +28,11 @@ namespace Servicio
             }
             return composite;
         }
+
+
+        public string GetUsuario(string usuario, string contrasena)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

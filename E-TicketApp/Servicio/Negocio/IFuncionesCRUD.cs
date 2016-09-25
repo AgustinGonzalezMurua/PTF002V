@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Servicio.Negocio
 {
-    interface IFuncionesCRUD
+    public interface IFuncionesCRUD
     {
         void Recuperar();
         void Agregar();

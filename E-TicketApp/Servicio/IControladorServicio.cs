@@ -19,6 +19,9 @@ namespace Servicio
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
+        [OperationContract]
+        string GetUsuario(string usuario, string contrasena);
+
         // TODO: Add your service operations here
     }
 
