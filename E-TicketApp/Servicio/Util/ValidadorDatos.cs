@@ -22,7 +22,7 @@ namespace Servicio.Util
                 }
                 else
                 {
-                    return new Regex(@"/[^a-zA-Z,\.:0-9]/").IsMatch(cadena);
+                    return new Regex(@"^[a-z0-9_\.-]").IsMatch(cadena);
                 }
             }
             catch (Exception)
@@ -43,7 +43,7 @@ namespace Servicio.Util
                     return false;
                 }
                 else
-                { 
+                {
                     return new Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?").IsMatch(correo);
                 }
             }

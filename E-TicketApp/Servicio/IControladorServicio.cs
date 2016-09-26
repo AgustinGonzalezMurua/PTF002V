@@ -20,7 +20,7 @@ namespace Servicio
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
         [OperationContract]
-        string GetUsuario(string usuario, string contrasena);
+        bool ValidarUsuario(string usuario, string contrasena);
 
         // TODO: Add your service operations here
     }

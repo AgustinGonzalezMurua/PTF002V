@@ -9,8 +9,6 @@ namespace Servicio.Negocio
     public class Asiento : Ubicacion
     {
         #region propiedades
-        public int Codigo { get; set; }
-
         private string _nombre;
         public string Nombre
         {
@@ -45,13 +43,13 @@ namespace Servicio.Negocio
             }
         }
 
-        private string _sector;
-        public string Sector
+        private Sector _sector;
+        public Sector Sector
         {
             get { return _sector; }
             set
             {
-                if (ValidadorDatos.ValidarCadena(value))
+                if (value != null)
                 {
                     _sector = value;
                 }

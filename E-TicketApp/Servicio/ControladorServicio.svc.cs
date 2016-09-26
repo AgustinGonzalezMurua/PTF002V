@@ -30,9 +30,16 @@ namespace Servicio
         }
 
 
-        public string GetUsuario(string usuario, string contrasena)
+        public bool ValidarUsuario(string usuario, string contrasena)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return new Negocio.Usuario().ValidarUsuario(usuario, contrasena);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

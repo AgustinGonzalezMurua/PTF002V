@@ -4,12 +4,31 @@ using System.Linq;
 using System.Text;
 using Servicio.Util;
 
+
 namespace Servicio.Negocio
 {
     public class Usuario : IFuncionesCRUD
     {
         #region propiedades 
-        public int Codigo { get; set; }
+
+        private string _run;
+        public string RUN
+        {
+            get { return _run; }
+            set 
+            {
+                if (ValidadorDatos.ValidarRun(value))
+                {
+                    _run = value;
+                }
+                else
+                {
+                    throw new ArgumentException("RUN inválido");
+                }
+            }
+        }
+
+
         private string _nombre;
 
         private string _nombreUsuario;
@@ -82,7 +101,6 @@ namespace Servicio.Negocio
         #region metodos
         public void Recuperar()
         {
-            throw new NotImplementedException();
         }
 
         public void Agregar()
@@ -103,6 +121,28 @@ namespace Servicio.Negocio
         public List<Compra> ListarCompras()
         {
             throw new NotImplementedException();
+        }
+
+        public bool ValidarUsuario(string run, string contrasena)
+        {
+            
+            try
+            {
+                bool salida = false;
+                if(ValidadorDatos.ValidarRun(run) && ValidadorDatos.ValidarCadena(contrasena))
+                {
+                    var _datos = new Dictionary<string, string>();
+                    _datos.Add("RUN", run);
+                    _datos.Add("Contrasena", contrasena);
+
+                    salida = (bool)OracleSQL.ExecFunction("SFSHOW_VALIDARUSUARIO", _datos);
+                }
+                return salida;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
         #endregion
     }
