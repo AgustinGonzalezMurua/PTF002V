@@ -132,10 +132,11 @@ namespace Servicio.Negocio
                 if(ValidadorDatos.ValidarRun(run) && ValidadorDatos.ValidarCadena(contrasena))
                 {
                     var _datos = new Dictionary<string, string>();
-                    _datos.Add("RUN", run);
-                    _datos.Add("Contrasena", contrasena);
+                    _datos.Add("RUNUSUARIO", run);
+                    _datos.Add("CONTRASEÑA", contrasena);
+                    _datos.Add("SALIDA", "0");
 
-                    salida = (bool)OracleSQL.ExecFunction("SFSHOW_VALIDARUSUARIO", _datos);
+                    salida = Convert.ToBoolean(Int32.Parse((string)(OracleSQL.ExecStoredProcedure("SPSHOW_VALIDARUSUARIO",_datos))));
                 }
                 return salida;
             }

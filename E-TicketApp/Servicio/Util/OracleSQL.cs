@@ -16,11 +16,11 @@ namespace Servicio.Util
         }
         
         /// <summary>
-        /// <para>Ejecuta un procedimiento Almacenado</para>
+        /// <para>Ejecuta un procedimiento almacenado, rellenando una datatable.</para>
         /// </summary>
         /// <param name="StoredProcedureName"></param>
         /// <param name="Params"></param>
-        public static DataTable ExecStoredProcedure(string StoredProcedureName, Dictionary<string,string> Params = null)
+        public static DataTable ExecStoredProcedure(string StoredProcedureName, DataTable Data, Dictionary<string,string> Params = null)
         {
             try
             {
@@ -35,10 +35,9 @@ namespace Servicio.Util
                 }
 
                 _da.SelectCommand = _cmd;
-                var _dt = new DataTable();
-                _da.Fill(_dt);
+                _da.Fill(Data);
 
-                return _dt;
+                return Data;
             }
             catch (Exception ex)
             {    
@@ -47,12 +46,12 @@ namespace Servicio.Util
         }
 
         /// <summary>
-        /// 
+        /// <para>Ejecuta un Procedimiento almacenado, devolviendo un valor singular.</para>
         /// </summary>
         /// <param name="FunctionName"></param>
         /// <param name="Params"></param>
         /// <returns></returns>
-        public static Object ExecFunction(string FunctionName, Dictionary<string, string> Params = null)
+        public static Object ExecStoredProcedure(string FunctionName, Dictionary<string, string> Params = null)
         {
             try
             {
