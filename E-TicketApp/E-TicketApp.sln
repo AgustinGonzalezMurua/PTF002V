@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{86E904
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vista", "Vista\Vista.csproj", "{8E21E497-BEF0-497A-8038-DCC552AF9B0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{C9461591-3CF8-4968-8D5F-EDD8D50D6943}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9461591-3CF8-4968-8D5F-EDD8D50D6943}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9461591-3CF8-4968-8D5F-EDD8D50D6943}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E21E497-BEF0-497A-8038-DCC552AF9B0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E21E497-BEF0-497A-8038-DCC552AF9B0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E21E497-BEF0-497A-8038-DCC552AF9B0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E21E497-BEF0-497A-8038-DCC552AF9B0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
