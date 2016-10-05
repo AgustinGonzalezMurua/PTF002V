@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using Servicio.Util;
 
 namespace Servicio
 {
@@ -30,15 +31,16 @@ namespace Servicio
         }
 
 
-        public bool ValidarUsuario(string usuario, string contrasena)
+        public string ValidarUsuario(string usuario, string contrasena)
         {
             try
             {
-                return new Negocio.Usuario().ValidarUsuario(usuario, contrasena);
+                var retorno = SerializadorJSON.Serializar(new Negocio.Usuario().ValidarUsuario(usuario, contrasena).ToString(), "Salida");
+                return SerializadorJSON.Serializar(new Negocio.Usuario().ValidarUsuario(usuario, contrasena).ToString(),"Salida");
             }
             catch (Exception)
             {
-                return false;
+                return SerializadorJSON.Serializar(false, "Salida"); ;
             }
         }
     }

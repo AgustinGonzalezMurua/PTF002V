@@ -47,6 +47,7 @@ namespace Servicio.Util
 
         /// <summary>
         /// <para>Ejecuta un Procedimiento almacenado, devolviendo un valor singular.</para>
+        /// <para>Para el correcto uso se debe definir un parámetro de salida en <paramref name="Params"/></para>
         /// </summary>
         /// <param name="FunctionName"></param>
         /// <param name="Params"></param>

@@ -93,6 +93,7 @@
     <Compile Include="IControladorServicio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\OracleSQL.cs" />
+    <Compile Include="Util\SerializadorJSON.cs" />
     <Compile Include="Util\ValidadorDatos.cs" />
   </ItemGroup>
   <ItemGroup>
