@@ -17,7 +17,7 @@ namespace Servicio.Util
         public static string Serializar(Object valor, String nombreValor)
         {
             var _data = new Dictionary<string, string>();
-            _data.Add(valor.ToString(), nombreValor);
+            _data.Add(nombreValor, valor.ToString());
             return JsonConvert.SerializeObject(_data, Formatting.Indented);
         }
 

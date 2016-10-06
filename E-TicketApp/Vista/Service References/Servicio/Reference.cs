@@ -15,12 +15,6 @@ namespace Vista.Servicio {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Servicio.IControladorServicio")]
     public interface IControladorServicio {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IControladorServicio/GetData", ReplyAction="http://tempuri.org/IControladorServicio/GetDataResponse")]
-        string GetData(int value);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IControladorServicio/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IControladorServicio/GetDataUsingDataContractResponse")]
-        Servicio.CompositeType GetDataUsingDataContract(Servicio.CompositeType composite);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IControladorServicio/ValidarUsuario", ReplyAction="http://tempuri.org/IControladorServicio/ValidarUsuarioResponse")]
         string ValidarUsuario(string usuario, string contrasena);
     }
@@ -50,14 +44,6 @@ namespace Vista.Servicio {
         
         public ControladorServicioClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
-        }
-        
-        public string GetData(int value) {
-            return base.Channel.GetData(value);
-        }
-        
-        public Servicio.CompositeType GetDataUsingDataContract(Servicio.CompositeType composite) {
-            return base.Channel.GetDataUsingDataContract(composite);
         }
         
         public string ValidarUsuario(string usuario, string contrasena) {
