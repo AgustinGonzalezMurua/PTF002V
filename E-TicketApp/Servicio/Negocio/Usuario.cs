@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Servicio.Util;
+using System.Data;
 
 
 namespace Servicio.Negocio
@@ -101,6 +102,26 @@ namespace Servicio.Negocio
         #region metodos
         public void Recuperar()
         {
+            try
+            {
+                var _datos = new Dictionary<string, string>();
+                _datos.Add("RUNUSUARIO", this.RUN);
+
+                var _dt = new DataTable();
+                OracleSQL.ExecStoredProcedure("SPREC_USUARIORECUPERAR", _dt, _datos);
+
+                foreach (DataRow rows in _dt.Rows)
+                {
+                    this.Nombre = rows["NOMBRE"].ToString();
+                    this.Fono   = rows["TELEFONO"].ToString();
+                    this.Email  = rows["EMAIL"].ToString();
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
 
         public void Agregar()
@@ -136,7 +157,7 @@ namespace Servicio.Negocio
                     _datos.Add("CONTRASEÑA", contrasena);
                     _datos.Add("SALIDA", "0");
 
-                    salida = Convert.ToBoolean(Int32.Parse((string)(OracleSQL.ExecStoredProcedure("SPSHOW_VALIDARUSUARIO",_datos))));
+                    salida = Convert.ToBoolean(Int32.Parse((string)(OracleSQL.ExecStoredProcedure("SPREC_USUARIOVALIDAR", _datos))));
                 }
                 return salida;
             }

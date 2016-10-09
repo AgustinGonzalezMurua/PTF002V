@@ -5,6 +5,7 @@ using System.Web;
 using System.Data;
 using Oracle.ManagedDataAccess.Client;
 using System.Configuration;
+using Oracle.ManagedDataAccess.Types;
 
 namespace Servicio.Util
 {
@@ -24,23 +25,34 @@ namespace Servicio.Util
         {
             try
             {
-                var _da = new OracleDataAdapter();
                 var _cmd = new OracleCommand();
+                var _da = new OracleDataAdapter(_cmd);
                 _cmd.Connection = ObtenerConneccion();
-                _cmd.CommandText = @StoredProcedureName;
+                _cmd.CommandText = StoredProcedureName;
                 _cmd.CommandType = CommandType.StoredProcedure;
+
                 foreach (var item in Params)
                 {
                     _cmd.Parameters.Add(item.Key, item.Value);
                 }
 
-                _da.SelectCommand = _cmd;
+                var _salida = new OracleParameter();
+                _salida.ParameterName = "SALIDA";
+                _salida.OracleDbType = OracleDbType.RefCursor;
+                _salida.Direction = ParameterDirection.Output;
+                _cmd.Parameters.Add(_salida);
+
+
+                _cmd.Connection.Open();
+                _cmd.ExecuteNonQuery();
+
                 _da.Fill(Data);
 
+                CerrarConneciones(_cmd);
                 return Data;
             }
             catch (Exception ex)
-            {    
+            {
                 throw ex;
             }
         }
@@ -49,17 +61,16 @@ namespace Servicio.Util
         /// <para>Ejecuta un Procedimiento almacenado, devolviendo un valor singular.</para>
         /// <para>Para el correcto uso se debe definir un parámetro de salida en <paramref name="Params"/></para>
         /// </summary>
-        /// <param name="FunctionName"></param>
+        /// <param name="StoredProcedure"></param>
         /// <param name="Params"></param>
         /// <returns></returns>
-        public static Object ExecStoredProcedure(string FunctionName, Dictionary<string, string> Params = null)
+        public static Object ExecStoredProcedure(string StoredProcedure, Dictionary<string, string> Params = null)
         {
             try
             {
-                var _da = new OracleDataAdapter();
                 var _cmd = new OracleCommand();
                 _cmd.Connection = ObtenerConneccion();
-                _cmd.CommandText = FunctionName;
+                _cmd.CommandText = StoredProcedure;
                 _cmd.CommandType = CommandType.StoredProcedure;
 
                 foreach (var item in Params)
@@ -67,17 +78,27 @@ namespace Servicio.Util
                     _cmd.Parameters.Add(item.Key, item.Value);
                 }
 
+
                 _cmd.Connection.Open();
                 _cmd.ExecuteNonQuery();
-                _cmd.Connection.Close();
-                _cmd.Connection.Dispose();
-                _cmd.Dispose();
+                CerrarConneciones(_cmd);
                 return _cmd.Parameters["SALIDA"].Value;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        /// <summary>
+        /// Cierra todas las conecciones del comando
+        /// </summary>
+        /// <param name="command"></param>
+        private static void CerrarConneciones(OracleCommand command)
+        {
+            command.Connection.Close();
+            command.Connection.Dispose();
+            command.Dispose();
         }
     }
 }

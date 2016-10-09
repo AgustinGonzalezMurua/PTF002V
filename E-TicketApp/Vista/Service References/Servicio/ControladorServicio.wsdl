@@ -12,16 +12,35 @@
   <wsdl:message name="IControladorServicio_ValidarUsuario_OutputMessage">
     <wsdl:part name="parameters" element="tns:ValidarUsuarioResponse" />
   </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarUsuarioResponse" />
+  </wsdl:message>
   <wsdl:portType name="IControladorServicio">
     <wsdl:operation name="ValidarUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/ValidarUsuario" message="tns:IControladorServicio_ValidarUsuario_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/ValidarUsuarioResponse" message="tns:IControladorServicio_ValidarUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarUsuario" message="tns:IControladorServicio_RecuperarUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarUsuarioResponse" message="tns:IControladorServicio_RecuperarUsuario_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IControladorServicio" type="tns:IControladorServicio">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="ValidarUsuario">
       <soap:operation soapAction="http://tempuri.org/IControladorServicio/ValidarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarUsuario">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/RecuperarUsuario" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

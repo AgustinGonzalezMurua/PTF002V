@@ -15,6 +15,8 @@ namespace Servicio
         [OperationContract]
         string ValidarUsuario(string usuario, string contrasena);
 
+        [OperationContract]
+        string RecuperarUsuario(string run);
         // TODO: Add your service operations here
     }
 }

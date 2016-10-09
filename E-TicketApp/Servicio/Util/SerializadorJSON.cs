@@ -40,5 +40,10 @@ namespace Servicio.Util
         {
             return JsonConvert.SerializeObject(valor, Formatting.Indented);
         }
+
+        public static string Serializar(Negocio.IFuncionesCRUD valor)
+        {
+            return JsonConvert.SerializeObject(valor, Formatting.Indented);
+        }
     }
 }

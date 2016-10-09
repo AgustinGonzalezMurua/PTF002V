@@ -16,14 +16,7 @@ namespace Servicio.Util
         public static bool ValidarCadena(string cadena){
             try
             {
-                if (String.IsNullOrEmpty(cadena.Trim()))
-                {
-                    return false;
-                }
-                else
-                {
-                    return new Regex(@"^[a-z0-9_\.-]").IsMatch(cadena);
-                }
+                return (!String.IsNullOrEmpty(cadena.Trim()));
             }
             catch (Exception)
             {
@@ -68,7 +61,7 @@ namespace Servicio.Util
                 }
                 else
                 {
-                    return new Regex(@"^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$").IsMatch(fono);
+                    return new Regex(@"[0-9]").IsMatch(fono);
                 }
             }
             catch (Exception)

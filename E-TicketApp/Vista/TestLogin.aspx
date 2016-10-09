@@ -7,4 +7,10 @@
     <asp:Button ID="BotonLogin" runat="server" onclick="BotonLogin_Click" Text="Button" />
     <br />
     <asp:Label ID="LabelNotificacion" runat="server" Text=""></asp:Label>
+    <br />
+    Nombre: <asp:Label ID="LabelUsuarioNombre" runat="server" Text=""></asp:Label>
+    <br />
+    Fono: <asp:Label ID="LabelUsuarioFono" runat="server"></asp:Label>
+    <br />
+    Email: <asp:Label ID="LabelUsuarioEmail" runat="server"></asp:Label>
 </asp:Content>

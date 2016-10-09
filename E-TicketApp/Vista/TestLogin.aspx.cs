@@ -19,7 +19,14 @@ namespace Vista
         protected void BotonLogin_Click(object sender, EventArgs e)
         {
             var _resultado = JObject.Parse(new Servicio.ControladorServicioClient().ValidarUsuario(TextUsuario.Text, TextContraseña.Text));
-            LabelNotificacion.Text = (string)_resultado["Salida"];
+            if (Convert.ToBoolean(_resultado["Salida"].ToString()))
+            {
+                var _usuario = JObject.Parse(new Servicio.ControladorServicioClient().RecuperarUsuario(TextUsuario.Text));
+                LabelUsuarioNombre.Text = _usuario["Nombre"].ToString();
+                LabelUsuarioFono.Text = _usuario["Fono"].ToString();
+                LabelUsuarioEmail.Text = _usuario["Email"].ToString();
+
+            }
         }
     }
 }

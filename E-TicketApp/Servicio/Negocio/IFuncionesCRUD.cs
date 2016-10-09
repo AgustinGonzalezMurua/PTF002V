@@ -12,4 +12,4 @@ namespace Servicio.Negocio
         void Modificar();
         void Eliminar();
     }
-}
+} 
