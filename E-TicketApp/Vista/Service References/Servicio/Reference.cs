@@ -20,6 +20,9 @@ namespace Vista.Servicio {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IControladorServicio/RecuperarUsuario", ReplyAction="http://tempuri.org/IControladorServicio/RecuperarUsuarioResponse")]
         string RecuperarUsuario(string run);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IControladorServicio/RegistrarUsuario", ReplyAction="http://tempuri.org/IControladorServicio/RegistrarUsuarioResponse")]
+        string RegistrarUsuario(string usuario);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,6 +58,10 @@ namespace Vista.Servicio {
         
         public string RecuperarUsuario(string run) {
             return base.Channel.RecuperarUsuario(run);
+        }
+        
+        public string RegistrarUsuario(string usuario) {
+            return base.Channel.RegistrarUsuario(usuario);
         }
     }
 }
