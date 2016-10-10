@@ -176,7 +176,7 @@ namespace Servicio.Negocio
                     _datos.Add("CONTRASEÑA", contrasena);
                     _datos.Add("SALIDA", "0");
 
-                    salida = Convert.ToBoolean(Int32.Parse((string)(OracleSQL.ExecStoredProcedure("SPREC_USUARIOVALIDAR", _datos))));
+                    salida = Convert.ToBoolean(Int32.Parse((string)(OracleSQL.ExecStoredProcedure("SPREC_USUARIO_VALIDAR", _datos))));
                 }
                 return salida;
             }
