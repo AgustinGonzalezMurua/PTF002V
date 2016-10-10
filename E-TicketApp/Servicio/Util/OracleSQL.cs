@@ -96,9 +96,15 @@ namespace Servicio.Util
         /// <param name="command"></param>
         private static void CerrarConneciones(OracleCommand command)
         {
-            command.Connection.Close();
-            command.Connection.Dispose();
-            command.Dispose();
+            try
+            {
+                command.Connection.Close();
+                command.Connection.Dispose();
+                command.Dispose();
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }
