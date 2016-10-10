@@ -90,30 +90,6 @@ namespace Servicio.Util
             }
         }
 
-        public static void ExecStoredProcedure(string StoredProcedureName, Dictionary<string, string> Params = null)
-        {
-            try
-            {
-                var _cmd = new OracleCommand();
-                _cmd.Connection = ObtenerConneccion();
-                _cmd.CommandText = StoredProcedureName;
-                _cmd.CommandType = CommandType.StoredProcedure;
-
-                foreach (var item in Params)
-                {
-                    _cmd.Parameters.Add(item.Key, item.Value);
-                }
-
-                _cmd.Connection.Open();
-                _cmd.ExecuteNonQuery();
-                CerrarConneciones(_cmd);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
         /// <summary>
         /// Cierra todas las conecciones del comando
         /// </summary>
