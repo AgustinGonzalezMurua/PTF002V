@@ -172,8 +172,8 @@ namespace Servicio.Negocio
                 if(ValidadorDatos.ValidarRun(run) && ValidadorDatos.ValidarCadena(contrasena))
                 {
                     var _datos = new Dictionary<string, string>();
-                    _datos.Add("RUNUSUARIO", run);
-                    _datos.Add("CONTRASEÑA", contrasena);
+                    _datos.Add("P_RUN", run);
+                    _datos.Add("P_CONTRASEÑA", contrasena);
                     _datos.Add("SALIDA", "0");
 
                     salida = Convert.ToBoolean(Int32.Parse((string)(OracleSQL.ExecStoredProcedure("SPREC_USUARIO_VALIDAR", _datos))));
