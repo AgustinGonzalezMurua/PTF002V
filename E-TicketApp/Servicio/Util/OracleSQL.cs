@@ -72,12 +72,13 @@ namespace Servicio.Util
                 _cmd.Connection = ObtenerConneccion();
                 _cmd.CommandText = StoredProcedure;
                 _cmd.CommandType = CommandType.StoredProcedure;
-
-                foreach (var item in Params)
+                if (Params != null)
                 {
-                    _cmd.Parameters.Add(item.Key, item.Value);
+                    foreach (var item in Params)
+                    {
+                        _cmd.Parameters.Add(item.Key, item.Value);
+                    }
                 }
-
 
                 _cmd.Connection.Open();
                 _cmd.ExecuteNonQuery();
