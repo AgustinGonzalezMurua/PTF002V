@@ -42,7 +42,6 @@ namespace Servicio.Util
             return JsonConvert.SerializeObject(valor, Formatting.Indented);
         }
 
-
         /// <summary>
         /// <para>Serializa un objeto del Negocio</para>
         /// </summary>

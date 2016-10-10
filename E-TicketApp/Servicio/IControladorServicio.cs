@@ -18,5 +18,9 @@ namespace Servicio
         [OperationContract]
         string RecuperarUsuario(string run);
         // TODO: Add your service operations here
+
+        [OperationContract]
+        string RegistrarUsuario(string usuario);
+        //se recibe objeto Usuario
     }
 }

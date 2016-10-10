@@ -108,7 +108,7 @@ namespace Servicio.Negocio
                 _datos.Add("RUNUSUARIO", this.RUN);
 
                 var _dt = new DataTable();
-                OracleSQL.ExecStoredProcedure("SPREC_USUARIORECUPERAR", _dt, _datos);
+                OracleSQL.ExecStoredProcedure("SPREC_USUARIO", _dt, _datos);
 
                 foreach (DataRow rows in _dt.Rows)
                 {
@@ -124,9 +124,28 @@ namespace Servicio.Negocio
             }
         }
 
-        public void Agregar()
+        public void AgregarNuevoUsuario( string Clave)
         {
-            throw new NotImplementedException();
+            try
+            {
+              var _diccionario = new Dictionary<string, string>();
+              _diccionario.Add("P_RUN", this.RUN);
+              _diccionario.Add("P_NOMBRE", this.Nombre);
+              _diccionario.Add("P_TELEFONO", this.Fono);
+              _diccionario.Add("P_EMAIL", this.Email);
+              _diccionario.Add("P_TIPO_USUARIO", "4");
+              _diccionario.Add("P_CONTRASEÑA", Clave );
+
+              OracleSQL.ExecStoredProcedure("SPIN_USUARIO", _diccionario);
+            
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+
+
         }
 
         public void Modificar()
@@ -167,5 +186,11 @@ namespace Servicio.Negocio
             }
         }
         #endregion
+
+
+        public void Agregar()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

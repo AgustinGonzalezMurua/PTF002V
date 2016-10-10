@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using Servicio.Util;
+using Newtonsoft.Json.Linq;
 
 namespace Servicio
 {
@@ -37,6 +38,37 @@ namespace Servicio
             catch (Exception)
             {
                 
+                throw;
+            }
+        }
+
+
+
+        public string RegistrarUsuario(string usuario)
+        {
+            try
+            {
+                var _usuarioJson = JObject.Parse(usuario);
+                var _usuario = new Negocio.Usuario();
+                _usuario.Nombre = _usuarioJson["Nombre"].ToString();
+                _usuario.RUN = _usuarioJson["Run"].ToString();
+                _usuario.Fono = _usuarioJson["Fono"].ToString();
+                _usuario.Email = _usuarioJson["Correo"].ToString();
+                if (Util.ValidadorDatos.ValidarCadena(_usuarioJson["Contrasegna"].ToString()))
+                {
+                    _usuario.AgregarNuevoUsuario(_usuarioJson["Contrasegna"].ToString());
+                }
+                else
+                {
+
+                    // tirar mensaje .-
+                }
+
+                return SerializadorJSON.Serializar(true, "Respuesta");
+            
+            }
+            catch (Exception)
+            {
                 throw;
             }
         }
