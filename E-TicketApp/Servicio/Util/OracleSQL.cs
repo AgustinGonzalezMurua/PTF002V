@@ -82,7 +82,13 @@ namespace Servicio.Util
                 _cmd.Connection.Open();
                 _cmd.ExecuteNonQuery();
                 CerrarConneciones(_cmd);
-                return _cmd.Parameters["SALIDA"].Value;
+                if (_cmd.Parameters.Contains("SALIDA"))
+                {
+                    return _cmd.Parameters["SALIDA"].Value;
+                }else{
+                    return null;
+                }
+                
             }
             catch (Exception ex)
             {
