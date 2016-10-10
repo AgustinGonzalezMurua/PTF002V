@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json.Linq;
+using Servicio;
 
 namespace Vista
 {
@@ -24,11 +25,8 @@ namespace Vista
             _usuarioJson.Add("Correo", txtCorreo.Text);
             _usuarioJson.Add("Contrasegna", txtClave.Text);
 
-
+            ControladorServicio.RegistrarUsuario(_usuarioJson);
             
-
-
-
         }
     }
 }
