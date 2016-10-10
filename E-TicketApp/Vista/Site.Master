@@ -32,8 +32,8 @@
                     <div class="user-menu">
                         <ul>
                             <li><a href="#"><i class="fa fa-user"></i> Mi Cuenta</a></li>
-                            <li><a href="/web/"><i class="fa fa-user"></i> Mi Carrito</a></li>
-                            <li><a href="/pagar/"><i class="fa fa-user"></i> Pagar</a></li>
+                            <li><a href="/web/carrito/"><i class="fa fa-user"></i> Mi Carrito</a></li>
+                            <li><a href="/web/pagar/"><i class="fa fa-user"></i> Pagar</a></li>
                             <li><a href="#"><i class="fa fa-user"></i> Ingresar</a></li>
                         </ul>
                     </div>
@@ -82,7 +82,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="index.html">Inicio</a></li>
-                        <li><a href="shop.html">Catálogo</a></li>
+                        <li><a href="/web/catalogo/">Catálogo</a></li>
                     </ul>
                 </div>  
             </div>
