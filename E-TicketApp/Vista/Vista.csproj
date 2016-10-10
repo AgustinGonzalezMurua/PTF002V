@@ -63,6 +63,7 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="AgregarCliente.aspx" />
+    <Content Include="WebForm1.aspx" />
     <None Include="Service References\Servicio\ControladorServicio.disco" />
     <None Include="Service References\Servicio\configuration91.svcinfo" />
     <None Include="Service References\Servicio\configuration.svcinfo" />
@@ -70,6 +71,18 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\google-fonts-raleway.css" />
+    <Content Include="css\google-fonts-roboto.css" />
+    <Content Include="css\google-fonts-titillium.css" />
+    <Content Include="css\owl.carousel.css" />
+    <Content Include="css\responsive.css" />
+    <Content Include="js\jquery.easing.1.3.min.js" />
+    <Content Include="js\jquery.sticky.js" />
+    <Content Include="js\main.js" />
+    <Content Include="js\owl.carousel.min.js" />
+    <Content Include="style.css" />
     <Content Include="TestLogin.aspx" />
     <Content Include="packages.config" />
     <None Include="Properties\DataSources\Servicio.CompositeType.datasource" />
@@ -165,6 +178,13 @@
     </Compile>
     <Compile Include="TestLogin.aspx.designer.cs">
       <DependentUpon>TestLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
