@@ -56,7 +56,7 @@
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="/web/">Carrito - 
+                        <a href="/web/carrito/">Carrito - 
                             <!-- Precio Total -->
                             <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> 
                             <!-- Cantidad -->
