@@ -18,6 +18,12 @@
   <wsdl:message name="IControladorServicio_RecuperarUsuario_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarUsuarioResponse" />
   </wsdl:message>
+  <wsdl:message name="IControladorServicio_RegistrarUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RegistrarUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarUsuarioResponse" />
+  </wsdl:message>
   <wsdl:portType name="IControladorServicio">
     <wsdl:operation name="ValidarUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/ValidarUsuario" message="tns:IControladorServicio_ValidarUsuario_InputMessage" />
@@ -26,6 +32,10 @@
     <wsdl:operation name="RecuperarUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarUsuario" message="tns:IControladorServicio_RecuperarUsuario_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarUsuarioResponse" message="tns:IControladorServicio_RecuperarUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RegistrarUsuario" message="tns:IControladorServicio_RegistrarUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RegistrarUsuarioResponse" message="tns:IControladorServicio_RegistrarUsuario_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IControladorServicio" type="tns:IControladorServicio">
@@ -41,6 +51,15 @@
     </wsdl:operation>
     <wsdl:operation name="RecuperarUsuario">
       <soap:operation soapAction="http://tempuri.org/IControladorServicio/RecuperarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarUsuario">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/RegistrarUsuario" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

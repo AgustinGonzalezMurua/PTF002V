@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json.Linq;
 using Servicio;
+using Newtonsoft.Json;
 
 namespace Vista
 {
@@ -18,6 +19,7 @@ namespace Vista
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
+
             var _usuarioJson = new JObject();
             _usuarioJson.Add("Nombre", txtNombre.Text);
             _usuarioJson.Add("Run",txtRut.Text);
@@ -25,8 +27,11 @@ namespace Vista
             _usuarioJson.Add("Correo", txtCorreo.Text);
             _usuarioJson.Add("Contrasegna", txtClave.Text);
 
-            ControladorServicio.RegistrarUsuario(_usuarioJson);
+            var _resultado = JObject.Parse(new Servicio.ControladorServicioClient().RegistrarUsuario((_usuarioJson).ToString(Formatting.Indented)));          
+              
+            //redireccionar.-
             
         }
+
     }
 }
