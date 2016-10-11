@@ -6,17 +6,17 @@
 
     <title>E-Ticket</title>
     <!-- CSS -->
-    <link href="/Styles/Site.css" rel="stylesheet" type="text/css" />
-    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="/css/responsive.css" rel="stylesheet" type="text/css" />
-    <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Fuentes Google -->
-    <link href="/css/google-fonts-raleway.css" rel="stylesheet" type="text/css" />
-    <link href="/css/google-fonts-roboto.css" rel="stylesheet" type="text/css" />
-    <link href="/css/google-fonts-titillium.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/google-fonts-raleway.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/google-fonts-roboto.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/google-fonts-titillium.css" rel="stylesheet" type="text/css" />
     <!-- CSS -->
-    <link href="/css/owl.carousel.css" rel="stylesheet" type="text/css" />
-    <link href="/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/owl.carousel.css" rel="stylesheet" type="text/css" />
+    <link href="~/style.css" rel="stylesheet" type="text/css" />
 
     <!-- Contenido de hojas de estilo adicionales -->
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
@@ -31,10 +31,11 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="/web/usuario/Resumen.aspx"><i class="fa fa-user"></i> Mi Cuenta</a></li>
-                            <li><a href="/web/carrito/Resumen.aspx"><i class="fa fa-shopping-cart"></i> Mi Carrito</a></li>
-                            <li><a href="/web/pagar/Resumen.aspx"><i class="fa fa-money"></i> Pagar</a></li>
-                            <li><a href="#"><i class="fa fa-sign-out"></i> Salir</a></li>
+                            <li><a href="/Login.aspx#"><i class="fa fa-user"></i> Mi Cuenta</a></li>
+                            <li><a href="/web/carrito/"><i class="fa fa-user"></i> Mi Carrito</a></li>
+                            <li><a href="/web/pagar/"><i class="fa fa-user"></i> Pagar</a></li>
+                            <li><a href="/AgregarCliente1.aspx#"><i class="fa fa-user"></i> Registrar </a></li>
+
                         </ul>
                     </div>
                 </div>
@@ -50,7 +51,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="/index.html">E-<span>Ticket</span></a></h1>
+                        <h1><a href="index.html">E-<span>Ticket</span></a></h1>
                     </div>
                 </div>
                 
@@ -90,7 +91,9 @@
     </div> <!-- End mainmenu area -->
 
     <!-- Contenido -->
-    <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
     <!-- Fin Contenido -->
 
     <div class="footer-top-area">
@@ -172,19 +175,19 @@
         </div>
     </div> <!-- End footer bottom area -->
     <!-- JQuery -->
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js" type="text/javascript"></script>
     <!-- Bootstrap JQuery -->
-    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js" type="text/javascript"></script>
     <!-- jQuery sticky menu -->
-    <script type="text/javascript" src="/js/owl.carousel.min.js"></script>
-    <script type="text/javascript" src="/js/jquery.sticky.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.sticky.js"></script>
     
     <!-- jQuery easing -->
-    <script type="text/javascript" src="/js/jquery.easing.1.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.1.3.min.js"></script>
     <!-- Main Script -->
-    <script type="text/javascript" src="/js/main.js"></script>
-    <!-- Contenido de JavasScript en páginas implemetnadas -->
-    <asp:ContentPlaceHolder ID="JavasScriptContent" runat="server">
-    </asp:ContentPlaceHolder>
+    <script type="text/javascript" src="js/main.js"></script>
+<!-- Contenido de JavasScript en páginas implemetnadas -->
+<asp:ContentPlaceHolder ID="JavasScriptContent" runat="server">
+</asp:ContentPlaceHolder>
 </body>
 </html>
