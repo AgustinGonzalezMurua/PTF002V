@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace Vista
 {
-    public partial class AgregarCliente1 : System.Web.UI.Page
+    public partial class Registrar : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

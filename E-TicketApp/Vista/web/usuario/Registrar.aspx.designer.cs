@@ -10,7 +10,7 @@
 namespace Vista {
     
     
-    public partial class AgregarCliente1 {
+    public partial class Registrar {
         
         /// <summary>
         /// form1 control.

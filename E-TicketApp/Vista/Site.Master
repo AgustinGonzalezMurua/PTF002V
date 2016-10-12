@@ -34,7 +34,7 @@
                             <li><a href="/Login.aspx#"><i class="fa fa-user"></i> Mi Cuenta</a></li>
                             <li><a href="/web/carrito/"><i class="fa fa-user"></i> Mi Carrito</a></li>
                             <li><a href="/web/pagar/"><i class="fa fa-user"></i> Pagar</a></li>
-                            <li><a href="/AgregarCliente1.aspx#"><i class="fa fa-user"></i> Registrar </a></li>
+                            <li><a href="/web/usuario/Registrar.aspx#"><i class="fa fa-user"></i> Registrar </a></li>
 
                         </ul>
                     </div>
@@ -51,7 +51,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="index.html">E-<span>Ticket</span></a></h1>
+                        <h1><a href="/Home.aspx">E-<span>Ticket</span></a></h1>
                     </div>
                 </div>
                 
@@ -82,7 +82,7 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">Inicio</a></li>
+                        <li class="active"><a href="/Home.aspx">Inicio</a></li>
                         <li><a href="/web/catalogo/">Catálogo</a></li>
                     </ul>
                 </div>  

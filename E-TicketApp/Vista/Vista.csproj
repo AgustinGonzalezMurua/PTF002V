@@ -62,7 +62,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
-    <Content Include="AgregarCliente1.aspx" />
+    <Content Include="web\usuario\Registrar.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery.min.js" />
@@ -147,12 +147,12 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgregarCliente1.aspx.cs">
-      <DependentUpon>AgregarCliente1.aspx</DependentUpon>
+    <Compile Include="web\usuario\Registrar.aspx.cs">
+      <DependentUpon>Registrar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgregarCliente1.aspx.designer.cs">
-      <DependentUpon>AgregarCliente1.aspx</DependentUpon>
+    <Compile Include="web\usuario\Registrar.aspx.designer.cs">
+      <DependentUpon>Registrar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -190,7 +190,6 @@
     <Folder Include="web\carrito\" />
     <Folder Include="web\catalogo\" />
     <Folder Include="web\pagar\" />
-    <Folder Include="web\usuario\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
