@@ -11,7 +11,7 @@
 
 
               <div class="form-group">
-                <label for="Rut">Correo:</label>
+                <label for="Rut">Rut:</label>
                 <asp:TextBox class="form-control"  id="txtUsuario" type="text" name="txtCorreo" 
                       runat="server"/> </asp:TextBox>
             </div>

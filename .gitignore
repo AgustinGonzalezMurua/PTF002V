@@ -243,3 +243,7 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+E-TicketApp/Servicio/Web.config
+E-TicketApp/Servicio/Web.config
+E-TicketApp/Vista/Vista.csproj
+E-TicketApp/Servicio/Web.config
