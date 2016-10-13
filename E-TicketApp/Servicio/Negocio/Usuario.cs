@@ -115,6 +115,7 @@ namespace Servicio.Negocio
                     this.Nombre = rows["NOMBRE"].ToString();
                     this.Fono   = rows["TELEFONO"].ToString();
                     this.Email  = rows["EMAIL"].ToString();
+                    this.Tipo   = Convert.ToInt32(rows["TIPO_USUARIO"].ToString());
                 }
             }
             catch (Exception)

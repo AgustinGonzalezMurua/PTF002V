@@ -17,11 +17,11 @@ namespace Servicio
         {
             try
             {
-                return SerializadorJSON.Serializar(new Negocio.Usuario().ValidarUsuario(usuario, contrasena).ToString(),"Salida");
+                return SerializadorJSON.Serializar(new Negocio.Usuario().ValidarUsuario(usuario, contrasena).ToString(), "Respuesta");
             }
             catch (Exception)
             {
-                return SerializadorJSON.Serializar(false, "Salida"); ;
+                return SerializadorJSON.Serializar(false, "Respuesta"); ;
             }
         }
 
@@ -32,7 +32,7 @@ namespace Servicio
             {
                 var _usuario = new Negocio.Usuario();
                 _usuario.RUN = run;
-                _usuario.Recuperar();
+                _usuario.Recuperar(); 
                 return SerializadorJSON.Serializar(_usuario);
             }
             catch (Exception)

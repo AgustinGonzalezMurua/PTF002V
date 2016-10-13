@@ -18,7 +18,7 @@ namespace Vista
         protected void btnLogin_Click(object sender, EventArgs e)
         {
              var _resultado = JObject.Parse(new Servicio.ControladorServicioClient().ValidarUsuario(txtUsuario.Text, txtClave.Text));
-             if (Convert.ToBoolean(_resultado["Salida"].ToString()))
+             if (Convert.ToBoolean(_resultado["Respuesta"].ToString()))
              {
                  Response.Write("<script>window.alert('Bienvenido');</script>");
                  Server.Transfer("Home.aspx", true);
