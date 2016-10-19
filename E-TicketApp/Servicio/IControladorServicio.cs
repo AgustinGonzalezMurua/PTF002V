@@ -22,5 +22,9 @@ namespace Servicio
         [OperationContract]
         string RegistrarUsuario(string usuario);
         //se recibe objeto Usuario
+
+        [OperationContract]
+        string RegistrarUsuarioDesdeAdmin(string usuario);
+
     }
 }

@@ -149,6 +149,35 @@ namespace Servicio.Negocio
 
         }
 
+        public void AgregarNuevoUsuarioPrivilegios(string Clave)
+        {
+            try
+            {
+                var _diccionario = new Dictionary<string, string>();
+                _diccionario.Add("P_RUN", this.RUN);
+                _diccionario.Add("P_NOMBRE", this.Nombre);
+                _diccionario.Add("P_TELEFONO", this.Fono);
+                _diccionario.Add("P_EMAIL", this.Email);
+                _diccionario.Add("P_TIPO_USUARIO", this.Tipo.ToString());
+                _diccionario.Add("P_CONTRASEÑA", Clave);
+
+                OracleSQL.ExecStoredProcedure("SPIN_USUARIO", _diccionario);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
+
+        public void Agregar()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Modificar()
         {
             throw new NotImplementedException();
@@ -189,9 +218,6 @@ namespace Servicio.Negocio
         #endregion
 
 
-        public void Agregar()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

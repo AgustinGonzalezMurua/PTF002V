@@ -72,5 +72,36 @@ namespace Servicio
                 throw;
             }
         }
+
+
+        public string RegistrarUsuarioDesdeAdmin(string usuario)
+        {
+            try
+            {
+                var _usuarioJson = JObject.Parse(usuario);
+                var _usuario = new Negocio.Usuario();
+                _usuario.Nombre = _usuarioJson["Nombre"].ToString();
+                _usuario.RUN = _usuarioJson["Run"].ToString();
+                _usuario.Fono = _usuarioJson["Fono"].ToString();
+                _usuario.Email = _usuarioJson["Correo"].ToString();
+                _usuario.Tipo = Convert.ToInt32(_usuarioJson["Tipo"]); 
+                if (Util.ValidadorDatos.ValidarCadena(_usuarioJson["Contrasegna"].ToString()))
+                {
+                    _usuario.AgregarNuevoUsuarioPrivilegios(_usuarioJson["Contrasegna"].ToString());
+                }
+                else
+                {
+
+                    // tirar mensaje .-
+                }
+
+                return SerializadorJSON.Serializar(true, "Respuesta");
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
