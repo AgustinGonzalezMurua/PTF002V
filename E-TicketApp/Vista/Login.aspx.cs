@@ -21,7 +21,7 @@ namespace Vista
              if (Convert.ToBoolean(_resultado["Respuesta"].ToString()))
              {
                  Response.Write("<script>window.alert('Bienvenido');</script>");
-                 Server.Transfer("Home.aspx", true);
+                 Server.Transfer("/Home.aspx", true);
              }
              else
              {

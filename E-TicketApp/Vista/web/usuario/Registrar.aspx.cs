@@ -30,7 +30,7 @@ namespace Vista
 
                 //redireccionar.-
 
-                Server.Transfer("Home.aspx", true);
+                Server.Transfer("/Home.aspx", true);
 
             }
 
