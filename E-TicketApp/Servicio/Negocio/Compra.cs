@@ -11,6 +11,7 @@ namespace Servicio.Negocio
         public int Codigo { get; set; }
         public Usuario Usuario { get; set; }
         public List<Entrada> Entradas { get; set; }
+        public int Total { get; set; }
         #endregion
 
         #region metodos
@@ -24,7 +25,7 @@ namespace Servicio.Negocio
             throw new NotImplementedException();
         }
 
-        public void Modificar()
+        public void Modificar(string param)
         {
             throw new NotImplementedException();
         }

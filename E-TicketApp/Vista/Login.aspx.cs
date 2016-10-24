@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json.Linq;
+using System.Text;
 
 namespace Vista
 {
@@ -17,17 +18,27 @@ namespace Vista
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-             var _resultado = JObject.Parse(new Servicio.ControladorServicioClient().ValidarUsuario(txtUsuario.Text, txtClave.Text));
-             if (Convert.ToBoolean(_resultado["Respuesta"].ToString()))
-             {
-                 Response.Write("<script>window.alert('Bienvenido');</script>");
-                 Server.Transfer("/Home.aspx", true);
-             }
-             else
-             {
-                 Response.Write("<script>window.alert('El usuario o contraseña no coinciden');</script>"); 
-             }
- 
+            #region SerializacionMD5
+            var md5 = System.Security.Cryptography.MD5.Create();
+            byte[] inputHash = System.Text.Encoding.ASCII.GetBytes(txtClave.Text);
+            byte[] hash = md5.ComputeHash(inputHash);
+            StringBuilder pass = new StringBuilder();
+            foreach (var b in hash)
+            {
+                pass.Append(b.ToString("X2"));
+            }
+            #endregion
+
+            var _resultado = JObject.Parse(new Servicio.ControladorServicioClient().ValidarUsuario(txtUsuario.Text, pass.ToString()));
+            if (Convert.ToBoolean(_resultado["Respuesta"].ToString()))
+            {
+                Response.Write("<script>window.alert('Bienvenido');</script>");
+                Server.Transfer("/Home.aspx", true);
+            }
+            else
+            {
+                Response.Write("<script>window.alert('El usuario o contraseña no coinciden');</script>"); 
+            }
         }
     }
 }

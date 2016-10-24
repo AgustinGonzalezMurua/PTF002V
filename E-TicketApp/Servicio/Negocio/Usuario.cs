@@ -29,6 +29,13 @@ namespace Servicio.Negocio
             }
         }
 
+        private int _contrasena;
+        public int Contrasena
+        {
+            get { return _contrasena; }
+            set { _contrasena = value; }
+        }
+        
 
         private string _nombre;
 
@@ -138,15 +145,11 @@ namespace Servicio.Negocio
               _diccionario.Add("P_CONTRASEÑA", Clave );
 
               OracleSQL.ExecStoredProcedure("SPIN_USUARIO", _diccionario);
-            
             }
             catch (Exception)
             {
-                
                 throw;
             }
-
-
         }
 
         public void AgregarNuevoUsuarioPrivilegios(string Clave)
@@ -162,15 +165,11 @@ namespace Servicio.Negocio
                 _diccionario.Add("P_CONTRASEÑA", Clave);
 
                 OracleSQL.ExecStoredProcedure("SPIN_USUARIO", _diccionario);
-
             }
             catch (Exception)
             {
-
                 throw;
             }
-
-
         }
 
         public void Agregar()
@@ -178,9 +177,26 @@ namespace Servicio.Negocio
             throw new NotImplementedException();
         }
 
-        public void Modificar()
+        public void Modificar(string RUNAUTH)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _diccionario = new Dictionary<string, string>();
+                _diccionario.Add("P_RUN", this.RUN);
+                _diccionario.Add("P_NOMBRE", this.Nombre);
+                _diccionario.Add("P_TELEFONO", this.Fono);
+                _diccionario.Add("P_EMAIL", this.Email);
+                _diccionario.Add("P_TIPO_USUARIO", this.Tipo.ToString());
+                _diccionario.Add("P_CONTRASEÑA", this.Contrasena.ToString());
+                _diccionario.Add("P_RUNAUTH", RUNAUTH);
+
+                OracleSQL.ExecStoredProcedure("SPMOD_USUARIO", _diccionario);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public void Eliminar()
@@ -190,12 +206,32 @@ namespace Servicio.Negocio
 
         public List<Compra> ListarCompras()
         {
-            throw new NotImplementedException();
+            var _data = new Dictionary<string, string>();
+            var _tabla = new DataTable();
+            var _listaCompras = new List<Compra>();
+            _data.Add("P_RUN", this.RUN);
+
+            _tabla = OracleSQL.ExecStoredProcedure("SPREC_LISTARCOMPRAS",_tabla, _data);
+
+            foreach (DataRow row in _tabla.Rows)
+            {
+                var _compra = new Compra();
+                var _entrada = new Entrada();
+                _entrada.Codigo = Convert.ToInt32(row["ENTRADA"].ToString());
+                _compra.Codigo = Convert.ToInt32(row["CODIGO"].ToString());
+                _compra.Total = Convert.ToInt32(row["TOTAL"].ToString());
+                _compra.Usuario = this;
+                _entrada.Recuperar();
+                _compra.Entradas.Add(_entrada);
+
+                _listaCompras.Add(_compra);
+            }
+
+            return _listaCompras;
         }
 
         public bool ValidarUsuario(string run, string contrasena)
         {
-            
             try
             {
                 bool salida = false;
@@ -216,8 +252,5 @@ namespace Servicio.Negocio
             }
         }
         #endregion
-
-
-       
     }
 }

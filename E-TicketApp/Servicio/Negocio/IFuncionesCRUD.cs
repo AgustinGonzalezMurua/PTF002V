@@ -9,7 +9,7 @@ namespace Servicio.Negocio
     {
         void Recuperar();
         void Agregar();
-        void Modificar();
+        void Modificar(string param);
         void Eliminar();
     }
 } 
