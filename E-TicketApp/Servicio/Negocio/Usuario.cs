@@ -107,12 +107,23 @@ namespace Servicio.Negocio
         #endregion
 
         #region metodos
+
+        /// <summary>
+        /// <para>Setea al usuario via rut y lo inicializa</para>
+        /// </summary>
+        /// <param name="run"></param>
+        public Usuario(string run)
+        {
+            this.RUN = run;
+            this.Recuperar();
+        }
+
         public void Recuperar()
         {
             try
             {
                 var _datos = new Dictionary<string, string>();
-                _datos.Add("RUNUSUARIO", this.RUN);
+                _datos.Add("P_RUN", this.RUN);
 
                 var _dt = new DataTable();
                 OracleSQL.ExecStoredProcedure("SPREC_USUARIO", _dt, _datos);

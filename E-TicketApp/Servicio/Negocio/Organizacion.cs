@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Servicio.Util;
+using System.Data;
 
 namespace Servicio.Negocio
 {
     public class Organizacion : IFuncionesCRUD
     {
         #region propiedades
-        private string _run;
-        public string Run
+        private string _rut;
+        public string RUT
         {
-            get { return _run; }
+            get { return _rut; }
             set 
             { 
                 if(ValidadorDatos.ValidarRun(value)){
-                    _run = value; 
+                    _rut = value; 
                 }else{
                     throw new ArgumentException("Run no válido");
                 }
@@ -74,15 +75,17 @@ namespace Servicio.Negocio
             }
         }
 
-        private string _telefono;
-        public string Telefono
+        public string Comuna { get; set; }
+
+        private string _fono;
+        public string Fono
         {
-            get { return _telefono; }
+            get { return _fono; }
             set
             {
                 if (ValidadorDatos.ValidarFono(value))
                 {
-                    _telefono = value;
+                    _fono = value;
                 }
                 else
                 {
@@ -91,13 +94,58 @@ namespace Servicio.Negocio
             }
         }
 
+        private string _email;
+
+        public string Email
+        {
+            get { return _email; }
+            set 
+            {
+                if (ValidadorDatos.ValidarCorreo(value))
+                {
+                    _email = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Correo no válido");
+                }
+            }
+        }
+        
+
         public bool Estado { get; set; }
+
+        public Usuario Organizador { get; set; }
         #endregion
 
         #region metodos
         public void Recuperar()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _datos = new Dictionary<string, string>();
+                _datos.Add("P_RUT",this.RUT);
+
+                var _dt = new DataTable();
+                OracleSQL.ExecStoredProcedure("SPREC_ORGANIZACION", _dt, _datos);
+
+                foreach (DataRow rows in _dt.Rows)
+                {
+                    this.Nombre         = rows["NOMBRE"].ToString();
+                    this.RazonSocial    = rows["RAZON_SOCIAL"].ToString();
+                    this.Direccion      = rows["DIRECCION"].ToString();
+                    this.Comuna         = rows["COMUNA"].ToString();
+                    this.Fono           = rows["FONO"].ToString();
+                    this.Email          = rows["EMAIL"].ToString();
+                    this.Estado         = Convert.ToBoolean(rows["ESTADO_ORG"].ToString());
+                    this.Organizador    = new Usuario(rows["ORGANIZADOR"].ToString());
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
 
         public void Agregar()
