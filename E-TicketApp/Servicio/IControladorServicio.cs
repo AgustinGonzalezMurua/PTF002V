@@ -45,7 +45,16 @@ namespace Servicio
         string RecuperarEventos_Organizacion(string rut);
 
         [OperationContract]
-        string RecuperarEventos_Ultimos50();
+        string RecuperarEventos_UltimosEventos();
+        [OperationContract]
+        string RegistrarEvento(string evento);
+        #endregion
+
+        #region Recinto
+        [OperationContract]
+        string RecuperarRecinto_Codigo(int codigo);
+        [OperationContract]
+        string RecuperarRecinto_Todos();
         #endregion
     }
 }

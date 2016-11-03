@@ -113,13 +113,21 @@ namespace Servicio.Negocio
                 var _dt = new DataTable();
                 OracleSQL.ExecStoredProcedure("SPREC_USUARIO", _dt, _datos);
 
-                foreach (DataRow rows in _dt.Rows)
+                if (_dt.Rows.Count != 0)
                 {
-                    this.Nombre = rows["NOMBRE"].ToString();
-                    this.Fono   = rows["TELEFONO"].ToString();
-                    this.Email  = rows["EMAIL"].ToString();
-                    this.Tipo   = Convert.ToInt32(rows["TIPO_USUARIO"].ToString());
+                    foreach (DataRow rows in _dt.Rows)
+                    {
+                        this.Nombre = rows["NOMBRE"].ToString();
+                        this.Fono   = rows["TELEFONO"].ToString();
+                        this.Email  = rows["EMAIL"].ToString();
+                        this.Tipo   = Convert.ToInt32(rows["TIPO_USUARIO"].ToString());
+                    }
                 }
+                else
+                {
+                    throw new KeyNotFoundException("Usuario no existe");
+                }
+                
             }
             catch (Exception)
             {

@@ -75,7 +75,7 @@ namespace Servicio.Negocio
             }
         }
 
-        public string Comuna { get; set; }
+        public Comuna Comuna { get; set; }
 
         private string _fono;
         public string Fono
@@ -149,16 +149,23 @@ namespace Servicio.Negocio
                 var _dt = new DataTable();
                 OracleSQL.ExecStoredProcedure("SPREC_ORGANIZACION", _dt, _datos);
 
-                foreach (DataRow rows in _dt.Rows)
+                if (_dt.Rows.Count != 0)
                 {
-                    this.Nombre         = rows["NOMBRE"].ToString();
-                    this.RazonSocial    = rows["RAZON_SOCIAL"].ToString();
-                    this.Direccion      = rows["DIRECCION"].ToString();
-                    this.Comuna         = rows["COMUNA"].ToString();
-                    this.Fono           = rows["FONO"].ToString();
-                    this.Email          = rows["EMAIL"].ToString();
-                    this.Estado         = Convert.ToBoolean(int.Parse(rows["ESTADO_ORG"].ToString()));
-                    this.Organizador    = new Usuario(rows["ORGANIZADOR"].ToString());
+                    foreach (DataRow rows in _dt.Rows)
+                    {
+                        this.Nombre = rows["NOMBRE"].ToString();
+                        this.RazonSocial = rows["RAZON_SOCIAL"].ToString();
+                        this.Direccion = rows["DIRECCION"].ToString();
+                        this.Comuna = new Comuna(Convert.ToInt32(rows["COMUNA"].ToString()));
+                        this.Fono = rows["FONO"].ToString();
+                        this.Email = rows["EMAIL"].ToString();
+                        this.Estado = Convert.ToBoolean(int.Parse(rows["ESTADO_ORG"].ToString()));
+                        this.Organizador = new Usuario(rows["ORGANIZADOR"].ToString());
+                    }
+                }
+                else
+                {
+                    throw new KeyNotFoundException("Organización no encontrada");
                 }
             }
             catch (Exception)
@@ -178,17 +185,24 @@ namespace Servicio.Negocio
                 var _dt = new DataTable();
                 OracleSQL.ExecStoredProcedure("SPREC_ORGANIZACION_RUN_USUARIO", _dt, _datos);
 
-                foreach (DataRow rows in _dt.Rows)
+                if (_dt.Rows.Count != 0)
                 {
-                    this.RUT = rows["RUT"].ToString();
-                    this.Nombre = rows["NOMBRE"].ToString();
-                    this.RazonSocial = rows["RAZON_SOCIAL"].ToString();
-                    this.Direccion = rows["DIRECCION"].ToString();
-                    this.Comuna = rows["COMUNA"].ToString();
-                    this.Fono = rows["FONO"].ToString();
-                    this.Email = rows["EMAIL"].ToString();
-                    this.Estado = Convert.ToBoolean(int.Parse(rows["ESTADO_ORG"].ToString()));
-                    this.Organizador = organizador;
+                    foreach (DataRow rows in _dt.Rows)
+                    {
+                        this.RUT = rows["RUT"].ToString();
+                        this.Nombre = rows["NOMBRE"].ToString();
+                        this.RazonSocial = rows["RAZON_SOCIAL"].ToString();
+                        this.Direccion = rows["DIRECCION"].ToString();
+                        this.Comuna = new Comuna(Convert.ToInt32(rows["COMUNA"].ToString()));
+                        this.Fono = rows["FONO"].ToString();
+                        this.Email = rows["EMAIL"].ToString();
+                        this.Estado = Convert.ToBoolean(int.Parse(rows["ESTADO_ORG"].ToString()));
+                        this.Organizador = organizador;
+                    } 
+                }
+                else
+                {
+                    throw new KeyNotFoundException("Usuario no posee una organización asociada");
                 }
 
                 return this;

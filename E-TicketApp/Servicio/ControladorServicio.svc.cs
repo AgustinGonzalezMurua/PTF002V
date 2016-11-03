@@ -127,7 +127,14 @@ namespace Servicio
         #region Evento
         public string RecuperarEvento_Codigo(string codigo)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Evento(codigo));
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
         }
         public string RecuperarEventos_Organizacion(string rut)
         {
@@ -140,9 +147,64 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
-        public string RecuperarEventos_Ultimos50()
+        public string RecuperarEventos_UltimosEventos()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Evento().ListarUltimosEventos());
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+        public string RegistrarEvento(string evento)
+        {
+            try
+            {
+                var _eventoJson         = JObject.Parse(evento);
+                var _evento             = new Negocio.Evento();
+                _evento.Nombre          = _eventoJson["NOMBRE"].ToString();
+                _evento.Fecha           = Convert.ToDateTime(_eventoJson["FECHA"].ToString());
+                _evento.Tipo            = _eventoJson["TIPO"].ToString();
+                _evento.Estado          = Convert.ToBoolean(int.Parse(_eventoJson["ESTADO"].ToString()));
+                _evento.Organizacion    = new Negocio.Organizacion(_eventoJson["ORGANIZACION"].ToString());
+                _evento.Recinto         = new Negocio.Recinto(int.Parse(_eventoJson["RECINTO"].ToString()));
+
+                _evento.Agregar();
+
+                return SerializadorJSON.Serializar(true, "Respuesta");
+
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+        #endregion
+
+        #region Recinto
+        public string RecuperarRecinto_Codigo(int codigo)
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Recinto(codigo));
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+        public string RecuperarRecinto_Todos()
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Recinto().ListarRecintos());
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
         }
         #endregion
     }

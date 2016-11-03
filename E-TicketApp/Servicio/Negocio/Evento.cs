@@ -96,30 +96,51 @@ namespace Servicio.Negocio
                 var _dt = new DataTable();
                 OracleSQL.ExecStoredProcedure("SPREC_EVENTO", _dt, _datos);
 
-                foreach (DataRow rows in _dt.Rows)
+                if (_dt.Rows.Count != 0)
                 {
-                    this.Codigo                 = rows["CODIGO"].ToString();
-                    this.Nombre                 = rows["NOMBRE"].ToString();
-                    var _fecha                  = new DateTime();
-                    DateTime.TryParse(rows["FECHA"].ToString(), out _fecha);
-                    this.Fecha                  = _fecha;
-                    DateTime.TryParse(rows["FECHA_CREACION"].ToString(), out _fecha);
-                    this.FechaCreacion          = _fecha;
-                    this.Estado                 = Convert.ToBoolean(int.Parse(rows["ESTADO_EVENTO"].ToString()));
-                    this.Organizacion           = new Organizacion(rows["ORGANIZACION"].ToString());
-                    this.Recinto                = new Recinto(int.Parse(rows["RECINTO"].ToString()));
+                    foreach (DataRow rows in _dt.Rows)
+                    {
+                        this.Codigo = rows["CODIGO"].ToString();
+                        this.Nombre = rows["NOMBRE"].ToString();
+                        var _fecha = new DateTime();
+                        DateTime.TryParse(rows["FECHA"].ToString(), out _fecha);
+                        this.Fecha = _fecha;
+                        DateTime.TryParse(rows["FECHA_CREACION"].ToString(), out _fecha);
+                        this.FechaCreacion = _fecha;
+                        this.Estado = Convert.ToBoolean(int.Parse(rows["ESTADO_EVENTO"].ToString()));
+                        this.Organizacion = new Organizacion(rows["ORGANIZACION"].ToString());
+                        this.Recinto = new Recinto(int.Parse(rows["RECINTO"].ToString()));
+                    }
+                }
+                else
+                {
+                    throw new KeyNotFoundException("Evento no encontrado");
                 }
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
 
         public void Agregar()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _data = new Dictionary<string, string>();
+                _data.Add("P_NOMBRE",this.Nombre);
+                _data.Add("P_FECHA", this.Fecha.ToString());
+                _data.Add("P_TIPO_EVENTO", this.Tipo);
+                _data.Add("P_ESTADO_EVENTO", this.Estado.ToString());
+                _data.Add("P_ORGANIZACION", this.Organizacion.RUT);
+                _data.Add("P_RECINTO", this.Recinto.Codigo.ToString());
+
+                OracleSQL.ExecStoredProcedure("SPIN_EVENTO", _data);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void Modificar(string param)
@@ -175,6 +196,43 @@ namespace Servicio.Negocio
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public List<Evento> ListarUltimosEventos()
+        {
+            try
+            {
+                var _eventos = new List<Evento>();
+                var _datos = new Dictionary<string, string>();
+                var _dt = new DataTable();
+
+                OracleSQL.ExecStoredProcedure("SPREC_EVENTOS_RECIENTES", _dt, _datos);
+
+                foreach (DataRow rows in _dt.Rows)
+                {
+                    var _evento = new Evento();
+
+                    _evento.Codigo = rows["CODIGO"].ToString();
+                    _evento.Nombre = rows["NOMBRE"].ToString();
+                    var _fecha = new DateTime();
+                    DateTime.TryParse(rows["FECHA"].ToString(), out _fecha);
+                    _evento.Fecha = _fecha;
+                    DateTime.TryParse(rows["FECHA_CREACION"].ToString(), out _fecha);
+                    _evento.FechaCreacion = _fecha;
+                    _evento.Estado = Convert.ToBoolean(int.Parse(rows["ESTADO_EVENTO"].ToString()));
+                    _evento.Organizacion = new Organizacion(rows["ORGANIZACION"].ToString());
+                    _evento.Recinto = new Recinto(int.Parse(rows["RECINTO"].ToString()));
+
+                    _eventos.Add(_evento);
+                }
+
+                return _eventos;
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
         #endregion

@@ -78,6 +78,7 @@
     <Compile Include="Correo.cs" />
     <Compile Include="Negocio\Asiento.cs" />
     <Compile Include="Negocio\Compra.cs" />
+    <Compile Include="Negocio\Comuna.cs" />
     <Compile Include="Negocio\Entrada.cs" />
     <Compile Include="Negocio\Evento.cs" />
     <Compile Include="Negocio\IFuncionesCRUD.cs" />

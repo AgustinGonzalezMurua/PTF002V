@@ -44,7 +44,7 @@ namespace Servicio.Negocio
             }
         }
 
-        public string Comuna { get; set; }
+        public Comuna Comuna { get; set; }
 
         public int CapacidadMaxima { get; set; }
 
@@ -71,6 +71,8 @@ namespace Servicio.Negocio
 
         #region propiedades
 
+        public Recinto() { }
+
         public Recinto(int codigo)
         {
             this.Codigo = codigo;
@@ -82,19 +84,28 @@ namespace Servicio.Negocio
             try
             {
                 var _datos = new Dictionary<string, string>();
+                var _dt = new DataTable();
+
                 _datos.Add("P_CODIGO", this.Codigo.ToString());
 
-                var _dt = new DataTable();
                 OracleSQL.ExecStoredProcedure("SPREC_RECINTO", _dt, _datos);
 
-                foreach (DataRow rows in _dt.Rows)
+                if (true)
                 {
-                    this.Nombre             = rows["NOMBRE"].ToString();
-                    this.Direccion          = rows["DIRECCION"].ToString();
-                    this.Comuna             = rows["COMUNA"].ToString();
-                    this.Fono               = rows["FONO"].ToString();
-                    this.CapacidadMaxima    = int.Parse(rows["CAPACIDAD_MAXIMA"].ToString());
+                    foreach (DataRow rows in _dt.Rows)
+                    {
+                        this.Nombre = rows["NOMBRE"].ToString();
+                        this.Direccion = rows["DIRECCION"].ToString();
+                        this.Comuna = new Comuna(Convert.ToInt32(rows["COMUNA"].ToString()));
+                        this.Fono = rows["FONO"].ToString();
+                        this.CapacidadMaxima = int.Parse(rows["CAPACIDAD_MAXIMA"].ToString());
+                    }
                 }
+                else
+                {
+                    throw new KeyNotFoundException("Recinto no encontrado");
+                }
+
             }
             catch (Exception)
             {
@@ -116,6 +127,38 @@ namespace Servicio.Negocio
         public void Eliminar()
         {
             throw new NotImplementedException();
+        }
+
+        public List<Recinto> ListarRecintos()
+        {
+            try
+            {
+                var _recintos = new List<Recinto>();
+                var _datos = new Dictionary<string, string>();
+                var _dt = new DataTable();
+
+                OracleSQL.ExecStoredProcedure("SPREC_RECINTO_TODOS", _dt, _datos);
+
+                foreach (DataRow rows in _dt.Rows)
+                {
+                    var _recinto = new Recinto();
+
+                    _recinto.Nombre = rows["CODIGO"].ToString();
+                    _recinto.Nombre = rows["NOMBRE"].ToString();
+                    _recinto.Direccion = rows["DIRECCION"].ToString();
+                    _recinto.Comuna = new Comuna(Convert.ToInt32(rows["COMUNA"].ToString()));
+                    _recinto.Fono = rows["FONO"].ToString();
+                    _recinto.CapacidadMaxima = int.Parse(rows["CAPACIDAD_MAXIMA"].ToString());
+
+                    _recintos.Add(_recinto);
+                }
+
+                return _recintos;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public List<Evento> ListarEventos()
