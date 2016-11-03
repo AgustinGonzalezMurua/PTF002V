@@ -244,7 +244,9 @@ namespace Servicio.Negocio
                 foreach (DataRow rowEvento in _dtEventos.Rows)
                 {
                     var _evento             = new Evento();
+                    _evento.Codigo          = rowEvento["CODIGO"].ToString();
                     _evento.Nombre          = rowEvento["NOMBRE"].ToString();
+                    _evento.Tipo            = rowEvento["TIPO_EVENTO"].ToString();
                     var _fecha              = new DateTime();
                     DateTime.TryParse(rowEvento["FECHA"].ToString(), out _fecha);
                     _evento.Fecha           = _fecha;
