@@ -27,33 +27,9 @@ namespace Servicio.Negocio
                     throw new ArgumentException("RUN inválido");
                 }
             }
-        }
-
-        private int _contrasena;
-        public int Contrasena
-        {
-            get { return _contrasena; }
-            set { _contrasena = value; }
-        }
-        
+        }      
 
         private string _nombre;
-
-        private string _nombreUsuario;
-        public string NombreUsuario
-        {
-            get { return _nombreUsuario; }
-            set 
-            { 
-                if (ValidadorDatos.ValidarCadena(value))
-                {
-                    _nombreUsuario = value;
-                }else
-                {
-                    throw new ArgumentException("Usuario inválido");
-                }   
-            }
-        }
         
         public string Nombre
         {
@@ -108,14 +84,23 @@ namespace Servicio.Negocio
 
         #region metodos
 
+        public Usuario() { }
+
         /// <summary>
         /// <para>Setea al usuario via rut y lo inicializa</para>
         /// </summary>
         /// <param name="run"></param>
         public Usuario(string run)
         {
-            this.RUN = run;
-            this.Recuperar();
+            try
+            {
+                this.RUN = run;
+                this.Recuperar();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void Recuperar()
@@ -188,7 +173,7 @@ namespace Servicio.Negocio
             throw new NotImplementedException();
         }
 
-        public void Modificar(string RUNAUTH)
+        public void Modificar(string contrasena)
         {
             try
             {
@@ -198,8 +183,7 @@ namespace Servicio.Negocio
                 _diccionario.Add("P_TELEFONO", this.Fono);
                 _diccionario.Add("P_EMAIL", this.Email);
                 _diccionario.Add("P_TIPO_USUARIO", this.Tipo.ToString());
-                _diccionario.Add("P_CONTRASEÑA", this.Contrasena.ToString());
-                _diccionario.Add("P_RUNAUTH", RUNAUTH);
+                _diccionario.Add("P_CONTRASEÑA", contrasena.ToString());
 
                 OracleSQL.ExecStoredProcedure("SPMOD_USUARIO", _diccionario);
             }

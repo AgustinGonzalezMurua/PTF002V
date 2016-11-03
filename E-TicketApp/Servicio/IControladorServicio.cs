@@ -12,6 +12,8 @@ namespace Servicio
     [ServiceContract]
     public interface IControladorServicio
     {
+
+        #region Usuario
         [OperationContract]
         string ValidarUsuario(string usuario, string contrasena);
 
@@ -25,6 +27,25 @@ namespace Servicio
 
         [OperationContract]
         string RegistrarUsuarioDesdeAdmin(string usuario);
+        #endregion
 
+        #region Organizacion
+        [OperationContract]
+        string RecuperarOrganizacion_RUT(string rut);
+
+        [OperationContract]
+        string RecuperarOrganizacion_RUN(string run);
+        #endregion
+
+        #region Evento
+        [OperationContract]
+        string RecuperarEvento_Codigo(string codigo);
+
+        [OperationContract]
+        string RecuperarEventos_Organizacion(string rut);
+
+        [OperationContract]
+        string RecuperarEventos_Ultimos50();
+        #endregion
     }
 }

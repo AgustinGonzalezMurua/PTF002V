@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Servicio.Util;
+using System.Data;
+using System.Globalization;
 
 namespace Servicio.Negocio
 {
@@ -59,9 +61,60 @@ namespace Servicio.Negocio
         #endregion
 
         #region metodos
+
+        public Evento() { }
+
+        public Evento(string codigo) 
+        {
+            try
+            {
+                this.Codigo = codigo;
+                this.Recuperar();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+    
+        /// <summary>
+        /// <para>Recupera el evento, si se quiere inicializar desde un nuevo Evento usar el constructor de Evento.</para>
+        /// </summary>
         public void Recuperar()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _datos = new Dictionary<string, string>();
+
+                if (!ValidadorDatos.ValidarCadena(this.Codigo))
+                {
+                    throw new ArgumentException("Codigo no válido, se recomienda inicializar usando el constructor.");
+                }
+
+                _datos.Add("P_CODIGO", this.Codigo);
+
+                var _dt = new DataTable();
+                OracleSQL.ExecStoredProcedure("SPREC_EVENTO", _dt, _datos);
+
+                foreach (DataRow rows in _dt.Rows)
+                {
+                    this.Codigo                 = rows["CODIGO"].ToString();
+                    this.Nombre                 = rows["NOMBRE"].ToString();
+                    var _fecha                  = new DateTime();
+                    DateTime.TryParse(rows["FECHA"].ToString(), out _fecha);
+                    this.Fecha                  = _fecha;
+                    DateTime.TryParse(rows["FECHA_CREACION"].ToString(), out _fecha);
+                    this.FechaCreacion          = _fecha;
+                    this.Estado                 = Convert.ToBoolean(int.Parse(rows["ESTADO_EVENTO"].ToString()));
+                    this.Organizacion           = new Organizacion(rows["ORGANIZACION"].ToString());
+                    this.Recinto                = new Recinto(int.Parse(rows["RECINTO"].ToString()));
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public void Agregar()

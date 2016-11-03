@@ -119,6 +119,26 @@ namespace Servicio.Negocio
         #endregion
 
         #region metodos
+
+        public Organizacion() { }
+
+        /// <summary>
+        /// <para>Inicializa organizacion usando rut de la organización</para>
+        /// </summary>
+        /// <param name="rut"></param>
+        public Organizacion(string rut)
+        {
+            try
+            {
+                this.RUT = rut;
+                this.Recuperar();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public void Recuperar()
         {
             try
@@ -137,13 +157,45 @@ namespace Servicio.Negocio
                     this.Comuna         = rows["COMUNA"].ToString();
                     this.Fono           = rows["FONO"].ToString();
                     this.Email          = rows["EMAIL"].ToString();
-                    this.Estado         = Convert.ToBoolean(rows["ESTADO_ORG"].ToString());
+                    this.Estado         = Convert.ToBoolean(int.Parse(rows["ESTADO_ORG"].ToString()));
                     this.Organizador    = new Usuario(rows["ORGANIZADOR"].ToString());
                 }
             }
             catch (Exception)
             {
                 
+                throw;
+            }
+        }
+
+        public Organizacion Recuperar(Usuario organizador)
+        {
+            try
+            {
+                var _datos = new Dictionary<string, string>();
+                _datos.Add("P_RUN", organizador.RUN);
+
+                var _dt = new DataTable();
+                OracleSQL.ExecStoredProcedure("SPREC_ORGANIZACION_RUN_USUARIO", _dt, _datos);
+
+                foreach (DataRow rows in _dt.Rows)
+                {
+                    this.RUT = rows["RUT"].ToString();
+                    this.Nombre = rows["NOMBRE"].ToString();
+                    this.RazonSocial = rows["RAZON_SOCIAL"].ToString();
+                    this.Direccion = rows["DIRECCION"].ToString();
+                    this.Comuna = rows["COMUNA"].ToString();
+                    this.Fono = rows["FONO"].ToString();
+                    this.Email = rows["EMAIL"].ToString();
+                    this.Estado = Convert.ToBoolean(int.Parse(rows["ESTADO_ORG"].ToString()));
+                    this.Organizador = organizador;
+                }
+
+                return this;
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }
@@ -165,7 +217,38 @@ namespace Servicio.Negocio
 
         public List<Evento> ListarEventos()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _eventos = new List<Evento>();
+
+                var _datos = new Dictionary<string, string>();
+                _datos.Add("P_RUT", this.RUT);
+
+                var _dtEventos = new DataTable();
+                OracleSQL.ExecStoredProcedure("SPREC_EVENTO_POR_ORGANIZACION", _dtEventos, _datos);
+
+                foreach (DataRow rowEvento in _dtEventos.Rows)
+                {
+                    var _evento             = new Evento();
+                    _evento.Nombre          = rowEvento["NOMBRE"].ToString();
+                    var _fecha              = new DateTime();
+                    DateTime.TryParse(rowEvento["FECHA"].ToString(), out _fecha);
+                    _evento.Fecha           = _fecha;
+                    DateTime.TryParse(rowEvento["FECHA_CREACION"].ToString(), out _fecha);
+                    _evento.FechaCreacion   = _fecha;
+                    _evento.Estado          = Convert.ToBoolean(int.Parse(rowEvento["ESTADO_EVENTO"].ToString()));
+                    _evento.Organizacion    = new Organizacion(rowEvento["ORGANIZACION"].ToString());
+                    _evento.Recinto         = new Recinto(int.Parse(rowEvento["RECINTO"].ToString()));
+
+                    _eventos.Add(_evento);
+                }
+
+                return _eventos;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
         #endregion
     }

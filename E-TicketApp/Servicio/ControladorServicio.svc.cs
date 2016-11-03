@@ -10,9 +10,10 @@ using Newtonsoft.Json.Linq;
 
 namespace Servicio
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
     public class ControladorServicio : IControladorServicio
     {
+
+        #region Usuario
         public string ValidarUsuario(string usuario, string contrasena)
         {
             try
@@ -24,26 +25,18 @@ namespace Servicio
                 return SerializadorJSON.Serializar(false, "Respuesta"); ;
             }
         }
-
-
         public string RecuperarUsuario(string run)
         {
             try
             {
-                var _usuario = new Negocio.Usuario();
-                _usuario.RUN = run;
-                _usuario.Recuperar(); 
+                var _usuario = new Negocio.Usuario(run);
                 return SerializadorJSON.Serializar(_usuario);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+                return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
-
-
-
         public string RegistrarUsuario(string usuario)
         {
             try
@@ -54,6 +47,7 @@ namespace Servicio
                 _usuario.RUN = _usuarioJson["Run"].ToString();
                 _usuario.Fono = _usuarioJson["Fono"].ToString();
                 _usuario.Email = _usuarioJson["Correo"].ToString();
+
                 if (Util.ValidadorDatos.ValidarCadena(_usuarioJson["Contrasegna"].ToString()))
                 {
                     _usuario.AgregarNuevoUsuario(_usuarioJson["Contrasegna"].ToString());
@@ -65,15 +59,13 @@ namespace Servicio
                 }
 
                 return SerializadorJSON.Serializar(true, "Respuesta");
-            
+
             }
             catch (Exception)
             {
                 throw;
             }
         }
-
-
         public string RegistrarUsuarioDesdeAdmin(string usuario)
         {
             try
@@ -84,7 +76,7 @@ namespace Servicio
                 _usuario.RUN = _usuarioJson["Run"].ToString();
                 _usuario.Fono = _usuarioJson["Fono"].ToString();
                 _usuario.Email = _usuarioJson["Correo"].ToString();
-                _usuario.Tipo = Convert.ToInt32(_usuarioJson["Tipo"]); 
+                _usuario.Tipo = Convert.ToInt32(_usuarioJson["Tipo"]);
                 if (Util.ValidadorDatos.ValidarCadena(_usuarioJson["Contrasegna"].ToString()))
                 {
                     _usuario.AgregarNuevoUsuarioPrivilegios(_usuarioJson["Contrasegna"].ToString());
@@ -103,5 +95,55 @@ namespace Servicio
                 throw;
             }
         }
+        #endregion
+
+        #region Organizacion
+        public string RecuperarOrganizacion_RUT(string rut)
+        {
+            try
+            {
+                var _organizacion = new Negocio.Organizacion(rut);
+                return SerializadorJSON.Serializar(_organizacion);
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+        public string RecuperarOrganizacion_RUN(string run)
+        {
+            try
+            {
+                var _organizador = new Negocio.Usuario(run);
+                return SerializadorJSON.Serializar(new Negocio.Organizacion().Recuperar(_organizador));
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+        #endregion
+
+        #region Evento
+        public string RecuperarEvento_Codigo(string codigo)
+        {
+            throw new NotImplementedException();
+        }
+        public string RecuperarEventos_Organizacion(string rut)
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Organizacion(rut).ListarEventos());
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+        public string RecuperarEventos_Ultimos50()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }

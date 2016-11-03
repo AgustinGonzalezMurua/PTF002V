@@ -37,7 +37,7 @@ namespace Servicio.Util
         /// </summary>
         /// <param name="valor"></param>
         /// <returns></returns>
-        public static string Serializar(System.Collections.CollectionBase valor)
+        public static string Serializar(System.Collections.IList valor)
         {
             return JsonConvert.SerializeObject(valor, Formatting.Indented);
         }
