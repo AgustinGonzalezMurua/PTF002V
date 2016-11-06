@@ -85,6 +85,7 @@
     <Compile Include="Negocio\Organizacion.cs" />
     <Compile Include="Negocio\Recinto.cs" />
     <Compile Include="Negocio\Sector.cs" />
+    <Compile Include="Negocio\TiposGeneric.cs" />
     <Compile Include="Negocio\Ubicacion.cs" />
     <Compile Include="Negocio\Usuario.cs" />
     <Compile Include="Normalizador.cs" />

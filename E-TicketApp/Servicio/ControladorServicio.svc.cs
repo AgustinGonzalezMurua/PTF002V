@@ -166,7 +166,7 @@ namespace Servicio
                 var _evento             = new Negocio.Evento();
                 _evento.Nombre          = _eventoJson["NOMBRE"].ToString();
                 _evento.Fecha           = Convert.ToDateTime(_eventoJson["FECHA"].ToString());
-                _evento.Tipo            = _eventoJson["TIPO"].ToString();
+                _evento.Tipo            = new Negocio.TiposGeneric(Convert.ToInt32(_eventoJson["TIPO"].ToString()));
                 _evento.Estado          = Convert.ToBoolean(int.Parse(_eventoJson["ESTADO"].ToString()));
                 _evento.Organizacion    = new Negocio.Organizacion(_eventoJson["ORGANIZACION"].ToString());
                 _evento.Recinto         = new Negocio.Recinto(int.Parse(_eventoJson["RECINTO"].ToString()));
@@ -200,6 +200,20 @@ namespace Servicio
             try
             {
                 return SerializadorJSON.Serializar(new Negocio.Recinto().ListarRecintos());
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+        #endregion
+
+        #region Tipos
+        public string RecuperarTipo_Eventos()
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.TiposGeneric().RecuperarTipoEventos());
             }
             catch (Exception ex)
             {

@@ -56,5 +56,10 @@ namespace Servicio
         [OperationContract]
         string RecuperarRecinto_Todos();
         #endregion
+
+        #region Tipos
+        [OperationContract]
+        string RecuperarTipo_Eventos();
+        #endregion
     }
 }

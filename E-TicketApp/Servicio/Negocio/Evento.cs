@@ -34,22 +34,7 @@ namespace Servicio.Negocio
 
         public DateTime FechaCreacion { get; set; }
 
-        private string _tipo;
-        public string Tipo
-        {
-            get { return _tipo; }
-            set
-            {
-                if (ValidadorDatos.ValidarCadena(value))
-                {
-                    _tipo = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Tipo no válido");
-                }
-            }
-        }
+        public TiposGeneric Tipo {get; set;}
 
         public Recinto Recinto { get; set; }
 
@@ -102,8 +87,8 @@ namespace Servicio.Negocio
                     {
                         this.Codigo         = rows["CODIGO"].ToString();
                         this.Nombre         = rows["NOMBRE"].ToString();
-                        this.Tipo           = rows["TIPO_EVENTO"].ToString();
-                        var _fecha = new DateTime();
+                        this.Tipo           = new TiposGeneric().RecuperarTipoEvento(Convert.ToInt32(rows["TIPO_EVENTO"].ToString()));
+                        var _fecha          = new DateTime();
                         DateTime.TryParse(rows["FECHA"].ToString(), out _fecha);
                         this.Fecha          = _fecha;
                         DateTime.TryParse(rows["FECHA_CREACION"].ToString(), out _fecha);
@@ -118,9 +103,9 @@ namespace Servicio.Negocio
                     throw new KeyNotFoundException("Evento no encontrado");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
@@ -131,7 +116,7 @@ namespace Servicio.Negocio
                 var _data = new Dictionary<string, string>();
                 _data.Add("P_NOMBRE",this.Nombre);
                 _data.Add("P_FECHA", this.Fecha.ToString());
-                _data.Add("P_TIPO_EVENTO", this.Tipo);
+                _data.Add("P_TIPO_EVENTO", this.Tipo.Codigo.ToString());
                 _data.Add("P_ESTADO_EVENTO", this.Estado.ToString());
                 _data.Add("P_ORGANIZACION", this.Organizacion.RUT);
                 _data.Add("P_RECINTO", this.Recinto.Codigo.ToString());
