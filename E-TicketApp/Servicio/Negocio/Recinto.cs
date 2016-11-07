@@ -143,7 +143,7 @@ namespace Servicio.Negocio
                 {
                     var _recinto = new Recinto();
 
-                    _recinto.Nombre = rows["CODIGO"].ToString();
+                    _recinto.Codigo = Convert.ToInt32(rows["CODIGO"].ToString());
                     _recinto.Nombre = rows["NOMBRE"].ToString();
                     _recinto.Direccion = rows["DIRECCION"].ToString();
                     _recinto.Comuna = new Comuna(Convert.ToInt32(rows["COMUNA"].ToString()));

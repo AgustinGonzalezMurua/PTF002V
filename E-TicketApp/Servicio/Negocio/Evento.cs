@@ -115,9 +115,8 @@ namespace Servicio.Negocio
             {
                 var _data = new Dictionary<string, string>();
                 _data.Add("P_NOMBRE",this.Nombre);
-                _data.Add("P_FECHA", this.Fecha.ToString());
+                _data.Add("P_FECHA", this.Fecha.ToString("dd-MMM-yy hh.mm.ss tt"));
                 _data.Add("P_TIPO_EVENTO", this.Tipo.Codigo.ToString());
-                _data.Add("P_ESTADO_EVENTO", this.Estado.ToString());
                 _data.Add("P_ORGANIZACION", this.Organizacion.RUT);
                 _data.Add("P_RECINTO", this.Recinto.Codigo.ToString());
 

@@ -164,12 +164,12 @@ namespace Servicio
             {
                 var _eventoJson         = JObject.Parse(evento);
                 var _evento             = new Negocio.Evento();
-                _evento.Nombre          = _eventoJson["NOMBRE"].ToString();
-                _evento.Fecha           = Convert.ToDateTime(_eventoJson["FECHA"].ToString());
-                _evento.Tipo            = new Negocio.TiposGeneric(Convert.ToInt32(_eventoJson["TIPO"].ToString()));
-                _evento.Estado          = Convert.ToBoolean(int.Parse(_eventoJson["ESTADO"].ToString()));
-                _evento.Organizacion    = new Negocio.Organizacion(_eventoJson["ORGANIZACION"].ToString());
-                _evento.Recinto         = new Negocio.Recinto(int.Parse(_eventoJson["RECINTO"].ToString()));
+                _evento.Nombre          = _eventoJson["Nombre"].ToString();
+                _evento.Fecha           = Convert.ToDateTime(_eventoJson["Fecha"].ToString());
+                _evento.Tipo            = new Negocio.TiposGeneric(Convert.ToInt32(_eventoJson["Tipo"].ToString()));
+                _evento.Estado          = Convert.ToBoolean(int.Parse(_eventoJson["Estado"].ToString()));
+                _evento.Organizacion    = new Negocio.Organizacion(_eventoJson["Organizacion"].ToString());
+                _evento.Recinto         = new Negocio.Recinto(int.Parse(_eventoJson["Recinto"].ToString()));
 
                 _evento.Agregar();
 
