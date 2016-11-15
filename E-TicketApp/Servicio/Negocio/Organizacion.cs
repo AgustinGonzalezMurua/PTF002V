@@ -216,17 +216,79 @@ namespace Servicio.Negocio
 
         public void Agregar()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _diccionario = new Dictionary<string, string>();
+                _diccionario.Add("O_RUT", this.RUT);
+                _diccionario.Add("O_NOMBRE", this.Nombre);
+                _diccionario.Add("O_RAZON_SOCIAL", this.RazonSocial);
+                _diccionario.Add("O_DIRECCION", this.Direccion);
+                _diccionario.Add("O_COMUNA", this.Comuna.ToString());
+                _diccionario.Add("O_FONO", this.Fono);
+                _diccionario.Add("O_EMAIL", this.Email);              
+                _diccionario.Add("O_ESTADO_ORG", this.Estado.ToString());
+                _diccionario.Add("O_ORGANIZADOR", this.Organizador.ToString());
+
+                OracleSQL.ExecStoredProcedure("SPIN_ORGANIZACION", _diccionario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public void Modificar(string param)
+        public void Modificar()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _diccionario = new Dictionary<string, string>();
+                _diccionario.Add("O_RUT", this.RUT);
+                _diccionario.Add("O_NOMBRE", this.Nombre);
+                _diccionario.Add("O_RAZON_SOCIAL", this.RazonSocial);
+                _diccionario.Add("O_DIRECCION", this.Direccion);
+                _diccionario.Add("O_COMUNA", this.Comuna.ToString());
+                _diccionario.Add("O_FONO", this.Fono);
+                _diccionario.Add("O_EMAIL", this.Email);
+                _diccionario.Add("O_ESTADO_ORG", this.Estado.ToString());
+                _diccionario.Add("O_ORGANIZADOR", this.Organizador.ToString());
+
+                OracleSQL.ExecStoredProcedure("SPMOD_ORGANIZACION", _diccionario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public void Eliminar()
+        public void ModificarEstado(string rut, int estado)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _diccionario = new Dictionary<string, string>();
+                _diccionario.Add("O_RUT", rut);
+                _diccionario.Add("ESTADO_ORG", estado.ToString());
+
+                OracleSQL.ExecStoredProcedure("SPMOD_ESTADO_ORGANIZACION", _diccionario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void Eliminar(string rut)
+        {
+            try
+            {
+                var _diccionario = new Dictionary<string, string>();
+                _diccionario.Add("O_RUT", rut);                
+
+                OracleSQL.ExecStoredProcedure("SPDEL_ORGANIZACION", _diccionario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public List<Evento> ListarEventos()
@@ -260,6 +322,39 @@ namespace Servicio.Negocio
                 }
 
                 return _eventos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<Organizacion> ListarOrganizaciones()
+        {
+            try
+            {
+                var _organizaciones = new List<Organizacion>();
+
+                var _dtOrganizaciones = new DataTable();
+                OracleSQL.ExecStoredProcedure("SPREC_ORGANIZACIONES", _dtOrganizaciones);
+
+                foreach (DataRow rowOrganizacion in _dtOrganizaciones.Rows)
+                {
+                    var _organizacion = new Organizacion();
+                    _organizacion.RUT = rowOrganizacion["RUT"].ToString();
+                    _organizacion.Nombre = rowOrganizacion["NOMBRE"].ToString();
+                    _organizacion.RazonSocial = rowOrganizacion["RAZON_SOCIAL"].ToString();
+                    _organizacion.Direccion = rowOrganizacion["DIRECCION"].ToString();
+                    _organizacion.Comuna = new Comuna(int.Parse(rowOrganizacion["COMUNA"].ToString()));
+                    _organizacion.Fono = rowOrganizacion["FONO"].ToString();
+                    _organizacion.Email = rowOrganizacion["EMAIL"].ToString();    
+                    _organizacion.Estado = Convert.ToBoolean(int.Parse(rowOrganizacion["ESTADO_ORG"].ToString()));                    
+                    _organizacion.Organizador = new Usuario(rowOrganizacion["ORGANIZADOR"].ToString());
+
+                    _organizaciones.Add(_organizacion);
+                }
+
+                return _organizaciones;
             }
             catch (Exception ex)
             {
