@@ -27,6 +27,10 @@ namespace Servicio
 
         [OperationContract]
         string RegistrarUsuarioDesdeAdmin(string usuario);
+      
+        [OperationContract]
+        string RecuperarUsuario_Todos(); 
+
         #endregion
 
         #region Organizacion
@@ -37,7 +41,7 @@ namespace Servicio
         string RecuperarOrganizacion_RUN(string run);
         #endregion
 
-        #region Evento
+        #region Eventov
         [OperationContract]
         string RecuperarEvento_Codigo(string codigo);
 

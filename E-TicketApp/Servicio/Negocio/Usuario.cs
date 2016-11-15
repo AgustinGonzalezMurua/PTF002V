@@ -64,6 +64,8 @@ namespace Servicio.Negocio
         
         public int Tipo { get; set; }
 
+        public int Estado { get; set; }
+
         private string _fono;
         public string Fono
         {
@@ -192,6 +194,7 @@ namespace Servicio.Negocio
                 _diccionario.Add("P_EMAIL", this.Email);
                 _diccionario.Add("P_TIPO_USUARIO", this.Tipo.ToString());
                 _diccionario.Add("P_CONTRASEÑA", contrasena.ToString());
+                _diccionario.Add("P_ESTADO", (this.Estado).ToString());
 
                 OracleSQL.ExecStoredProcedure("SPMOD_USUARIO", _diccionario);
             }
@@ -204,7 +207,51 @@ namespace Servicio.Negocio
 
         public void Eliminar()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _diccionario = new Dictionary<string, string>();
+                _diccionario.Add("P_RUN", this.RUN);
+                _diccionario.Add("P_ESTADO", (this.Estado).ToString());
+                OracleSQL.ExecStoredProcedure("SPMOD_ESTADO_USUARIO", _diccionario);
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }     
+        }
+
+        public List<Usuario> ListarUsuarios()
+        {
+            try
+            {
+                var _listaUsuario = new List<Usuario>();
+                var _datos = new Dictionary<string, string>();
+                var _tabla = new DataTable();
+                
+
+                OracleSQL.ExecStoredProcedure("SPREC_LISTAR_USUARIO", _tabla, _datos);
+
+                foreach (DataRow rows in _tabla.Rows)
+                {
+                    var _usuario = new Usuario();
+
+                    _usuario.RUN = rows["RUN"].ToString();
+                    _usuario.Nombre = rows["NOMBRE"].ToString();
+                    _usuario.Fono = rows["TELEFONO"].ToString();
+                    _usuario.Email = rows["EMAIL"].ToString();
+                    _usuario.Tipo = Convert.ToInt32(rows["TIPO_USUARIO"].ToString());
+                    _usuario.RUN = rows["RUN"].ToString();
+                    _usuario.Estado = Convert.ToInt32(rows["ESTADO"].ToString());
+                    _listaUsuario.Add(_usuario);
+
+                }
+                return _listaUsuario;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public List<Compra> ListarCompras()
@@ -254,6 +301,9 @@ namespace Servicio.Negocio
                 return false;
             }
         }
+
+
+
         #endregion
     }
 }

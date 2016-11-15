@@ -75,7 +75,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Correo.cs" />
     <Compile Include="Negocio\Asiento.cs" />
     <Compile Include="Negocio\Compra.cs" />
     <Compile Include="Negocio\Comuna.cs" />

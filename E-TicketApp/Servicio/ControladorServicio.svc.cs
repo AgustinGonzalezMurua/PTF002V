@@ -12,7 +12,6 @@ namespace Servicio
 {
     public class ControladorServicio : IControladorServicio
     {
-
         #region Usuario
         public string ValidarUsuario(string usuario, string contrasena)
         {
@@ -63,7 +62,7 @@ namespace Servicio
             }
             catch (Exception)
             {
-                throw;
+                return SerializadorJSON.Serializar(false, "Respuesta");
             }
         }
         public string RegistrarUsuarioDesdeAdmin(string usuario)
@@ -93,6 +92,18 @@ namespace Servicio
             catch (Exception)
             {
                 throw;
+            }
+        }
+        
+        public string RecuperarUsuario_Todos()
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Usuario().ListarUsuarios());
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
         #endregion
@@ -125,6 +136,36 @@ namespace Servicio
         #endregion
 
         #region Evento
+        #region Usuarios
+        // Listar Usuarios, en procedimiento solo muestra los que tienen un estado activo 
+        // y el perfil tiene que ser diferente a administrador
+ /*       public string Listar_Usuario()
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Usuario().ListarUsuarios());
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+        // Modifica el estado en la base de datos.
+/*        public void Eliminar()
+        {
+            try
+            {
+             //   return SerializadorJSON.Serializar(new Negocio.Usuario().ListarUsuarios());
+                SerializadorJSON.Serializar(new Negocio.Usuario().Eliminar());
+            }
+            catch (Exception ex)
+            {
+                SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        } */
+        #endregion
+
+
         public string RecuperarEvento_Codigo(string codigo)
         {
             try
@@ -181,6 +222,7 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
+        
         #endregion
 
         #region Recinto

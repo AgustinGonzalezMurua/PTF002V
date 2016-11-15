@@ -161,6 +161,7 @@ namespace Servicio.Negocio
             }
         }
 
+
         public List<Evento> ListarEventos()
         {
             throw new NotImplementedException();
@@ -170,6 +171,9 @@ namespace Servicio.Negocio
         {
             return (List<Ubicacion>)evento.Recinto.Ubicaciones.Select(ubicacion => ubicacion.Habilitado);
         }
+
+
+
         #endregion
     }
 }
