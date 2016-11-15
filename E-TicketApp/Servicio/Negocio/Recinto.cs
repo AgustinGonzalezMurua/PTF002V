@@ -116,17 +116,53 @@ namespace Servicio.Negocio
 
         public void Agregar()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _diccionario = new Dictionary<string, string>();
+                _diccionario.Add("R_NOMBRE", this.Nombre);
+                _diccionario.Add("R_DIRECCION", this.Direccion);
+                _diccionario.Add("R_COMUNA", this.Comuna.ToString());
+                _diccionario.Add("R_FONO", this.Fono);
+                _diccionario.Add("R_CAPACIDAD_MAX", this.CapacidadMaxima.ToString());
+                OracleSQL.ExecStoredProcedure("SPIN_RECINTO", _diccionario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public void Modificar(string param)
+        public void Modificar(int codigo)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _diccionario = new Dictionary<string, string>();
+                _diccionario.Add("R_CODIGO", codigo.ToString());
+                _diccionario.Add("R_NOMBRE", this.Nombre);
+                _diccionario.Add("R_DIRECCION", this.Direccion);
+                _diccionario.Add("R_COMUNA", this.Comuna.ToString());
+                _diccionario.Add("R_FONO", this.Fono);
+                _diccionario.Add("R_CAPACIDAD_MAX", this.CapacidadMaxima.ToString());
+                OracleSQL.ExecStoredProcedure("SPMOD_RECINTO", _diccionario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public void Eliminar()
+        public void Eliminar(int codigo)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _diccionario = new Dictionary<string, string>();
+                _diccionario.Add("R_CODIGO", codigo.ToString());
+                OracleSQL.ExecStoredProcedure("SPDEL_RECINTO", _diccionario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public List<Recinto> ListarRecintos()
@@ -161,7 +197,11 @@ namespace Servicio.Negocio
             }
         }
 
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> refs/remotes/origin/Trabajando-codigo
         public List<Evento> ListarEventos()
         {
             throw new NotImplementedException();
