@@ -8,10 +8,9 @@ namespace Servicio.Negocio
     public class Ubicacion : IFuncionesCRUD
     {
         #region propiedades
-        public int Codigo { get; set; }
-        public int Numero { get; set; }
-        public int Fila { get; set; }
-        public bool Habilitado  { get; set; }
+        public int Codigo { get; set; }        
+        public char Fila { get; set; }
+        public Recinto Recinto  { get; set; }
         #endregion
 
         #region metodos

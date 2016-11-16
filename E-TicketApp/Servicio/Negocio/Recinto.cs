@@ -119,11 +119,11 @@ namespace Servicio.Negocio
             try
             {
                 var _diccionario = new Dictionary<string, string>();
-                _diccionario.Add("R_NOMBRE", this.Nombre);
-                _diccionario.Add("R_DIRECCION", this.Direccion);
-                _diccionario.Add("R_COMUNA", this.Comuna.ToString());
-                _diccionario.Add("R_FONO", this.Fono);
-                _diccionario.Add("R_CAPACIDAD_MAX", this.CapacidadMaxima.ToString());
+                _diccionario.Add("P_NOMBRE", this.Nombre);
+                _diccionario.Add("P_DIRECCION", this.Direccion);
+                _diccionario.Add("P_COMUNA", this.Comuna.ToString());
+                _diccionario.Add("P_FONO", this.Fono);
+                _diccionario.Add("P_CAPACIDAD_MAX", this.CapacidadMaxima.ToString());
                 OracleSQL.ExecStoredProcedure("SPIN_RECINTO", _diccionario);
             }
             catch (Exception)
@@ -137,12 +137,12 @@ namespace Servicio.Negocio
             try
             {
                 var _diccionario = new Dictionary<string, string>();
-                _diccionario.Add("R_CODIGO", codigo.ToString());
-                _diccionario.Add("R_NOMBRE", this.Nombre);
-                _diccionario.Add("R_DIRECCION", this.Direccion);
-                _diccionario.Add("R_COMUNA", this.Comuna.ToString());
-                _diccionario.Add("R_FONO", this.Fono);
-                _diccionario.Add("R_CAPACIDAD_MAX", this.CapacidadMaxima.ToString());
+                _diccionario.Add("P_CODIGO", codigo.ToString());
+                _diccionario.Add("P_NOMBRE", this.Nombre);
+                _diccionario.Add("P_DIRECCION", this.Direccion);
+                _diccionario.Add("P_COMUNA", this.Comuna.ToString());
+                _diccionario.Add("P_FONO", this.Fono);
+                _diccionario.Add("P_CAPACIDAD_MAX", this.CapacidadMaxima.ToString());
                 OracleSQL.ExecStoredProcedure("SPMOD_RECINTO", _diccionario);
             }
             catch (Exception)
@@ -156,7 +156,7 @@ namespace Servicio.Negocio
             try
             {
                 var _diccionario = new Dictionary<string, string>();
-                _diccionario.Add("R_CODIGO", codigo.ToString());
+                _diccionario.Add("P_CODIGO", codigo.ToString());
                 OracleSQL.ExecStoredProcedure("SPDEL_RECINTO", _diccionario);
             }
             catch (Exception)
@@ -197,23 +197,43 @@ namespace Servicio.Negocio
             }
         }
 
-<<<<<<< HEAD
-
-=======
-      
->>>>>>> refs/remotes/origin/Trabajando-codigo
-        public List<Evento> ListarEventos()
+        public List<Sector> ListarSectoresPorRecinto()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _recintos = new List<Recinto>();
+                var _datos = new Dictionary<string, string>();
+                var _dt = new DataTable();
+
+                OracleSQL.ExecStoredProcedure("SPREC_RECINTO_TODOS", _dt, _datos);
+
+                foreach (DataRow rows in _dt.Rows)
+                {
+                    var _recinto = new Recinto();
+
+                    _recinto.Codigo = Convert.ToInt32(rows["CODIGO"].ToString());
+                    _recinto.Nombre = rows["NOMBRE"].ToString();
+                    _recinto.Direccion = rows["DIRECCION"].ToString();
+                    _recinto.Comuna = new Comuna(Convert.ToInt32(rows["COMUNA"].ToString()));
+                    _recinto.Fono = rows["FONO"].ToString();
+                    _recinto.CapacidadMaxima = int.Parse(rows["CAPACIDAD_MAXIMA"].ToString());
+
+                    _recintos.Add(_recinto);
+                }
+
+                return _recintos;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
+
 
         public List<Ubicacion> ListarUbicacionesDisponibles(Evento evento)
         {
-            return (List<Ubicacion>)evento.Recinto.Ubicaciones.Select(ubicacion => ubicacion.Habilitado);
+            return (List<Ubicacion>)evento.Recinto.Ubicaciones.Select(ubicacion => ubicacion.Recinto);
         }
-
-
-
         #endregion
     }
 }

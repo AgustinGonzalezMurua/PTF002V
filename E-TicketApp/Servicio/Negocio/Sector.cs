@@ -48,6 +48,9 @@ namespace Servicio.Negocio
         }
 
         public int CapacidadMaxima { get; set; }
+
+        public Evento Evento { get; set; }
+
         #endregion
 
         #region metodos
