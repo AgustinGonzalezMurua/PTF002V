@@ -29,7 +29,10 @@ namespace Servicio
         string RegistrarUsuarioDesdeAdmin(string usuario);
       
         [OperationContract]
-        string RecuperarUsuario_Todos(); 
+        string RecuperarUsuario_Todos();
+        
+        [OperationContract]
+        string EliminarUsuario(string run);
 
         #endregion
 

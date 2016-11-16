@@ -94,7 +94,19 @@ namespace Servicio
                 throw;
             }
         }
-        
+        public string EliminarUsuario(string run)
+        {
+            try
+            {
+               new Negocio.Usuario(run).Eliminar();
+               return SerializadorJSON.Serializar(true, "Respuesta"); 
+            }
+            catch (Exception)
+            {
+                return SerializadorJSON.Serializar(false, "Respuesta"); 
+            }
+        }
+
         public string RecuperarUsuario_Todos()
         {
             try
@@ -133,37 +145,12 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
+       
+        
         #endregion
 
         #region Evento
-        #region Usuarios
-        // Listar Usuarios, en procedimiento solo muestra los que tienen un estado activo 
-        // y el perfil tiene que ser diferente a administrador
- /*       public string Listar_Usuario()
-        {
-            try
-            {
-                return SerializadorJSON.Serializar(new Negocio.Usuario().ListarUsuarios());
-            }
-            catch (Exception ex)
-            {
-                return SerializadorJSON.Serializar(ex.Message, "Error");
-            }
-        }
-        // Modifica el estado en la base de datos.
-/*        public void Eliminar()
-        {
-            try
-            {
-             //   return SerializadorJSON.Serializar(new Negocio.Usuario().ListarUsuarios());
-                SerializadorJSON.Serializar(new Negocio.Usuario().Eliminar());
-            }
-            catch (Exception ex)
-            {
-                SerializadorJSON.Serializar(ex.Message, "Error");
-            }
-        } */
-        #endregion
+
 
 
         public string RecuperarEvento_Codigo(string codigo)
@@ -205,12 +192,12 @@ namespace Servicio
             {
                 var _eventoJson         = JObject.Parse(evento);
                 var _evento             = new Negocio.Evento();
-                _evento.Nombre          = _eventoJson["Nombre"].ToString();
-                _evento.Fecha           = Convert.ToDateTime(_eventoJson["Fecha"].ToString());
-                _evento.Tipo            = new Negocio.TiposGeneric(Convert.ToInt32(_eventoJson["Tipo"].ToString()));
-                _evento.Estado          = Convert.ToBoolean(int.Parse(_eventoJson["Estado"].ToString()));
-                _evento.Organizacion    = new Negocio.Organizacion(_eventoJson["Organizacion"].ToString());
-                _evento.Recinto         = new Negocio.Recinto(int.Parse(_eventoJson["Recinto"].ToString()));
+                _evento.Nombre          = _eventoJson["NOMBRE"].ToString();
+                _evento.Fecha           = Convert.ToDateTime(_eventoJson["FECHA"].ToString());
+                _evento.Tipo            = new Negocio.TiposGeneric(Convert.ToInt32(_eventoJson["TIPO"].ToString()));
+                _evento.Estado          = Convert.ToBoolean(int.Parse(_eventoJson["ESTADO"].ToString()));
+                _evento.Organizacion    = new Negocio.Organizacion(_eventoJson["ORGANIZACION"].ToString());
+                _evento.Recinto         = new Negocio.Recinto(int.Parse(_eventoJson["RECINTO"].ToString()));
 
                 _evento.Agregar();
 
@@ -222,8 +209,7 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
-        
-        #endregion
+             #endregion
 
         #region Recinto
         public string RecuperarRecinto_Codigo(int codigo)

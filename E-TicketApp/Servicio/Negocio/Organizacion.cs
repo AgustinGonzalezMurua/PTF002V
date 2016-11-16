@@ -237,48 +237,54 @@ namespace Servicio.Negocio
             }
         }
 
-        public void Modificar()
-        {
-            try
-            {
-                var _diccionario = new Dictionary<string, string>();
-                _diccionario.Add("O_RUT", this.RUT);
-                _diccionario.Add("O_NOMBRE", this.Nombre);
-                _diccionario.Add("O_RAZON_SOCIAL", this.RazonSocial);
-                _diccionario.Add("O_DIRECCION", this.Direccion);
-                _diccionario.Add("O_COMUNA", this.Comuna.ToString());
-                _diccionario.Add("O_FONO", this.Fono);
-                _diccionario.Add("O_EMAIL", this.Email);
-                _diccionario.Add("O_ESTADO_ORG", this.Estado.ToString());
-                _diccionario.Add("O_ORGANIZADOR", this.Organizador.ToString());
 
-                OracleSQL.ExecStoredProcedure("SPMOD_ORGANIZACION", _diccionario);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+        public void Modificar(string param)
+        {
+            throw new NotImplementedException();
         }
+        /*      public void Modificar()
+               {
+                   try
+                   {
+                       var _diccionario = new Dictionary<string, string>();
+                       _diccionario.Add("O_RUT", this.RUT);
+                       _diccionario.Add("O_NOMBRE", this.Nombre);
+                       _diccionario.Add("O_RAZON_SOCIAL", this.RazonSocial);
+                       _diccionario.Add("O_DIRECCION", this.Direccion);
+                       _diccionario.Add("O_COMUNA", this.Comuna.ToString());
+                       _diccionario.Add("O_FONO", this.Fono);
+                       _diccionario.Add("O_EMAIL", this.Email);
+                       _diccionario.Add("O_ESTADO_ORG", this.Estado.ToString());
+                       _diccionario.Add("O_ORGANIZADOR", this.Organizador.ToString());
 
-        public void ModificarEstado(string rut, int estado)
+                       OracleSQL.ExecStoredProcedure("SPMOD_ORGANIZACION", _diccionario);
+                   }
+                   catch (Exception)
+                   {
+                       throw;
+                   }
+               }
+             public void ModificarEstado(string rut, int estado)
+               {
+                   try
+                   {
+                       var _diccionario = new Dictionary<string, string>();
+                       _diccionario.Add("O_RUT", rut);
+                       _diccionario.Add("ESTADO_ORG", estado.ToString());
+
+                       OracleSQL.ExecStoredProcedure("SPMOD_ESTADO_ORGANIZACION", _diccionario);
+                   }
+                   catch (Exception)
+                   {
+                       throw;
+                   }
+               } */
+
+        public void Eliminar()
         {
-            try
-            {
-                var _diccionario = new Dictionary<string, string>();
-                _diccionario.Add("O_RUT", rut);
-                _diccionario.Add("ESTADO_ORG", estado.ToString());
-
-                OracleSQL.ExecStoredProcedure("SPMOD_ESTADO_ORGANIZACION", _diccionario);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            throw new NotImplementedException();
         }
-
-        public void Eliminar(string rut)
-        {
-            try
+           /* try
             {
                 var _diccionario = new Dictionary<string, string>();
                 _diccionario.Add("O_RUT", rut);                
@@ -288,8 +294,8 @@ namespace Servicio.Negocio
             catch (Exception)
             {
                 throw;
-            }
-        }
+            } */
+        
 
         public List<Evento> ListarEventos()
         {
