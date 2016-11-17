@@ -94,7 +94,6 @@ namespace Servicio
                 throw;
             }
         }
-        
         public string RecuperarUsuario_Todos()
         {
             try
@@ -148,7 +147,6 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
-
         public string RecuperarEvento_Codigo(string codigo)
         {
             try
@@ -186,16 +184,7 @@ namespace Servicio
         {
             try
             {
-                var _eventoJson         = JObject.Parse(evento);
-                var _evento             = new Negocio.Evento();
-                _evento.Nombre          = _eventoJson["Nombre"].ToString();
-                _evento.Fecha           = Convert.ToDateTime(_eventoJson["Fecha"].ToString());
-                _evento.Tipo            = new Negocio.TiposGeneric(Convert.ToInt32(_eventoJson["Tipo"].ToString()));
-                _evento.Estado          = Convert.ToBoolean(int.Parse(_eventoJson["Estado"].ToString()));
-                _evento.Organizacion    = new Negocio.Organizacion(_eventoJson["Organizacion"].ToString());
-                _evento.Recinto         = new Negocio.Recinto(int.Parse(_eventoJson["Recinto"].ToString()));
-
-                _evento.Agregar();
+                new Negocio.Evento(JObject.Parse(evento)).Agregar();
 
                 return SerializadorJSON.Serializar(true, "Respuesta");
 
@@ -205,7 +194,19 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
-        
+        public string ModificarEvento(string evento)
+        {
+            try
+            {
+                new Negocio.Evento(JObject.Parse(evento)).Modificar();
+
+                return SerializadorJSON.Serializar(true, "Respuesta");
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
         #endregion
 
         #region Recinto
@@ -238,7 +239,7 @@ namespace Servicio
         {
             try
             {
-                return SerializadorJSON.Serializar(new Negocio.TiposGeneric().RecuperarTipoEventos());
+                return SerializadorJSON.Serializar(new Negocio.TiposGeneric().RecuperarTodosTipoEvento());
             }
             catch (Exception ex)
             {

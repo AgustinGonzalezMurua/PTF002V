@@ -308,7 +308,7 @@ namespace Servicio.Negocio
                     var _evento             = new Evento();
                     _evento.Codigo          = rowEvento["CODIGO"].ToString();
                     _evento.Nombre          = rowEvento["NOMBRE"].ToString();
-                    _evento.Tipo            = new TiposGeneric(Convert.ToInt32(rowEvento["TIPO_EVENTO"].ToString()));
+                    _evento.Tipo            = new TiposGeneric().RecuperarTipoEvento(Convert.ToInt32(rowEvento["TIPO_EVENTO"].ToString()));
                     var _fecha              = new DateTime();
                     DateTime.TryParse(rowEvento["FECHA"].ToString(), out _fecha);
                     _evento.Fecha           = _fecha;

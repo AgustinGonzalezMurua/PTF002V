@@ -55,6 +55,9 @@ namespace Servicio
         string RegistrarEvento(string evento);
 
         [OperationContract]
+        string ModificarEvento(string evento);
+
+        [OperationContract]
         string EliminarEvento(string codigo);
         #endregion
 

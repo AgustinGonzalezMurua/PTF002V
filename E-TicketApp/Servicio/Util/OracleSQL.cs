@@ -11,9 +11,20 @@ namespace Servicio.Util
 {
     public static class OracleSQL
     {
+        /// <summary>
+        /// <para>Obtiene las configuraciones usando la ruta indicada en la configuración</para>
+        /// </summary>
+        /// <returns></returns>
         private static OracleConnection ObtenerConneccion()
         {
-            return new OracleConnection(ConfigurationManager.AppSettings["ConnectionStringOracle"].ToString());
+            try
+            {
+                return new OracleConnection(ConfigurationManager.AppSettings["ConnectionStringOracle"].ToString());
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Error al leer la configuración de la aplicación: \n" + ex.Message);
+            }
         }
         
         /// <summary>
@@ -53,7 +64,7 @@ namespace Servicio.Util
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new ArgumentException("Ha sucedido algo inesperado al interactuar con la base de datos: \n" + ex.Message);
             }
         }
 
@@ -93,7 +104,7 @@ namespace Servicio.Util
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new ArgumentException("Ha sucedido algo inesperado al interactuar con la base de datos: \n" + ex.Message);
             }
         }
 
@@ -109,8 +120,9 @@ namespace Servicio.Util
                 command.Connection.Dispose();
                 command.Dispose();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                throw new ArgumentException("Ha sucedido algo inesperado al intentar cerrar la conexión: \n" + ex.Message);
             }
         }
     }
