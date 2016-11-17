@@ -69,7 +69,7 @@ namespace Servicio.Negocio
         public List<Ubicacion> Ubicaciones { get; set; }
         #endregion
 
-        #region propiedades
+        #region metodos
 
         public Recinto() { }
 
@@ -132,12 +132,12 @@ namespace Servicio.Negocio
             }
         }
 
-        public void Modificar(int codigo)
+        public void Modificar()
         {
             try
             {
                 var _diccionario = new Dictionary<string, string>();
-                _diccionario.Add("P_CODIGO", codigo.ToString());
+                _diccionario.Add("P_CODIGO", this.Codigo.ToString());
                 _diccionario.Add("P_NOMBRE", this.Nombre);
                 _diccionario.Add("P_DIRECCION", this.Direccion);
                 _diccionario.Add("P_COMUNA", this.Comuna.ToString());
@@ -151,12 +151,12 @@ namespace Servicio.Negocio
             }
         }
 
-        public void Eliminar(int codigo)
+        public void Eliminar()
         {
             try
             {
                 var _diccionario = new Dictionary<string, string>();
-                _diccionario.Add("P_CODIGO", codigo.ToString());
+                _diccionario.Add("P_CODIGO", this.Codigo.ToString());
                 OracleSQL.ExecStoredProcedure("SPDEL_RECINTO", _diccionario);
             }
             catch (Exception)
@@ -196,38 +196,40 @@ namespace Servicio.Negocio
                 throw;
             }
         }
+        //===============================================================================================
+        //Se necesita corregir esto debido a que está intentando listar Recintos en vez de Sectores
+        //===============================================================================================
+        //public List<Sector> ListarSectoresPorRecinto()
+        //{
+        //    try
+        //    {
+        //        var _recintos = new List<Recinto>();
+        //        var _datos = new Dictionary<string, string>();
+        //        var _dt = new DataTable();
 
-        public List<Sector> ListarSectoresPorRecinto()
-        {
-            try
-            {
-                var _recintos = new List<Recinto>();
-                var _datos = new Dictionary<string, string>();
-                var _dt = new DataTable();
+        //        OracleSQL.ExecStoredProcedure("SPREC_RECINTO_TODOS", _dt, _datos);
 
-                OracleSQL.ExecStoredProcedure("SPREC_RECINTO_TODOS", _dt, _datos);
+        //        foreach (DataRow rows in _dt.Rows)
+        //        {
+        //            var _recinto = new Recinto();
 
-                foreach (DataRow rows in _dt.Rows)
-                {
-                    var _recinto = new Recinto();
+        //            _recinto.Codigo = Convert.ToInt32(rows["CODIGO"].ToString());
+        //            _recinto.Nombre = rows["NOMBRE"].ToString();
+        //            _recinto.Direccion = rows["DIRECCION"].ToString();
+        //            _recinto.Comuna = new Comuna(Convert.ToInt32(rows["COMUNA"].ToString()));
+        //            _recinto.Fono = rows["FONO"].ToString();
+        //            _recinto.CapacidadMaxima = int.Parse(rows["CAPACIDAD_MAXIMA"].ToString());
 
-                    _recinto.Codigo = Convert.ToInt32(rows["CODIGO"].ToString());
-                    _recinto.Nombre = rows["NOMBRE"].ToString();
-                    _recinto.Direccion = rows["DIRECCION"].ToString();
-                    _recinto.Comuna = new Comuna(Convert.ToInt32(rows["COMUNA"].ToString()));
-                    _recinto.Fono = rows["FONO"].ToString();
-                    _recinto.CapacidadMaxima = int.Parse(rows["CAPACIDAD_MAXIMA"].ToString());
+        //            _recintos.Add(_recinto);
+        //        }
 
-                    _recintos.Add(_recinto);
-                }
-
-                return _recintos;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        //        return _recintos;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
 
 
         public List<Ubicacion> ListarUbicacionesDisponibles(Evento evento)

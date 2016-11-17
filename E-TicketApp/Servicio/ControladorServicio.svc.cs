@@ -136,35 +136,18 @@ namespace Servicio
         #endregion
 
         #region Evento
-        #region Usuarios
-        // Listar Usuarios, en procedimiento solo muestra los que tienen un estado activo 
-        // y el perfil tiene que ser diferente a administrador
- /*       public string Listar_Usuario()
+        public string EliminarEvento(string codigo)
         {
             try
             {
-                return SerializadorJSON.Serializar(new Negocio.Usuario().ListarUsuarios());
+                new Negocio.Evento(codigo).Eliminar();;
+                return SerializadorJSON.Serializar(true, "Respuesta");
             }
             catch (Exception ex)
             {
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
-        // Modifica el estado en la base de datos.
-/*        public void Eliminar()
-        {
-            try
-            {
-             //   return SerializadorJSON.Serializar(new Negocio.Usuario().ListarUsuarios());
-                SerializadorJSON.Serializar(new Negocio.Usuario().Eliminar());
-            }
-            catch (Exception ex)
-            {
-                SerializadorJSON.Serializar(ex.Message, "Error");
-            }
-        } */
-        #endregion
-
 
         public string RecuperarEvento_Codigo(string codigo)
         {

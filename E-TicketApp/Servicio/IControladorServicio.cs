@@ -41,7 +41,7 @@ namespace Servicio
         string RecuperarOrganizacion_RUN(string run);
         #endregion
 
-        #region Eventov
+        #region Eventos
         [OperationContract]
         string RecuperarEvento_Codigo(string codigo);
 
@@ -50,8 +50,12 @@ namespace Servicio
 
         [OperationContract]
         string RecuperarEventos_UltimosEventos();
+
         [OperationContract]
         string RegistrarEvento(string evento);
+
+        [OperationContract]
+        string EliminarEvento(string codigo);
         #endregion
 
         #region Recinto

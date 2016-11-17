@@ -276,12 +276,12 @@ namespace Servicio.Negocio
             }
         }
 
-        public void Eliminar(string rut)
+        public void Eliminar()
         {
             try
             {
                 var _diccionario = new Dictionary<string, string>();
-                _diccionario.Add("P_RUT", rut);                
+                _diccionario.Add("P_RUT", this.RUT);                
 
                 OracleSQL.ExecStoredProcedure("SPDEL_ORGANIZACION", _diccionario);
             }

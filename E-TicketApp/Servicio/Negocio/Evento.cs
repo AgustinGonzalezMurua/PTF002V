@@ -128,14 +128,24 @@ namespace Servicio.Negocio
             }
         }
 
-        public void Modificar(string param)
+        public void Modificar()
         {
             throw new NotImplementedException();
         }
 
         public void Eliminar()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _data = new Dictionary<string, string>();
+                _data.Add("P_CODIGO", this.Codigo);
+
+                OracleSQL.ExecStoredProcedure("SPDEL_EVENTO", _data);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void ActivarEvento()
