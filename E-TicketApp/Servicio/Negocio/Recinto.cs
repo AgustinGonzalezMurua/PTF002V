@@ -196,41 +196,36 @@ namespace Servicio.Negocio
                 throw;
             }
         }
-        //===============================================================================================
-        //Se necesita corregir esto debido a que está intentando listar Recintos en vez de Sectores
-        //===============================================================================================
-        //public List<Sector> ListarSectoresPorRecinto()
-        //{
-        //    try
-        //    {
-        //        var _recintos = new List<Recinto>();
-        //        var _datos = new Dictionary<string, string>();
-        //        var _dt = new DataTable();
 
-        //        OracleSQL.ExecStoredProcedure("SPREC_RECINTO_TODOS", _dt, _datos);
+        public List<Ubicacion> ListarUbicacionesPorRecinto()
+        {
+            try
+            {
+                var _ubicaciones = new List<Ubicacion>();
+                var _datos = new Dictionary<string, string>();
+                _datos.Add("P_RECINTO", this.Codigo.ToString());
+                var _dt = new DataTable();
 
-        //        foreach (DataRow rows in _dt.Rows)
-        //        {
-        //            var _recinto = new Recinto();
+                OracleSQL.ExecStoredProcedure("SPREC_RECINTO_TODOS", _dt, _datos);
 
-        //            _recinto.Codigo = Convert.ToInt32(rows["CODIGO"].ToString());
-        //            _recinto.Nombre = rows["NOMBRE"].ToString();
-        //            _recinto.Direccion = rows["DIRECCION"].ToString();
-        //            _recinto.Comuna = new Comuna(Convert.ToInt32(rows["COMUNA"].ToString()));
-        //            _recinto.Fono = rows["FONO"].ToString();
-        //            _recinto.CapacidadMaxima = int.Parse(rows["CAPACIDAD_MAXIMA"].ToString());
+                foreach (DataRow rows in _dt.Rows)
+                {
+                    var _ubicacion = new Ubicacion();
 
-        //            _recintos.Add(_recinto);
-        //        }
+                    _ubicacion.Codigo = Convert.ToInt32(rows["CODIGO"].ToString());
+                    _ubicacion.Fila = Convert.ToChar(rows["FILA"]);
+                    _ubicacion.Recinto.Nombre = rows["RECINTO"].ToString();
 
-        //        return _recintos;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
+                    _ubicaciones.Add(_ubicacion);
+                }
 
+                return _ubicaciones;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         public List<Ubicacion> ListarUbicacionesDisponibles(Evento evento)
         {
