@@ -64,6 +64,11 @@ namespace Servicio.Negocio
 
         public Evento(Newtonsoft.Json.Linq.JObject JObject)
         {
+            int _codigo;
+            if (int.TryParse(JObject["Codigo"].ToString(), out _codigo))
+            {
+                this.Codigo = _codigo.ToString();
+            }
             this.Nombre = JObject["Nombre"].ToString();
             this.Fecha = Convert.ToDateTime(JObject["Fecha"].ToString());
             this.Tipo = new Negocio.TiposGeneric().RecuperarTipoEvento(Convert.ToInt32(JObject["Tipo"].ToString()));
