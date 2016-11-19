@@ -44,7 +44,7 @@ namespace Servicio.Negocio
             throw new NotImplementedException();
         }
 
-        public void Modificar(string param)
+        public void Modificar()
         {
             throw new NotImplementedException();
         }

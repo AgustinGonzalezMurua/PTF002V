@@ -47,11 +47,7 @@ namespace Servicio.Negocio
         #region Metodos
 
         public TiposGeneric() { }
-        public TiposGeneric(int Codigo)
-        {
-            this.Codigo = Codigo;
-            this.RecuperarTipoEvento(Codigo);
-        }
+
         public TiposGeneric(int codigo, string descripcion)
         {
             this.Codigo = codigo;
@@ -90,7 +86,7 @@ namespace Servicio.Negocio
                 throw ex;
             }
         }
-        public List<TiposGeneric> RecuperarTipoEventos()
+        public List<TiposGeneric> RecuperarTodosTipoEvento()
         {
             try
             {

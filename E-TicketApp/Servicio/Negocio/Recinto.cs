@@ -69,7 +69,7 @@ namespace Servicio.Negocio
         public List<Ubicacion> Ubicaciones { get; set; }
         #endregion
 
-        #region propiedades
+        #region metodos
 
         public Recinto() { }
 
@@ -116,17 +116,53 @@ namespace Servicio.Negocio
 
         public void Agregar()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _diccionario = new Dictionary<string, string>();
+                _diccionario.Add("P_NOMBRE", this.Nombre);
+                _diccionario.Add("P_DIRECCION", this.Direccion);
+                _diccionario.Add("P_COMUNA", this.Comuna.ToString());
+                _diccionario.Add("P_FONO", this.Fono);
+                _diccionario.Add("P_CAPACIDAD_MAX", this.CapacidadMaxima.ToString());
+                OracleSQL.ExecStoredProcedure("SPIN_RECINTO", _diccionario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public void Modificar(string param)
+        public void Modificar()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _diccionario = new Dictionary<string, string>();
+                _diccionario.Add("P_CODIGO", this.Codigo.ToString());
+                _diccionario.Add("P_NOMBRE", this.Nombre);
+                _diccionario.Add("P_DIRECCION", this.Direccion);
+                _diccionario.Add("P_COMUNA", this.Comuna.ToString());
+                _diccionario.Add("P_FONO", this.Fono);
+                _diccionario.Add("P_CAPACIDAD_MAX", this.CapacidadMaxima.ToString());
+                OracleSQL.ExecStoredProcedure("SPMOD_RECINTO", _diccionario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void Eliminar()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _diccionario = new Dictionary<string, string>();
+                _diccionario.Add("P_CODIGO", this.Codigo.ToString());
+                OracleSQL.ExecStoredProcedure("SPDEL_RECINTO", _diccionario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public List<Recinto> ListarRecintos()
@@ -161,19 +197,40 @@ namespace Servicio.Negocio
             }
         }
 
-
-        public List<Evento> ListarEventos()
+        public List<Ubicacion> ListarUbicacionesPorRecinto()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _ubicaciones = new List<Ubicacion>();
+                var _datos = new Dictionary<string, string>();
+                _datos.Add("P_RECINTO", this.Codigo.ToString());
+                var _dt = new DataTable();
+
+                OracleSQL.ExecStoredProcedure("SPREC_RECINTO_TODOS", _dt, _datos);
+
+                foreach (DataRow rows in _dt.Rows)
+                {
+                    var _ubicacion = new Ubicacion();
+
+                    _ubicacion.Codigo = Convert.ToInt32(rows["CODIGO"].ToString());
+                    _ubicacion.Fila = Convert.ToChar(rows["FILA"]);
+                    _ubicacion.Recinto.Nombre = rows["RECINTO"].ToString();
+
+                    _ubicaciones.Add(_ubicacion);
+                }
+
+                return _ubicaciones;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public List<Ubicacion> ListarUbicacionesDisponibles(Evento evento)
         {
-            return (List<Ubicacion>)evento.Recinto.Ubicaciones.Select(ubicacion => ubicacion.Habilitado);
+            return (List<Ubicacion>)evento.Recinto.Ubicaciones.Select(ubicacion => ubicacion.Recinto);
         }
-
-
-
         #endregion
     }
 }

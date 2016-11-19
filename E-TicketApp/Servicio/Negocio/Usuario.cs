@@ -183,6 +183,11 @@ namespace Servicio.Negocio
             throw new NotImplementedException();
         }
 
+        public void Modificar()
+        {
+            throw new InvalidProgramException("Debido a razones de seguridad se exige poseer una clave, este método se encuentra sin uso intencionalmente.");
+        }
+
         public void Modificar(string contrasena)
         {
             try

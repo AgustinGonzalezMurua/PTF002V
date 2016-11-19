@@ -219,15 +219,15 @@ namespace Servicio.Negocio
             try
             {
                 var _diccionario = new Dictionary<string, string>();
-                _diccionario.Add("O_RUT", this.RUT);
-                _diccionario.Add("O_NOMBRE", this.Nombre);
-                _diccionario.Add("O_RAZON_SOCIAL", this.RazonSocial);
-                _diccionario.Add("O_DIRECCION", this.Direccion);
-                _diccionario.Add("O_COMUNA", this.Comuna.ToString());
-                _diccionario.Add("O_FONO", this.Fono);
-                _diccionario.Add("O_EMAIL", this.Email);              
-                _diccionario.Add("O_ESTADO_ORG", this.Estado.ToString());
-                _diccionario.Add("O_ORGANIZADOR", this.Organizador.ToString());
+                _diccionario.Add("P_RUT", this.RUT);
+                _diccionario.Add("P_NOMBRE", this.Nombre);
+                _diccionario.Add("P_RAZON_SOCIAL", this.RazonSocial);
+                _diccionario.Add("P_DIRECCION", this.Direccion);
+                _diccionario.Add("P_COMUNA", this.Comuna.ToString());
+                _diccionario.Add("P_FONO", this.Fono);
+                _diccionario.Add("P_EMAIL", this.Email);              
+                _diccionario.Add("P_ESTADO_ORG", this.Estado.ToString());
+                _diccionario.Add("P_ORGANIZADOR", this.Organizador.ToString());
 
                 OracleSQL.ExecStoredProcedure("SPIN_ORGANIZACION", _diccionario);
             }
@@ -237,9 +237,35 @@ namespace Servicio.Negocio
             }
         }
 
+<<<<<<< HEAD
+=======
+        public void Modificar()
+        {
+            try
+            {
+                var _diccionario = new Dictionary<string, string>();
+                _diccionario.Add("P_RUT", this.RUT);
+                _diccionario.Add("P_NOMBRE", this.Nombre);
+                _diccionario.Add("P_RAZON_SOCIAL", this.RazonSocial);
+                _diccionario.Add("P_DIRECCION", this.Direccion);
+                _diccionario.Add("P_COMUNA", this.Comuna.ToString());
+                _diccionario.Add("P_FONO", this.Fono);
+                _diccionario.Add("P_EMAIL", this.Email);
+                _diccionario.Add("P_ESTADO_ORG", this.Estado.ToString());
+                _diccionario.Add("P_ORGANIZADOR", this.Organizador.ToString());
+
+                OracleSQL.ExecStoredProcedure("SPMOD_ORGANIZACION", _diccionario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+>>>>>>> refs/remotes/origin/master
 
         public void Modificar(string param)
         {
+<<<<<<< HEAD
             throw new NotImplementedException();
         }
         /*      public void Modificar()
@@ -279,6 +305,21 @@ namespace Servicio.Negocio
                        throw;
                    }
                } */
+=======
+            try
+            {
+                var _diccionario = new Dictionary<string, string>();
+                _diccionario.Add("P_RUT", rut);
+                _diccionario.Add("ESTADO_ORG", estado.ToString());
+
+                OracleSQL.ExecStoredProcedure("SPMOD_ESTADO_ORGANIZACION", _diccionario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+>>>>>>> refs/remotes/origin/master
 
         public void Eliminar()
         {
@@ -287,7 +328,7 @@ namespace Servicio.Negocio
            /* try
             {
                 var _diccionario = new Dictionary<string, string>();
-                _diccionario.Add("O_RUT", rut);                
+                _diccionario.Add("P_RUT", this.RUT);                
 
                 OracleSQL.ExecStoredProcedure("SPDEL_ORGANIZACION", _diccionario);
             }
@@ -314,7 +355,7 @@ namespace Servicio.Negocio
                     var _evento             = new Evento();
                     _evento.Codigo          = rowEvento["CODIGO"].ToString();
                     _evento.Nombre          = rowEvento["NOMBRE"].ToString();
-                    _evento.Tipo            = new TiposGeneric(Convert.ToInt32(rowEvento["TIPO_EVENTO"].ToString()));
+                    _evento.Tipo            = new TiposGeneric().RecuperarTipoEvento(Convert.ToInt32(rowEvento["TIPO_EVENTO"].ToString()));
                     var _fecha              = new DateTime();
                     DateTime.TryParse(rowEvento["FECHA"].ToString(), out _fecha);
                     _evento.Fecha           = _fecha;

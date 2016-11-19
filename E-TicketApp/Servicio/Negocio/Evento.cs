@@ -61,6 +61,21 @@ namespace Servicio.Negocio
                 throw;
             }
         }
+
+        public Evento(Newtonsoft.Json.Linq.JObject JObject)
+        {
+            int _codigo;
+            if (int.TryParse(JObject["Codigo"].ToString(), out _codigo))
+            {
+                this.Codigo = _codigo.ToString();
+            }
+            this.Nombre = JObject["Nombre"].ToString();
+            this.Fecha = Convert.ToDateTime(JObject["Fecha"].ToString());
+            this.Tipo = new Negocio.TiposGeneric().RecuperarTipoEvento(Convert.ToInt32(JObject["Tipo"].ToString()));
+            this.Estado = Convert.ToBoolean(int.Parse(JObject["Estado"].ToString()));
+            this.Organizacion = new Negocio.Organizacion(JObject["Organizacion"].ToString());
+            this.Recinto = new Negocio.Recinto(int.Parse(JObject["Recinto"].ToString()));
+        }
     
         /// <summary>
         /// <para>Recupera el evento, si se quiere inicializar desde un nuevo Evento usar el constructor de Evento.</para>
@@ -122,20 +137,53 @@ namespace Servicio.Negocio
 
                 OracleSQL.ExecStoredProcedure("SPIN_EVENTO", _data);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new ApplicationException(ex.Message);
             }
         }
 
-        public void Modificar(string param)
+        public void Modificar()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _data = new Dictionary<string, string>();
+
+                try
+                {
+                    _data.Add("P_CODIGO", this.Codigo);
+                    _data.Add("P_NOMBRE", this.Nombre);
+                    _data.Add("P_FECHA", this.Fecha.ToString("dd-MMM-yy hh.mm.ss tt"));
+                    _data.Add("P_TIPO_EVENTO", this.Tipo.Codigo.ToString());
+                    _data.Add("P_ORGANIZACION", this.Organizacion.RUT);
+                    _data.Add("P_RECINTO", this.Recinto.Codigo.ToString());
+                }
+                catch (Exception ex)
+                {
+                    throw new FormatException("Error al preparar el evento para modificar:" + ex.Message);
+                }
+
+                OracleSQL.ExecStoredProcedure("SPMOD_EVENTO", _data);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(ex.Message);
+            }
         }
 
         public void Eliminar()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _data = new Dictionary<string, string>();
+                _data.Add("P_CODIGO", this.Codigo);
+
+                OracleSQL.ExecStoredProcedure("SPDEL_EVENTO", _data);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(ex.Message);
+            }
         }
 
         public void ActivarEvento()
