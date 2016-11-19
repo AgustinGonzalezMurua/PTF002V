@@ -49,7 +49,6 @@ namespace Servicio.Negocio
         public int CapacidadMaxima { get; set; }
 
         private string _fono;
-
         public string Fono
         {
             get { return _fono; }
@@ -90,7 +89,7 @@ namespace Servicio.Negocio
 
                 OracleSQL.ExecStoredProcedure("SPREC_RECINTO", _dt, _datos);
 
-                if (true)
+                if (_dt.Rows.Count > 0)
                 {
                     foreach (DataRow rows in _dt.Rows)
                     {
@@ -100,6 +99,8 @@ namespace Servicio.Negocio
                         this.Fono = rows["FONO"].ToString();
                         this.CapacidadMaxima = int.Parse(rows["CAPACIDAD_MAXIMA"].ToString());
                     }
+
+                    this.Ubicaciones = this.ListarUbicacionesPorRecinto(this.Codigo);
                 }
                 else
                 {
@@ -170,43 +171,35 @@ namespace Servicio.Negocio
             try
             {
                 var _recintos = new List<Recinto>();
-                var _datos = new Dictionary<string, string>();
                 var _dt = new DataTable();
 
-                OracleSQL.ExecStoredProcedure("SPREC_RECINTO_TODOS", _dt, _datos);
+                OracleSQL.ExecStoredProcedure("SPREC_RECINTO_TODOS", _dt);
 
                 foreach (DataRow rows in _dt.Rows)
                 {
-                    var _recinto = new Recinto();
-
-                    _recinto.Codigo = Convert.ToInt32(rows["CODIGO"].ToString());
-                    _recinto.Nombre = rows["NOMBRE"].ToString();
-                    _recinto.Direccion = rows["DIRECCION"].ToString();
-                    _recinto.Comuna = new Comuna(Convert.ToInt32(rows["COMUNA"].ToString()));
-                    _recinto.Fono = rows["FONO"].ToString();
-                    _recinto.CapacidadMaxima = int.Parse(rows["CAPACIDAD_MAXIMA"].ToString());
+                    var _recinto = new Recinto(Convert.ToInt32(rows["CODIGO"].ToString()));
 
                     _recintos.Add(_recinto);
                 }
 
                 return _recintos;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
-        public List<Ubicacion> ListarUbicacionesPorRecinto()
+        public List<Ubicacion> ListarUbicacionesPorRecinto(int Codigo)
         {
             try
             {
                 var _ubicaciones = new List<Ubicacion>();
                 var _datos = new Dictionary<string, string>();
-                _datos.Add("P_RECINTO", this.Codigo.ToString());
+                _datos.Add("P_CODIGO", Codigo.ToString());
                 var _dt = new DataTable();
 
-                OracleSQL.ExecStoredProcedure("SPREC_RECINTO_TODOS", _dt, _datos);
+                OracleSQL.ExecStoredProcedure("SPREC_UBICACIONES_POR_RECINTO", _dt, _datos);
 
                 foreach (DataRow rows in _dt.Rows)
                 {
@@ -214,7 +207,6 @@ namespace Servicio.Negocio
 
                     _ubicacion.Codigo = Convert.ToInt32(rows["CODIGO"].ToString());
                     _ubicacion.Fila = Convert.ToChar(rows["FILA"]);
-                    _ubicacion.Recinto.Nombre = rows["RECINTO"].ToString();
 
                     _ubicaciones.Add(_ubicacion);
                 }
@@ -227,10 +219,6 @@ namespace Servicio.Negocio
             }
         }
 
-        public List<Ubicacion> ListarUbicacionesDisponibles(Evento evento)
-        {
-            return (List<Ubicacion>)evento.Recinto.Ubicaciones.Select(ubicacion => ubicacion.Recinto);
-        }
         #endregion
     }
 }

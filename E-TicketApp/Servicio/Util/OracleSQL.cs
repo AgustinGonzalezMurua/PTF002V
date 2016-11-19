@@ -42,9 +42,12 @@ namespace Servicio.Util
                 _cmd.CommandText = StoredProcedureName;
                 _cmd.CommandType = CommandType.StoredProcedure;
 
-                foreach (var item in Params)
+                if (Params != null)
                 {
-                    _cmd.Parameters.Add(item.Key, item.Value);
+                    foreach (var item in Params)
+                    {
+                        _cmd.Parameters.Add(item.Key, item.Value);
+                    }
                 }
 
                 var _salida = new OracleParameter();

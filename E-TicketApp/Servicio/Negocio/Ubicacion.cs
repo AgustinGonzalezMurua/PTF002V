@@ -11,10 +11,10 @@ namespace Servicio.Negocio
         #region propiedades
         public int Codigo { get; set; }        
         public char Fila { get; set; }
-        public Recinto Recinto  { get; set; }
         #endregion
 
         #region metodos
+
         public void Recuperar()
         {
             throw new NotImplementedException();
@@ -27,7 +27,6 @@ namespace Servicio.Negocio
                 var _diccionario = new Dictionary<string, string>();
                 _diccionario.Add("P_CODIGO", this.Codigo.ToString());
                 _diccionario.Add("P_FILA", this.Fila.ToString());
-                _diccionario.Add("P_RECINTO", this.Recinto.ToString());
 
                 OracleSQL.ExecStoredProcedure("SPIN_UBICACION", _diccionario);
             }
@@ -44,7 +43,6 @@ namespace Servicio.Negocio
                 var _diccionario = new Dictionary<string, string>();
                 _diccionario.Add("P_CODIGO", this.Codigo.ToString());
                 _diccionario.Add("P_FILA", this.Fila.ToString());
-                _diccionario.Add("P_RECINTO", this.Recinto.ToString());
 
                 OracleSQL.ExecStoredProcedure("SPMOD_UBICACION", _diccionario);
             }
