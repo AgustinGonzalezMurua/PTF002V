@@ -23,7 +23,7 @@ namespace Servicio.Util
             }
             catch (Exception ex)
             {
-                throw new ArgumentException("Error al leer la configuración de la aplicación: \n" + ex.Message);
+                throw new ArgumentException("Error al leer la configuración de la aplicación \n" + ex.Message);
             }
         }
         
@@ -64,7 +64,7 @@ namespace Servicio.Util
             }
             catch (Exception ex)
             {
-                throw new ArgumentException("Ha sucedido algo inesperado al interactuar con la base de datos: \n" + ex.Message);
+                throw new ArgumentException("Ha sucedido algo inesperado al interactuar con la base de datos \n" + ex.Message);
             }
         }
 
@@ -104,7 +104,7 @@ namespace Servicio.Util
             }
             catch (Exception ex)
             {
-                throw new ArgumentException("Ha sucedido algo inesperado al interactuar con la base de datos: \n" + ex.Message);
+                throw new ArgumentException("Ha sucedido algo inesperado al interactuar con la base de datos \n" + ex.Message);
             }
         }
 
@@ -122,7 +122,7 @@ namespace Servicio.Util
             }
             catch (Exception ex)
             {
-                throw new ArgumentException("Ha sucedido algo inesperado al intentar cerrar la conexión: \n" + ex.Message);
+                throw new ArgumentException("Ha sucedido algo inesperado al intentar cerrar la conexión \n" + ex.Message);
             }
         }
     }
