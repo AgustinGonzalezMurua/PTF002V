@@ -94,7 +94,6 @@ namespace Servicio
                 throw;
             }
         }
-<<<<<<< HEAD
         public string EliminarUsuario(string run)
         {
             try
@@ -107,9 +106,6 @@ namespace Servicio
                 return SerializadorJSON.Serializar(false, "Respuesta"); 
             }
         }
-
-=======
->>>>>>> refs/remotes/origin/master
         public string RecuperarUsuario_Todos()
         {
             try
@@ -153,11 +149,6 @@ namespace Servicio
         #endregion
 
         #region Evento
-<<<<<<< HEAD
-
-
-
-=======
         public string EliminarEvento(string codigo)
         {
             try
@@ -170,7 +161,6 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
->>>>>>> refs/remotes/origin/master
         public string RecuperarEvento_Codigo(string codigo)
         {
             try
@@ -208,20 +198,17 @@ namespace Servicio
         {
             try
             {
-<<<<<<< HEAD
                 var _eventoJson         = JObject.Parse(evento);
                 var _evento             = new Negocio.Evento();
                 _evento.Nombre          = _eventoJson["NOMBRE"].ToString();
                 _evento.Fecha           = Convert.ToDateTime(_eventoJson["FECHA"].ToString());
-                _evento.Tipo            = new Negocio.TiposGeneric(Convert.ToInt32(_eventoJson["TIPO"].ToString()));
+                _evento.Tipo            = new Negocio.TiposGeneric().RecuperarTipoEvento(Convert.ToInt32(_eventoJson["TIPO"].ToString()));
                 _evento.Estado          = Convert.ToBoolean(int.Parse(_eventoJson["ESTADO"].ToString()));
                 _evento.Organizacion    = new Negocio.Organizacion(_eventoJson["ORGANIZACION"].ToString());
                 _evento.Recinto         = new Negocio.Recinto(int.Parse(_eventoJson["RECINTO"].ToString()));
 
                 _evento.Agregar();
-=======
                 new Negocio.Evento(JObject.Parse(evento)).Agregar();
->>>>>>> refs/remotes/origin/master
 
                 return SerializadorJSON.Serializar(true, "Respuesta");
 
@@ -231,9 +218,7 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
-<<<<<<< HEAD
-             #endregion
-=======
+
         public string ModificarEvento(string evento)
         {
             try
@@ -247,8 +232,8 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
-        #endregion
->>>>>>> refs/remotes/origin/master
+             #endregion
+
 
         #region Recinto
         public string RecuperarRecinto_Codigo(int codigo)
