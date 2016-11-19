@@ -237,6 +237,8 @@ namespace Servicio.Negocio
             }
         }
 
+<<<<<<< HEAD
+=======
         public void Modificar()
         {
             try
@@ -259,9 +261,51 @@ namespace Servicio.Negocio
                 throw;
             }
         }
+>>>>>>> refs/remotes/origin/master
 
-        public void ModificarEstado(string rut, int estado)
+        public void Modificar(string param)
         {
+<<<<<<< HEAD
+            throw new NotImplementedException();
+        }
+        /*      public void Modificar()
+               {
+                   try
+                   {
+                       var _diccionario = new Dictionary<string, string>();
+                       _diccionario.Add("O_RUT", this.RUT);
+                       _diccionario.Add("O_NOMBRE", this.Nombre);
+                       _diccionario.Add("O_RAZON_SOCIAL", this.RazonSocial);
+                       _diccionario.Add("O_DIRECCION", this.Direccion);
+                       _diccionario.Add("O_COMUNA", this.Comuna.ToString());
+                       _diccionario.Add("O_FONO", this.Fono);
+                       _diccionario.Add("O_EMAIL", this.Email);
+                       _diccionario.Add("O_ESTADO_ORG", this.Estado.ToString());
+                       _diccionario.Add("O_ORGANIZADOR", this.Organizador.ToString());
+
+                       OracleSQL.ExecStoredProcedure("SPMOD_ORGANIZACION", _diccionario);
+                   }
+                   catch (Exception)
+                   {
+                       throw;
+                   }
+               }
+             public void ModificarEstado(string rut, int estado)
+               {
+                   try
+                   {
+                       var _diccionario = new Dictionary<string, string>();
+                       _diccionario.Add("O_RUT", rut);
+                       _diccionario.Add("ESTADO_ORG", estado.ToString());
+
+                       OracleSQL.ExecStoredProcedure("SPMOD_ESTADO_ORGANIZACION", _diccionario);
+                   }
+                   catch (Exception)
+                   {
+                       throw;
+                   }
+               } */
+=======
             try
             {
                 var _diccionario = new Dictionary<string, string>();
@@ -275,10 +319,13 @@ namespace Servicio.Negocio
                 throw;
             }
         }
+>>>>>>> refs/remotes/origin/master
 
         public void Eliminar()
         {
-            try
+            throw new NotImplementedException();
+        }
+           /* try
             {
                 var _diccionario = new Dictionary<string, string>();
                 _diccionario.Add("P_RUT", this.RUT);                
@@ -288,8 +335,8 @@ namespace Servicio.Negocio
             catch (Exception)
             {
                 throw;
-            }
-        }
+            } */
+        
 
         public List<Evento> ListarEventos()
         {

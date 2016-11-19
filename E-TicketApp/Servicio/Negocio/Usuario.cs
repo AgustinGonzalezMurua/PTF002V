@@ -214,9 +214,11 @@ namespace Servicio.Negocio
         {
             try
             {
+
                 var _diccionario = new Dictionary<string, string>();
                 _diccionario.Add("P_RUN", this.RUN);
                 _diccionario.Add("P_ESTADO", (this.Estado).ToString());
+
                 OracleSQL.ExecStoredProcedure("SPMOD_ESTADO_USUARIO", _diccionario);
 
             }
@@ -225,7 +227,7 @@ namespace Servicio.Negocio
                 throw;
             }     
         }
-
+ 
         public List<Usuario> ListarUsuarios()
         {
             try
@@ -310,5 +312,6 @@ namespace Servicio.Negocio
 
 
         #endregion
+
     }
 }
