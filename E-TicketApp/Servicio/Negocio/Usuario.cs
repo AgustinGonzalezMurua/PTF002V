@@ -180,7 +180,7 @@ namespace Servicio.Negocio
 
         public void Agregar()
         {
-            throw new NotImplementedException();
+            throw new InvalidProgramException("Debido a razones de seguridad se exige poseer una clave, este método se encuentra sin uso intencionalmente.");
         }
 
         public void Modificar()
@@ -308,8 +308,6 @@ namespace Servicio.Negocio
                 return false;
             }
         }
-
-
 
         #endregion
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Servicio.Util
 {
@@ -50,6 +51,11 @@ namespace Servicio.Util
         public static string Serializar(Negocio.IFuncionesCRUD valor)
         {
             return JsonConvert.SerializeObject(valor, Formatting.Indented);
+        }
+
+        public static JObject Parsear(string cadena)
+        {
+            return JObject.Parse(cadena);
         }
     }
 }

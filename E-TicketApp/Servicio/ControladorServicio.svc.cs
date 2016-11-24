@@ -117,6 +117,17 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
+        public string ListarComprasUsuario(string run)
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Usuario(run).ListarCompras());
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
         #endregion
 
         #region Organizacion
@@ -132,11 +143,11 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
-        public string RecuperarOrganizacion_RUN(string run)
+        public string RecuperarOrganizacion_RUN(string rut)
         {
             try
             {
-                var _organizador = new Negocio.Usuario(run);
+                var _organizador = new Negocio.Usuario(rut);
                 return SerializadorJSON.Serializar(new Negocio.Organizacion().Recuperar(_organizador));
             }
             catch (Exception ex)
@@ -144,8 +155,30 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
-       
-        
+        public string DesactivarOrganizacion(string rut)
+        {
+            try
+            {
+                new Negocio.Organizacion(rut).Eliminar();
+                return SerializadorJSON.Serializar(true, "Respuesta");
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+        public string ModificarOrganizacion(string organizacion)
+        {
+            try
+            {
+                new Negocio.Organizacion(SerializadorJSON.Parsear(organizacion)).Modificar();
+                return SerializadorJSON.Serializar(true, "Respuesta");
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
         #endregion
 
         #region Evento
@@ -218,12 +251,11 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
-
         public string ModificarEvento(string evento)
         {
             try
             {
-                new Negocio.Evento(JObject.Parse(evento)).Modificar();
+                new Negocio.Evento(SerializadorJSON.Parsear(evento)).Modificar();
 
                 return SerializadorJSON.Serializar(true, "Respuesta");
             }
@@ -232,7 +264,7 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
-             #endregion
+        #endregion
 
 
         #region Recinto
@@ -266,6 +298,17 @@ namespace Servicio
             try
             {
                 return SerializadorJSON.Serializar(new Negocio.TiposGeneric().RecuperarTodosTipoEvento());
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+        public string RecuperarTipo_Usuarios()
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.TiposGeneric().RecuperarTipoUsuarios());
             }
             catch (Exception ex)
             {

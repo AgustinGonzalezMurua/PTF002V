@@ -95,7 +95,6 @@ namespace Servicio.Negocio
         }
 
         private string _email;
-
         public string Email
         {
             get { return _email; }
@@ -137,6 +136,17 @@ namespace Servicio.Negocio
             {
                 throw ex;
             }
+        }
+
+        public Organizacion(Newtonsoft.Json.Linq.JObject JObject)
+        {
+            this.RUT            = JObject["RUT"].ToString();
+            this.Nombre         = JObject["Nombre"].ToString();
+            this.RazonSocial    = JObject["RazonSocial"].ToString();
+            this.Direccion      = JObject["Direccion"].ToString();
+            this.Email          = JObject["Email"].ToString();
+            this.Estado         = Convert.ToBoolean(JObject["Estado"].ToString());
+            this.Organizador    = new Usuario(JObject["Organizador"].ToString());
         }
 
         public void Recuperar()
@@ -254,26 +264,25 @@ namespace Servicio.Negocio
 
                 OracleSQL.ExecStoredProcedure("SPMOD_ORGANIZACION", _diccionario);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
         public void Eliminar()
         {
-            throw new NotImplementedException();
-           /* try
+           try
             {
                 var _diccionario = new Dictionary<string, string>();
                 _diccionario.Add("P_RUT", this.RUT);                
 
                 OracleSQL.ExecStoredProcedure("SPDEL_ORGANIZACION", _diccionario);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
-            } */
+                throw ex;
+            }
         }
 
         public List<Evento> ListarEventos()

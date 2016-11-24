@@ -67,14 +67,14 @@ namespace Servicio.Negocio
             int _codigo;
             if (int.TryParse(JObject["Codigo"].ToString(), out _codigo))
             {
-                this.Codigo = _codigo.ToString();
+                this.Codigo     = _codigo.ToString();
             }
-            this.Nombre = JObject["Nombre"].ToString();
-            this.Fecha = Convert.ToDateTime(JObject["Fecha"].ToString());
-            this.Tipo = new Negocio.TiposGeneric().RecuperarTipoEvento(Convert.ToInt32(JObject["Tipo"].ToString()));
-            this.Estado = Convert.ToBoolean(int.Parse(JObject["Estado"].ToString()));
-            this.Organizacion = new Negocio.Organizacion(JObject["Organizacion"].ToString());
-            this.Recinto = new Negocio.Recinto(int.Parse(JObject["Recinto"].ToString()));
+            this.Nombre         = JObject["Nombre"].ToString();
+            this.Fecha          = Convert.ToDateTime(JObject["Fecha"].ToString());
+            this.Tipo           = new Negocio.TiposGeneric().RecuperarTipoEvento(Convert.ToInt32(JObject["Tipo"].ToString()));
+            this.Estado         = Convert.ToBoolean(int.Parse(JObject["Estado"].ToString()));
+            this.Organizacion   = new Negocio.Organizacion(JObject["Organizacion"].ToString());
+            this.Recinto        = new Negocio.Recinto(int.Parse(JObject["Recinto"].ToString()));
         }
     
         /// <summary>

@@ -86,6 +86,7 @@ namespace Servicio.Negocio
                 throw ex;
             }
         }
+
         public List<TiposGeneric> RecuperarTodosTipoEvento()
         {
             try
