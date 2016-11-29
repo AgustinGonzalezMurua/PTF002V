@@ -78,7 +78,32 @@ namespace Servicio.Util
         /// <param name="StoredProcedure"></param>
         /// <param name="Params"></param>
         /// <returns></returns>
-        public static Object ExecStoredProcedure(string StoredProcedure, Dictionary<string, string> Params = null)
+        public static void ExecStoredProcedure(string StoredProcedure, Dictionary<string, string> Params = null)
+        {
+            try
+            {
+                var _cmd = new OracleCommand();
+                _cmd.Connection = ObtenerConneccion();
+                _cmd.CommandText = StoredProcedure;
+                _cmd.CommandType = CommandType.StoredProcedure;
+                if (Params != null)
+                {
+                    foreach (var item in Params)
+                    {
+                        _cmd.Parameters.Add(item.Key, item.Value);
+                    }
+                }
+                _cmd.Connection.Open();
+                _cmd.ExecuteNonQuery();
+                CerrarConneciones(_cmd);
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Ha sucedido algo inesperado al interactuar con la base de datos \n" + ex.Message);
+            }
+        }
+
+        public static void ExecStoredProcedure(string StoredProcedure, out String salida, Dictionary<string, string> Params = null)
         {
             try
             {
@@ -94,22 +119,30 @@ namespace Servicio.Util
                     }
                 }
 
+ 
+
+                _cmd.Parameters.Add(new OracleParameter("SALIDA", OracleDbType.Varchar2, 8, DBNull.Value, ParameterDirection.Output));
+
                 _cmd.Connection.Open();
                 _cmd.ExecuteNonQuery();
                 CerrarConneciones(_cmd);
+
                 if (_cmd.Parameters.Contains("SALIDA"))
                 {
-                    return _cmd.Parameters["SALIDA"].Value;
-                }else{
-                    return null;
+                    salida =  _cmd.Parameters["SALIDA"].Value.ToString();
                 }
-                
+                else
+                {
+                    salida = null;
+                }
+
             }
             catch (Exception ex)
             {
                 throw new ArgumentException("Ha sucedido algo inesperado al interactuar con la base de datos \n" + ex.Message);
             }
         }
+
 
         /// <summary>
         /// Cierra todas las conecciones del comando

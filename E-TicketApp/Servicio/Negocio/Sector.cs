@@ -55,6 +55,13 @@ namespace Servicio.Negocio
 
         #region metodos
 
+        public Sector() { }
+
+        public Sector(Evento evento)
+        {
+            this.Evento = evento;
+        }
+
         public void Recuperar()
         {
             throw new NotImplementedException();
@@ -65,11 +72,11 @@ namespace Servicio.Negocio
             try
             {
                 var _diccionario = new Dictionary<string, string>();
-                _diccionario.Add("P_CODIGO", this.Codigo.ToString());
                 _diccionario.Add("P_NOMBRE", this.Nombre);
                 _diccionario.Add("P_PRECIO", this.Precio.ToString());
                 _diccionario.Add("P_CAPACIDAD_MAX", this.CapacidadMaxima.ToString());
-                _diccionario.Add("P_EVENTO", this.Evento.ToString());
+                _diccionario.Add("P_EVENTO", this.Evento.Codigo.ToString());
+
                 OracleSQL.ExecStoredProcedure("SPIN_SECTOR", _diccionario);
             }
             catch (Exception)

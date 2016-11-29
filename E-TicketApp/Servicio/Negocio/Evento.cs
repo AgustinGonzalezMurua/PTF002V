@@ -77,7 +77,6 @@ namespace Servicio.Negocio
             this.Estado             = Convert.ToBoolean(int.Parse(JObject["Estado"].ToString()));
             this.Organizacion       = new Negocio.Organizacion(JObject["Organizacion"].ToString());
             this.Recinto            = new Negocio.Recinto(int.Parse(JObject["Recinto"].ToString()));
-            this.CantidadAsientos   = Convert.ToInt32(JObject["CantidadAsientos"].ToString());
         }
     
         /// <summary>
@@ -131,7 +130,7 @@ namespace Servicio.Negocio
         {
             try
             {
-                if (this.Estado)
+                if (this.Organizacion.Estado)
                 {
                     var _data = new Dictionary<string, string>();
                     _data.Add("P_NOMBRE", this.Nombre);
@@ -140,12 +139,14 @@ namespace Servicio.Negocio
                     _data.Add("P_ORGANIZACION", this.Organizacion.RUT);
                     _data.Add("P_RECINTO", this.Recinto.Codigo.ToString());
 
-                    OracleSQL.ExecStoredProcedure("SPIN_EVENTO", _data);
+                    String _codigo;
+                    OracleSQL.ExecStoredProcedure("SPIN_EVENTO", out _codigo, _data);
+                    this.Codigo = _codigo;
 
-                    _data = new Dictionary<string, string>();
-                    _data.Add("P_CODIGO_EVENTO", this.Codigo.ToString());
-                    _data.Add("P_CANTIDAD", this.CantidadAsientos.ToString());
-                    OracleSQL.Equals("SPIN_EVENTO_REGISTRARENTRADAS", _data);
+                    foreach (var sector in this.Sectores)
+                    {
+                        sector.Agregar();
+                    }
                 }
                 else
                 {
@@ -216,6 +217,7 @@ namespace Servicio.Negocio
             try
             {
                 this.Sectores.Add(sector);
+                this.CantidadAsientos += sector.CapacidadMaxima;
             }
             catch (Exception ex)
             {

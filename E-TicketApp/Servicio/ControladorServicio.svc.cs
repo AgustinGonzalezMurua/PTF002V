@@ -227,7 +227,7 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
-        public string RegistrarEvento(string evento, int cantidadMaxima)
+        public string RegistrarEvento(string evento, int cantidadMaxima, int valor)
         {
             try
             {
@@ -236,11 +236,11 @@ namespace Servicio
                 if (_eventoJson["Sectores"] == null)
                 {
                     _evento.Sectores = new List<Negocio.Sector>();
-                    var _sector = new Negocio.Sector();
+                    var _sector = new Negocio.Sector(_evento);
                     _sector.CapacidadMaxima = _evento.Recinto.CapacidadMaxima;
                     _sector.Nombre = "Principal";
-                    _sector.Precio = 5000;
-                    _evento.Sectores.Add(_sector);
+                    _sector.Precio = valor;
+                    _evento.AgregarSector(_sector);
                 }
                 _evento.Agregar();
 
