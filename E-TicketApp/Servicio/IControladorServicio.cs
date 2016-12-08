@@ -35,6 +35,7 @@ namespace Servicio
         [OperationContract] string RecuperarEvento_Codigo(string codigo);
         [OperationContract] string RecuperarEventos_Organizacion(string rut);
         [OperationContract] string RecuperarEventos_UltimosEventos();
+        [OperationContract] string ListarEventos_Activos();
         [OperationContract] string RegistrarEvento(string evento);
         [OperationContract] string ModificarEvento(string evento);
         #endregion

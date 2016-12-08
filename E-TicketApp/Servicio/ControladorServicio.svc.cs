@@ -227,6 +227,19 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
+
+        public string ListarEventos_Activos()
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Evento().ListarEventosActivos());
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+
+        }
         public string RegistrarEvento(string evento)
         {
             try
@@ -316,5 +329,7 @@ namespace Servicio
             }
         }
         #endregion
+
+
     }
 }

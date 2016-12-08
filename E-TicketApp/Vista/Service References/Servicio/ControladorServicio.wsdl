@@ -30,6 +30,114 @@
   <wsdl:message name="IControladorServicio_RegistrarUsuarioDesdeAdmin_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegistrarUsuarioDesdeAdminResponse" />
   </wsdl:message>
+  <wsdl:message name="IControladorServicio_EliminarUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_EliminarUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarUsuario_Todos_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarUsuario_Todos" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarUsuario_Todos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarUsuario_TodosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_ListarComprasUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarComprasUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_ListarComprasUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarComprasUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarOrganizacion_RUT_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarOrganizacion_RUT" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarOrganizacion_RUT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarOrganizacion_RUTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarOrganizacion_RUN_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarOrganizacion_RUN" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarOrganizacion_RUN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarOrganizacion_RUNResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_DesactivarOrganizacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:DesactivarOrganizacion" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_DesactivarOrganizacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DesactivarOrganizacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_ModificarOrganizacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarOrganizacion" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_ModificarOrganizacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarOrganizacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_EliminarEvento_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarEvento" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_EliminarEvento_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarEventoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarEvento_Codigo_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarEvento_Codigo" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarEvento_Codigo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarEvento_CodigoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarEventos_Organizacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarEventos_Organizacion" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarEventos_Organizacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarEventos_OrganizacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarEventos_UltimosEventos_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarEventos_UltimosEventos" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarEventos_UltimosEventos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarEventos_UltimosEventosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_ListarEventos_Activos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarEventos_Activos" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_ListarEventos_Activos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarEventos_ActivosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RegistrarEvento_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarEvento" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RegistrarEvento_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarEventoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_ModificarEvento_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarEvento" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_ModificarEvento_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarEventoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarRecinto_Codigo_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarRecinto_Codigo" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarRecinto_Codigo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarRecinto_CodigoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarRecinto_Todos_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarRecinto_Todos" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarRecinto_Todos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarRecinto_TodosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarTipo_Eventos_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarTipo_Eventos" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarTipo_Eventos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarTipo_EventosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarTipo_Usuarios_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarTipo_Usuarios" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarTipo_Usuarios_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarTipo_UsuariosResponse" />
+  </wsdl:message>
   <wsdl:portType name="IControladorServicio">
     <wsdl:operation name="ValidarUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/ValidarUsuario" message="tns:IControladorServicio_ValidarUsuario_InputMessage" />
@@ -46,6 +154,78 @@
     <wsdl:operation name="RegistrarUsuarioDesdeAdmin">
       <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RegistrarUsuarioDesdeAdmin" message="tns:IControladorServicio_RegistrarUsuarioDesdeAdmin_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RegistrarUsuarioDesdeAdminResponse" message="tns:IControladorServicio_RegistrarUsuarioDesdeAdmin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/EliminarUsuario" message="tns:IControladorServicio_EliminarUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/EliminarUsuarioResponse" message="tns:IControladorServicio_EliminarUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarUsuario_Todos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarUsuario_Todos" message="tns:IControladorServicio_RecuperarUsuario_Todos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarUsuario_TodosResponse" message="tns:IControladorServicio_RecuperarUsuario_Todos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarComprasUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/ListarComprasUsuario" message="tns:IControladorServicio_ListarComprasUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/ListarComprasUsuarioResponse" message="tns:IControladorServicio_ListarComprasUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarOrganizacion_RUT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarOrganizacion_RUT" message="tns:IControladorServicio_RecuperarOrganizacion_RUT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarOrganizacion_RUTResponse" message="tns:IControladorServicio_RecuperarOrganizacion_RUT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarOrganizacion_RUN">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarOrganizacion_RUN" message="tns:IControladorServicio_RecuperarOrganizacion_RUN_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarOrganizacion_RUNResponse" message="tns:IControladorServicio_RecuperarOrganizacion_RUN_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DesactivarOrganizacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/DesactivarOrganizacion" message="tns:IControladorServicio_DesactivarOrganizacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/DesactivarOrganizacionResponse" message="tns:IControladorServicio_DesactivarOrganizacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarOrganizacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/ModificarOrganizacion" message="tns:IControladorServicio_ModificarOrganizacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/ModificarOrganizacionResponse" message="tns:IControladorServicio_ModificarOrganizacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarEvento">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/EliminarEvento" message="tns:IControladorServicio_EliminarEvento_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/EliminarEventoResponse" message="tns:IControladorServicio_EliminarEvento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarEvento_Codigo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarEvento_Codigo" message="tns:IControladorServicio_RecuperarEvento_Codigo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarEvento_CodigoResponse" message="tns:IControladorServicio_RecuperarEvento_Codigo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarEventos_Organizacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarEventos_Organizacion" message="tns:IControladorServicio_RecuperarEventos_Organizacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarEventos_OrganizacionResponse" message="tns:IControladorServicio_RecuperarEventos_Organizacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarEventos_UltimosEventos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarEventos_UltimosEventos" message="tns:IControladorServicio_RecuperarEventos_UltimosEventos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarEventos_UltimosEventosResponse" message="tns:IControladorServicio_RecuperarEventos_UltimosEventos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarEventos_Activos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/ListarEventos_Activos" message="tns:IControladorServicio_ListarEventos_Activos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/ListarEventos_ActivosResponse" message="tns:IControladorServicio_ListarEventos_Activos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarEvento">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RegistrarEvento" message="tns:IControladorServicio_RegistrarEvento_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RegistrarEventoResponse" message="tns:IControladorServicio_RegistrarEvento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarEvento">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/ModificarEvento" message="tns:IControladorServicio_ModificarEvento_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/ModificarEventoResponse" message="tns:IControladorServicio_ModificarEvento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarRecinto_Codigo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarRecinto_Codigo" message="tns:IControladorServicio_RecuperarRecinto_Codigo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarRecinto_CodigoResponse" message="tns:IControladorServicio_RecuperarRecinto_Codigo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarRecinto_Todos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarRecinto_Todos" message="tns:IControladorServicio_RecuperarRecinto_Todos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarRecinto_TodosResponse" message="tns:IControladorServicio_RecuperarRecinto_Todos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarTipo_Eventos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarTipo_Eventos" message="tns:IControladorServicio_RecuperarTipo_Eventos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarTipo_EventosResponse" message="tns:IControladorServicio_RecuperarTipo_Eventos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarTipo_Usuarios">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarTipo_Usuarios" message="tns:IControladorServicio_RecuperarTipo_Usuarios_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarTipo_UsuariosResponse" message="tns:IControladorServicio_RecuperarTipo_Usuarios_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IControladorServicio" type="tns:IControladorServicio">
@@ -79,6 +259,168 @@
     </wsdl:operation>
     <wsdl:operation name="RegistrarUsuarioDesdeAdmin">
       <soap:operation soapAction="http://tempuri.org/IControladorServicio/RegistrarUsuarioDesdeAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarUsuario">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/EliminarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarUsuario_Todos">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/RecuperarUsuario_Todos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarComprasUsuario">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/ListarComprasUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarOrganizacion_RUT">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/RecuperarOrganizacion_RUT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarOrganizacion_RUN">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/RecuperarOrganizacion_RUN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DesactivarOrganizacion">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/DesactivarOrganizacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarOrganizacion">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/ModificarOrganizacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarEvento">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/EliminarEvento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarEvento_Codigo">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/RecuperarEvento_Codigo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarEventos_Organizacion">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/RecuperarEventos_Organizacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarEventos_UltimosEventos">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/RecuperarEventos_UltimosEventos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarEventos_Activos">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/ListarEventos_Activos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarEvento">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/RegistrarEvento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarEvento">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/ModificarEvento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarRecinto_Codigo">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/RecuperarRecinto_Codigo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarRecinto_Todos">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/RecuperarRecinto_Todos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarTipo_Eventos">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/RecuperarTipo_Eventos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarTipo_Usuarios">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/RecuperarTipo_Usuarios" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

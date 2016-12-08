@@ -268,6 +268,50 @@ namespace Servicio.Negocio
                 throw;
             }
         }
+
+
+        public List<Evento> ListarEventosActivos()
+        {
+            try
+            {
+                var _eventos = new List<Evento>();
+                var _datos = new Dictionary<string, string>();
+                var _dt = new DataTable();
+
+                OracleSQL.ExecStoredProcedure("SPREC_EVENTOS_VIGENTES", _dt, _datos);
+
+                foreach (DataRow rows in _dt.Rows)
+                {
+                    var _evento = new Evento();
+
+                    _evento.Codigo = rows["CODIGO"].ToString();
+                    _evento.Nombre = rows["NOMBRE"].ToString();
+                    var _fecha = new DateTime();
+                    DateTime.TryParse(rows["FECHA"].ToString(), out _fecha);
+                    _evento.Fecha = _fecha;
+                    DateTime.TryParse(rows["FECHA_CREACION"].ToString(), out _fecha);
+                    _evento.FechaCreacion = _fecha;
+                    _evento.Estado = Convert.ToBoolean(int.Parse(rows["ESTADO_EVENTO"].ToString()));
+                    _evento.Organizacion = new Organizacion(rows["ORGANIZACION"].ToString());
+                    _evento.Recinto = new Recinto(int.Parse(rows["RECINTO"].ToString()));
+
+                    _eventos.Add(_evento);
+                }
+
+                return _eventos;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        
+        
+        
+        
+        
+        
         #endregion
     }
 }

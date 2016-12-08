@@ -5,28 +5,26 @@
     <form id="form1" runat="server">
             <div class="form-group">
                  <label for="nombre">Nombre:</label>
-                 <asp:TextBox class="form-control" id="txtNombre" type="text" name="txtNombre" runat="server"/> </asp:textBox>
+                 <asp:TextBox class="form-control"  id="txtNombre" type="text" name="txtNombre" runat="server"/> 
             </div>
             <div class="form-group">
                 <label for="Rut">Rut:</label>
-                <asp:TextBox class="form-control"  id="txtRut" type="text" name="txtRut" runat="server"/> </asp:TextBox>
+                <asp:TextBox class="form-control"  id="txtRut" type="text" name="txtRut" runat="server"/> 
             </div>
             <div class="form-group">
                 <label for="txtTelefono">Télefono:</label>
-                <asp:TextBox class="form-control"  id="txtTelefono" type="text" name="txtTelefono" runat="server"/> </asp:TextBox>
+                <asp:TextBox class="form-control"  id="txtTelefono" type="text" name="txtTelefono" runat="server"/> 
             </div>
              <div class="form-group">
                 <label for="Rut">Correo:</label>
-                <asp:TextBox class="form-control"  id="txtCorreo" type="text" name="txtCorreo" runat="server"/> </asp:TextBox>
+                <asp:TextBox class="form-control"  id="txtCorreo" type="text" name="txtCorreo" runat="server"/> 
             </div>
             <div class="form-group">
                 <label for="txtClave">Clave:</label>
-                <asp:TextBox class="form-control"  id="txtClave" type="text" TextMode="Password" name="txtClave" runat="server"/> </asp:TextBox>
+                <asp:TextBox class="form-control"  id="txtClave" type="text" TextMode="Password" name="txtClave" runat="server"/> 
             </div>
-            <div class="form-group">
-                                </asp:Button>
-                                <asp:Button ID="btnEnviar" runat="server" onclick="btnEnviar_Click" 
-                                    Text="Enviar" />
+            <div class="form-group">                                
+                 <asp:Button ID="btnEnviar" runat="server" onclick="btnEnviar_Click" Text="Enviar" />
             </div>
  
 </form>

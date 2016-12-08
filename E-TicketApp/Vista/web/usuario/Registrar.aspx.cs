@@ -5,9 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json.Linq;
-using Servicio;
 using Newtonsoft.Json;
 using System.Text;
+using System.Net.Mail;
+using System.Net;
 
 namespace Vista
 {
@@ -38,6 +39,33 @@ namespace Vista
             _usuarioJson.Add("Contrasegna", pass.ToString());
 
             var _resultado = JObject.Parse(new Servicio.ControladorServicioClient().RegistrarUsuario((_usuarioJson).ToString(Formatting.Indented)));
+
+             System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
+             msg.To.Add(txtCorreo.Text);
+            msg.From = new MailAddress("katherine.93824736@gmail.com", "Tu Nombre", System.Text.Encoding.UTF8);
+            msg.Subject = "Prueba de correo a GMail";
+            msg.SubjectEncoding = System.Text.Encoding.UTF8;
+            msg.Body = "Cuerpo del mensaje";
+            msg.BodyEncoding = System.Text.Encoding.UTF8;
+            msg.IsBodyHtml = false; 
+
+            //Aquí es donde se hace lo especial
+            SmtpClient client = new SmtpClient();
+            client.Credentials = new System.Net.NetworkCredential("katherine.93824736@gmail.com",".anibal.");
+            client.Port = 587;
+            client.Host = "smtp.gmail.com";
+            client.EnableSsl = true; //Esto es para que vaya a través de SSL que es obligatorio con GMail
+            try
+            {
+                        Response.Write("<script>window.alert('Registrado');</script>");
+                        client.Send(msg);
+            }
+            catch (System.Net.Mail.SmtpException ex)
+            {
+                        Console.WriteLine(ex.Message);
+                        Console.ReadLine();
+            }
+
 
             //redireccionar.-
             Server.Transfer("/Home.aspx", true);

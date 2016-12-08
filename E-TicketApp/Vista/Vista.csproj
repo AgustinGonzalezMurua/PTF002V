@@ -62,6 +62,10 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="im\product-2.jpg" />
+    <Content Include="im\product-3.jpg" />
+    <Content Include="im\product-5.jpg" />
+    <Content Include="web\catalogo\CatalogoEvento.aspx" />
     <Content Include="web\usuario\Registrar.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="js\bootstrap.min.js" />
@@ -147,6 +151,15 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="util\jTableModelListarEventos.cs" />
+    <Compile Include="web\catalogo\CatalogoEvento.aspx.cs">
+      <DependentUpon>CatalogoEvento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\catalogo\CatalogoEvento.aspx.designer.cs">
+      <DependentUpon>CatalogoEvento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\catalogo\OracleDataAdapter.cs" />
     <Compile Include="web\usuario\Registrar.aspx.cs">
       <DependentUpon>Registrar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -188,18 +201,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="web\carrito\" />
-    <Folder Include="web\catalogo\" />
     <Folder Include="web\pagar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Servicio\Servicio.csproj">
-      <Project>{C9461591-3CF8-4968-8D5F-EDD8D50D6943}</Project>
-      <Name>Servicio</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

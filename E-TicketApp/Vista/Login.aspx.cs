@@ -7,13 +7,19 @@ using System.Web.UI.WebControls;
 using Newtonsoft.Json.Linq;
 using System.Text;
 
+
 namespace Vista
 {
     public partial class Login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+        /*     Usuario usuario = (Usuario)Session["lOGIN"];
+            if (usuario == null)
+            {
+                usuario = new Usuario();
+                Session["lOGIN"] = usuario;
+            } */
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
