@@ -16,8 +16,8 @@ namespace Servicio
         #region Usuario
         [OperationContract] string ValidarUsuario(string usuario, string contrasena);
         [OperationContract] string RecuperarUsuario(string run);
-        [OperationContract] string RegistrarUsuario(string usuario);
-        [OperationContract] string RegistrarUsuarioDesdeAdmin(string usuario);
+        [OperationContract] string RegistrarUsuario(string usuario, string contrasena);
+        [OperationContract] string RegistrarUsuarioDesdeAdmin(string usuario, string contrasena);
         [OperationContract] string EliminarUsuario(string run);
         [OperationContract] string RecuperarUsuario_Todos();
         [OperationContract] string ListarComprasUsuario(string run);

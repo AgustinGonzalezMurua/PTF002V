@@ -85,7 +85,6 @@ namespace Servicio.Negocio
         #endregion
 
         #region metodos
-
         public Usuario() { }
 
         /// <summary>
@@ -105,6 +104,15 @@ namespace Servicio.Negocio
             }
         }
 
+
+        public Usuario(Newtonsoft.Json.Linq.JObject JObject)
+        {
+            this.Nombre = JObject["Nombre"].ToString();
+            this.RUN = JObject["Run"].ToString();
+            this.Fono = JObject["Fono"].ToString();
+            this.Email = JObject["Correo"].ToString();
+            this.Tipo = Convert.ToInt32(JObject["Tipo"]);
+        }
      
         public void Recuperar()
         {
@@ -312,10 +320,5 @@ namespace Servicio.Negocio
         }
 
         #endregion
-
-
-
-
-
     }
 }
