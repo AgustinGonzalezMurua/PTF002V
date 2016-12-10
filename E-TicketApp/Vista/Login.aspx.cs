@@ -14,12 +14,14 @@ namespace Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-        /*     Usuario usuario = (Usuario)Session["lOGIN"];
-            if (usuario == null)
+          string nombre = "LOGIN";
+            Session["nombre"]= nombre;
+
+      
+            if (nombre == null)
             {
-                usuario = new Usuario();
-                Session["lOGIN"] = usuario;
-            } */
+                Session["lOGIN"] = nombre;
+            } 
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)

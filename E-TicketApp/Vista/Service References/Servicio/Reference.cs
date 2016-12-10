@@ -64,7 +64,7 @@ namespace Vista.Servicio {
         string ListarEventos_Activos();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IControladorServicio/RegistrarEvento", ReplyAction="http://tempuri.org/IControladorServicio/RegistrarEventoResponse")]
-        string RegistrarEvento(string evento);
+        string RegistrarEvento(string evento, int cantidadMaxima, int valor);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IControladorServicio/ModificarEvento", ReplyAction="http://tempuri.org/IControladorServicio/ModificarEventoResponse")]
         string ModificarEvento(string evento);
@@ -173,8 +173,8 @@ namespace Vista.Servicio {
             return base.Channel.ListarEventos_Activos();
         }
         
-        public string RegistrarEvento(string evento) {
-            return base.Channel.RegistrarEvento(evento);
+        public string RegistrarEvento(string evento, int cantidadMaxima, int valor) {
+            return base.Channel.RegistrarEvento(evento, cantidadMaxima, valor);
         }
         
         public string ModificarEvento(string evento) {

@@ -227,12 +227,11 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
-
         public string ListarEventos_Activos()
         {
             try
             {
-                return SerializadorJSON.Serializar(new Negocio.Evento().ListarEventosActivos());
+                return SerializadorJSON.Serializar(new Negocio.Evento().ListarEventos_Activos());
             }
             catch (Exception ex)
             {
@@ -240,21 +239,22 @@ namespace Servicio
             }
 
         }
-        public string RegistrarEvento(string evento)
-        {
+        public string RegistrarEvento(string evento, int cantidadMaxima, int valor)
+       {
             try
             {
-                var _eventoJson         = JObject.Parse(evento);
-                var _evento             = new Negocio.Evento();
-                _evento.Nombre          = _eventoJson["NOMBRE"].ToString();
-                _evento.Fecha           = Convert.ToDateTime(_eventoJson["FECHA"].ToString());
-                _evento.Tipo            = new Negocio.TiposGeneric().RecuperarTipoEvento(Convert.ToInt32(_eventoJson["TIPO"].ToString()));
-                _evento.Estado          = Convert.ToBoolean(int.Parse(_eventoJson["ESTADO"].ToString()));
-                _evento.Organizacion    = new Negocio.Organizacion(_eventoJson["ORGANIZACION"].ToString());
-                _evento.Recinto         = new Negocio.Recinto(int.Parse(_eventoJson["RECINTO"].ToString()));
-
+                var _eventoJson = JObject.Parse(evento);
+                var _evento         = new Negocio.Evento(_eventoJson);
+                if (_eventoJson["Sectores"] == null)
+                {
+                    _evento.Sectores = new List<Negocio.Sector>();
+                    var _sector = new Negocio.Sector(_evento);
+                    _sector.CapacidadMaxima = _evento.Recinto.CapacidadMaxima;
+                    _sector.Nombre = "Principal";
+                    _sector.Precio = valor;
+                    _evento.AgregarSector(_sector);
+                }
                 _evento.Agregar();
-                new Negocio.Evento(JObject.Parse(evento)).Agregar();
 
                 return SerializadorJSON.Serializar(true, "Respuesta");
 

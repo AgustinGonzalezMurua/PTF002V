@@ -105,6 +105,7 @@ namespace Servicio.Negocio
             }
         }
 
+     
         public void Recuperar()
         {
             try
@@ -297,9 +298,10 @@ namespace Servicio.Negocio
                     var _datos = new Dictionary<string, string>();
                     _datos.Add("P_RUN", run);
                     _datos.Add("P_CONTRASEÑA", contrasena);
-                    _datos.Add("SALIDA", "0");
 
-                    salida = Convert.ToBoolean(Int32.Parse((string)(OracleSQL.ExecStoredProcedure("SPREC_USUARIO_VALIDAR", _datos))));
+                    string _aux;
+                    OracleSQL.ExecStoredProcedure("SPREC_USUARIO_VALIDAR", out  _aux, _datos);
+                    salida = Convert.ToBoolean(Convert.ToInt32(_aux));
                 }
                 return salida;
             }
