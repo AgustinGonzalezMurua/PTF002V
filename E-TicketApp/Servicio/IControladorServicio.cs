@@ -49,5 +49,14 @@ namespace Servicio
         [OperationContract] string RecuperarTipo_Eventos();
         [OperationContract] string RecuperarTipo_Usuarios();
         #endregion
+
+        #region Entrada
+        [OperationContract] string RecuperarEntradas(string cadena);
+        #endregion
+
+        #region Compra
+        [OperationContract] string RegistrarOrdenCompra(string cadena, string usuario);
+        [OperationContract] string FinalizarOrdenCompra(string codigoOrdenCompra);
+        #endregion
     }
 }

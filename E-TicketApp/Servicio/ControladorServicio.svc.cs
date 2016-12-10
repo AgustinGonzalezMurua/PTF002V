@@ -279,7 +279,6 @@ namespace Servicio
         }
         #endregion
 
-
         #region Recinto
         public string RecuperarRecinto_Codigo(int codigo)
         {
@@ -330,6 +329,11 @@ namespace Servicio
         }
         #endregion
 
-
+        #region Entrada
+        public string RecuperarEntradas(string cadena)
+        {
+            return SerializadorJSON.Serializar(new Negocio.Entrada().ListarEntradas(cadena));
+        }
+        #endregion
     }
 }

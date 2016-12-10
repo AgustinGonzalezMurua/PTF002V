@@ -138,6 +138,12 @@
   <wsdl:message name="IControladorServicio_RecuperarTipo_Usuarios_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarTipo_UsuariosResponse" />
   </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarEntradas_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarEntradas" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarEntradas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarEntradasResponse" />
+  </wsdl:message>
   <wsdl:portType name="IControladorServicio">
     <wsdl:operation name="ValidarUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/ValidarUsuario" message="tns:IControladorServicio_ValidarUsuario_InputMessage" />
@@ -226,6 +232,10 @@
     <wsdl:operation name="RecuperarTipo_Usuarios">
       <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarTipo_Usuarios" message="tns:IControladorServicio_RecuperarTipo_Usuarios_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarTipo_UsuariosResponse" message="tns:IControladorServicio_RecuperarTipo_Usuarios_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarEntradas">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarEntradas" message="tns:IControladorServicio_RecuperarEntradas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarEntradasResponse" message="tns:IControladorServicio_RecuperarEntradas_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IControladorServicio" type="tns:IControladorServicio">
@@ -421,6 +431,15 @@
     </wsdl:operation>
     <wsdl:operation name="RecuperarTipo_Usuarios">
       <soap:operation soapAction="http://tempuri.org/IControladorServicio/RecuperarTipo_Usuarios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarEntradas">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/RecuperarEntradas" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

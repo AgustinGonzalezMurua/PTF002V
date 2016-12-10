@@ -66,6 +66,7 @@
     <Content Include="im\product-3.jpg" />
     <Content Include="im\product-5.jpg" />
     <Content Include="web\catalogo\CatalogoEvento.aspx" />
+    <Content Include="web\pagar\portalPago.aspx" />
     <Content Include="web\usuario\Registrar.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="js\bootstrap.min.js" />
@@ -160,6 +161,13 @@
       <DependentUpon>CatalogoEvento.aspx</DependentUpon>
     </Compile>
     <Compile Include="web\catalogo\OracleDataAdapter.cs" />
+    <Compile Include="web\pagar\portalPago.aspx.cs">
+      <DependentUpon>portalPago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\pagar\portalPago.aspx.designer.cs">
+      <DependentUpon>portalPago.aspx</DependentUpon>
+    </Compile>
     <Compile Include="web\usuario\Registrar.aspx.cs">
       <DependentUpon>Registrar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -201,7 +209,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="web\carrito\" />
-    <Folder Include="web\pagar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
