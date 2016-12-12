@@ -20,7 +20,9 @@
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
+                            <button data-dismiss="modal" class="btn btn-large"> Close</button>
                         </div>
+                       
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
@@ -64,12 +66,21 @@
 
                         <asp:Label ID="Label6" runat="server" Text="Label">Recinto</asp:Label>
                         &nbsp; <asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
+                         
+                         <asp:Label ID="Label17" runat="server" Text="Label">Codigo: </asp:Label>
+                        &nbsp;
+                        <asp:Label ID="Label18" runat="server" Text="Label"></asp:Label>
+
+                        &nbsp;&nbsp;<br />
 
 
                         <div class="product-option-shop">
                                
-                            <asp:Button ID="btnSubmit" class="btn-info" runat="server" Text="Comprar" OnClick="btnSubmit_Click"></asp:Button>
-	                                        
+                            <asp:Button ID="btnSubmit" class="btn-info" runat="server" Text="Detalle" OnClick="btnSubmit_Click"></asp:Button>
+                            <br />
+                       </div>
+                       <div class="product-option-shop">        
+                            <asp:Button ID="btnComEntrada" class="btn-info" runat="server" Text="Comprar" OnClick="btnComEntrada_Click"></asp:Button>
                         </div>                       
                     </div>
                 </div>

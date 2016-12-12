@@ -62,6 +62,7 @@ namespace Servicio.Negocio
             {
                 throw;
             }
+
         }
 
         public Evento(Newtonsoft.Json.Linq.JObject JObject)

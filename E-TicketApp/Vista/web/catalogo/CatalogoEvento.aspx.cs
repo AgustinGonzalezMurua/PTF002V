@@ -9,6 +9,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Data.SqlClient;
 using System.Collections;
+using Vista.carrito;
 
 
 namespace Vista.web.catalogo
@@ -17,8 +18,20 @@ namespace Vista.web.catalogo
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            string nombre = "LOGIN";
+            Session["nombre"] = nombre;
+
+
+            if (nombre == null)
+            {
+                Session["lOGIN"] = nombre;
+            } 
+
             DataTable dt = new DataTable();
             var _resultado = JArray.Parse(new Servicio.ControladorServicioClient().ListarEventos_Activos().ToString());
+
+            
      //       var name = (string)_resultado[0]["Codigo"];
 
             if (_resultado != null)
@@ -28,7 +41,7 @@ namespace Vista.web.catalogo
                      Label3.Text = _resultado[0].ToString();
                      if (_resultado[0].ToString() != null)
                      {
-
+                         Label18.Text = (string)_resultado[0]["Codigo"];
                          Label2.Text = (string)_resultado[0]["Nombre"];
                          Label5.Text = (string)_resultado[0]["Fecha"];
                          Label7.Text = (string)_resultado[0]["Recinto"]["Nombre"];
@@ -107,5 +120,15 @@ namespace Vista.web.catalogo
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
             upModal.Update();
         }
+        protected void btnComEntrada_Click(object sender, EventArgs e)
+        {
+
+            Carrodecompra carrito = Carrodecompra.CapturarProducto();
+           string pCodigo = Label8.ToString();
+            carrito.Agregar(pCodigo);
+        
+        } 
+    
+        
     }
 }
