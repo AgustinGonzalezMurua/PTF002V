@@ -192,12 +192,9 @@ namespace Servicio.Negocio
             throw new InvalidProgramException("Debido a razones de seguridad se exige poseer una clave, este método se encuentra sin uso intencionalmente.");
         }
 
-        public void Modificar()
-        {
-            throw new InvalidProgramException("Debido a razones de seguridad se exige poseer una clave, este método se encuentra sin uso intencionalmente.");
-        }
+        
 
-        public void Modificar(string contrasena)
+        public void Modificar()
         {
             try
             {
@@ -206,9 +203,7 @@ namespace Servicio.Negocio
                 _diccionario.Add("P_NOMBRE", this.Nombre);
                 _diccionario.Add("P_TELEFONO", this.Fono);
                 _diccionario.Add("P_EMAIL", this.Email);
-                _diccionario.Add("P_TIPO_USUARIO", this.Tipo.ToString());
-                _diccionario.Add("P_CONTRASEÑA", contrasena.ToString());
-                _diccionario.Add("P_ESTADO", (this.Estado).ToString());
+                _diccionario.Add("P_TIPO_USUARIO", this.Tipo.ToString());           
 
                 OracleSQL.ExecStoredProcedure("SPMOD_USUARIO", _diccionario);
             }
@@ -223,11 +218,8 @@ namespace Servicio.Negocio
         {
             try
             {
-
                 var _diccionario = new Dictionary<string, string>();
                 _diccionario.Add("P_RUN", this.RUN);
-                _diccionario.Add("P_ESTADO", (this.Estado).ToString());
-
                 OracleSQL.ExecStoredProcedure("SPMOD_ESTADO_USUARIO", _diccionario);
 
             }

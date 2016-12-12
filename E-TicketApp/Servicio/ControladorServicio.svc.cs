@@ -86,6 +86,19 @@ namespace Servicio
             }
         }
 
+        public string ModificarUsuario(String usuario)
+        {
+            try
+            {
+                new Negocio.Usuario(SerializadorJSON.Parsear(usuario)).Modificar();
+                return SerializadorJSON.Serializar(true, "Respuesta");
+            }
+            catch (Exception)
+            {
+                return SerializadorJSON.Serializar(false, "Respuesta");
+            }
+        }
+
         public string EliminarUsuario(string run)
         {
             try
