@@ -2,8 +2,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
             <div class="form-group">
-            <label> Login </label>
+            <h2> Login </h2>
             </div>
 
 
@@ -20,15 +22,8 @@
                  <asp:Button ID="btnLogin" runat="server" onclick="btnLogin_Click" 
                      Text="Enviar" />
             </div>
-
-
-
-
-
-
-
-
-
+        </div>
+    </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="JavasScriptContent" runat="server">
 </asp:Content>

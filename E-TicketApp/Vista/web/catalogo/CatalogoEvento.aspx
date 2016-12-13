@@ -42,7 +42,6 @@
     <!-- Inicio de listado -->
 
     <div class="single-product-area">
-        <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-3 col-sm-6">
@@ -132,6 +131,7 @@
             </div>
         </div>
     </div>
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="JavasScriptContent" runat="server">
    
