@@ -50,16 +50,15 @@ namespace Servicio
                 }
                 else
                 {
-
-                    // tirar mensaje .-
+                    throw new ArgumentException("Contraseña no válida");
                 }
 
                 return SerializadorJSON.Serializar(true, "Respuesta");
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return SerializadorJSON.Serializar(false, "Error");
+                return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
 

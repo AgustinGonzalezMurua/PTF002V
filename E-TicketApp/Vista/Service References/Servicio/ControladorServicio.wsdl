@@ -144,6 +144,18 @@
   <wsdl:message name="IControladorServicio_RecuperarEntradas_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarEntradasResponse" />
   </wsdl:message>
+  <wsdl:message name="IControladorServicio_RegistrarOrdenCompra_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarOrdenCompra" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RegistrarOrdenCompra_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarOrdenCompraResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_FinalizarOrdenCompra_InputMessage">
+    <wsdl:part name="parameters" element="tns:FinalizarOrdenCompra" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_FinalizarOrdenCompra_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FinalizarOrdenCompraResponse" />
+  </wsdl:message>
   <wsdl:portType name="IControladorServicio">
     <wsdl:operation name="ValidarUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/ValidarUsuario" message="tns:IControladorServicio_ValidarUsuario_InputMessage" />
@@ -236,6 +248,14 @@
     <wsdl:operation name="RecuperarEntradas">
       <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarEntradas" message="tns:IControladorServicio_RecuperarEntradas_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarEntradasResponse" message="tns:IControladorServicio_RecuperarEntradas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarOrdenCompra">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RegistrarOrdenCompra" message="tns:IControladorServicio_RegistrarOrdenCompra_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RegistrarOrdenCompraResponse" message="tns:IControladorServicio_RegistrarOrdenCompra_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FinalizarOrdenCompra">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/FinalizarOrdenCompra" message="tns:IControladorServicio_FinalizarOrdenCompra_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/FinalizarOrdenCompraResponse" message="tns:IControladorServicio_FinalizarOrdenCompra_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IControladorServicio" type="tns:IControladorServicio">
@@ -440,6 +460,24 @@
     </wsdl:operation>
     <wsdl:operation name="RecuperarEntradas">
       <soap:operation soapAction="http://tempuri.org/IControladorServicio/RecuperarEntradas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarOrdenCompra">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/RegistrarOrdenCompra" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinalizarOrdenCompra">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/FinalizarOrdenCompra" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

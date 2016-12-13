@@ -2,9 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-
- <form id="form1" runat="server">
             <div class="form-group">
             <label> Login </label>
             </div>
@@ -23,7 +20,6 @@
                  <asp:Button ID="btnLogin" runat="server" onclick="btnLogin_Click" 
                      Text="Enviar" />
             </div>
-</form>
 
 
 

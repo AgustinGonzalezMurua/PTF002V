@@ -98,9 +98,9 @@ namespace Servicio.Negocio
                 this.RUN = run;
                 this.Recuperar();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
@@ -111,7 +111,7 @@ namespace Servicio.Negocio
             this.RUN = JObject["RUN"].ToString();
             this.Fono = JObject["Fono"].ToString();
             this.Email = JObject["Correo"].ToString();
-            this.Tipo = Convert.ToInt32(JObject["Tipo"]);
+            this.Tipo = JObject["Tipo"] != null ? Convert.ToInt32(JObject["Tipo"].ToString()) : 4;
         }
      
         public void Recuperar()
@@ -124,7 +124,7 @@ namespace Servicio.Negocio
                 var _dt = new DataTable();
                 OracleSQL.ExecStoredProcedure("SPREC_USUARIO", _dt, _datos);
 
-                if (_dt.Rows.Count != 0)
+                if (this.ExisteUsuario(_dt))
                 {
                     foreach (DataRow rows in _dt.Rows)
                     {
@@ -140,10 +140,10 @@ namespace Servicio.Negocio
                 }
                 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 
-                throw;
+                throw ex;
             }
         }
 
@@ -161,9 +161,9 @@ namespace Servicio.Negocio
 
               OracleSQL.ExecStoredProcedure("SPIN_USUARIO", _diccionario);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
@@ -181,9 +181,9 @@ namespace Servicio.Negocio
 
                 OracleSQL.ExecStoredProcedure("SPIN_USUARIO", _diccionario);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
@@ -319,6 +319,11 @@ namespace Servicio.Negocio
             }
         }
 
+
+        private bool ExisteUsuario(DataTable dt)
+        {
+            return dt.Rows.Count != 0;
+        }
         #endregion
     }
 }
