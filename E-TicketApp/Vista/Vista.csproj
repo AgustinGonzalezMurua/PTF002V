@@ -160,7 +160,6 @@
     <Compile Include="web\catalogo\CatalogoEvento.aspx.designer.cs">
       <DependentUpon>CatalogoEvento.aspx</DependentUpon>
     </Compile>
-    <Compile Include="web\catalogo\OracleDataAdapter.cs" />
     <Compile Include="web\pagar\portalPago.aspx.cs">
       <DependentUpon>portalPago.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
