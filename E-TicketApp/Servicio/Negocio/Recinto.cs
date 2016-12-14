@@ -125,7 +125,15 @@ namespace Servicio.Negocio
                 _diccionario.Add("P_COMUNA", this.Comuna.ToString());
                 _diccionario.Add("P_FONO", this.Fono);
                 _diccionario.Add("P_CAPACIDAD_MAX", this.CapacidadMaxima.ToString());
-                OracleSQL.ExecStoredProcedure("SPIN_RECINTO", _diccionario);
+
+                String _codigo;
+                OracleSQL.ExecStoredProcedure("SPIN_RECINTO", out _codigo, _diccionario);
+                this.Codigo = Convert.ToInt32(_codigo);
+
+                foreach (var ubicacion in this.Ubicaciones)
+                {
+                    ubicacion.Agregar();
+                }
             }
             catch (Exception)
             {

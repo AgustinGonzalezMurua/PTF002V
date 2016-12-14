@@ -11,10 +11,24 @@ namespace Servicio.Negocio
         #region propiedades
         public int Codigo { get; set; }        
         public char Fila { get; set; }
+        public int Recinto { get; set; }
         #endregion
 
         #region metodos
 
+        public Ubicacion() {
+            this.Codigo = 0;
+            this.Fila = ' ';
+            this.Recinto = 0;
+        }
+
+        public Ubicacion(Newtonsoft.Json.Linq.JObject JObject)
+        {            
+            this.Recinto            = Convert.ToInt32(JObject["Nombre"].ToString());  
+            this.Fila               = Convert.ToChar(JObject["Fecha"].ToString());
+            this.Recinto            = Convert.ToInt32(JObject["Nombre"].ToString());  
+        }
+    
         public void Recuperar()
         {
             throw new NotImplementedException();
@@ -27,6 +41,7 @@ namespace Servicio.Negocio
                 var _diccionario = new Dictionary<string, string>();
                 _diccionario.Add("P_CODIGO", this.Codigo.ToString());
                 _diccionario.Add("P_FILA", this.Fila.ToString());
+                _diccionario.Add("P_RECINTO", this.Recinto.ToString());
 
                 OracleSQL.ExecStoredProcedure("SPIN_UBICACION", _diccionario);
             }
@@ -43,6 +58,7 @@ namespace Servicio.Negocio
                 var _diccionario = new Dictionary<string, string>();
                 _diccionario.Add("P_CODIGO", this.Codigo.ToString());
                 _diccionario.Add("P_FILA", this.Fila.ToString());
+                _diccionario.Add("P_RECINTO", this.Recinto.ToString());
 
                 OracleSQL.ExecStoredProcedure("SPMOD_UBICACION", _diccionario);
             }

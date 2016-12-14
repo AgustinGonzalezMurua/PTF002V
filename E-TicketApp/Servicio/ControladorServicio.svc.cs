@@ -319,6 +319,44 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
+
+        public string RegistrarRecinto(string recinto){
+            try
+            {
+                var _recintoJson = JObject.Parse(recinto);
+                var _recinto = new Negocio.Ubicacion(_recintoJson);
+                
+                _recinto.Agregar();
+
+                return SerializadorJSON.Serializar(true, "Respuesta");
+
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
+        public string RegistrarUbicacion(string ubicacion,int codigo, char fila, int recinto)
+        {
+            try
+            {
+                var _ubicacionJson = JObject.Parse(ubicacion);
+                var _ubicacion = new Negocio.Ubicacion(_ubicacionJson);
+                _ubicacion.Codigo = codigo;
+                _ubicacion.Fila = fila;
+                _ubicacion.Recinto = recinto;
+                _ubicacion.Agregar();
+
+                return SerializadorJSON.Serializar(true, "Respuesta");
+
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
         #endregion
 
         #region Tipos
