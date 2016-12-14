@@ -207,10 +207,9 @@ namespace Servicio.Negocio
 
                 OracleSQL.ExecStoredProcedure("SPMOD_USUARIO", _diccionario);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
         }
 

@@ -93,9 +93,9 @@ namespace Servicio
                 new Negocio.Usuario(SerializadorJSON.Parsear(usuario)).Modificar();
                 return SerializadorJSON.Serializar(true, "Respuesta");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return SerializadorJSON.Serializar(false, "Respuesta");
+                return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
 
