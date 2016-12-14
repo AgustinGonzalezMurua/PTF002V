@@ -196,7 +196,7 @@ namespace Servicio
         {
             try
             {
-                new Negocio.Evento(codigo).Eliminar();;
+                new Negocio.Evento(codigo).Eliminar();
                 return SerializadorJSON.Serializar(true, "Respuesta");
             }
             catch (Exception ex)
@@ -337,7 +337,35 @@ namespace Servicio
             }
         }
 
-        public string RegistrarUbicacion(string ubicacion,int codigo, char fila, int recinto)
+        public string ModificarRecinto(string recinto){
+            try
+            {
+                new Negocio.Recinto(SerializadorJSON.Parsear(recinto)).Modificar();
+                return SerializadorJSON.Serializar(true, "Respuesta");
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
+        public string EliminarRecinto(int codigo)
+        {
+            try
+            {
+                new Negocio.Recinto(codigo).Eliminar();
+                return SerializadorJSON.Serializar(true, "Respuesta");
+            }
+            catch (Exception)
+            {
+                return SerializadorJSON.Serializar(false, "Respuesta");
+            }
+        }
+
+        
+
+        #region Ubicacion
+        public string RegistrarUbicacion(string ubicacion, int codigo, char fila, int recinto)
         {
             try
             {
@@ -356,6 +384,35 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
+
+        public string ModificarUbicacion(String ubicacion)
+        {
+            try
+            {
+                new Negocio.Ubicacion(SerializadorJSON.Parsear(ubicacion)).Modificar();
+                return SerializadorJSON.Serializar(true, "Respuesta");
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
+        public string EliminarUbicacion(string ubicacion)
+        {
+            try
+            {
+                new Negocio.Ubicacion(SerializadorJSON.Parsear(ubicacion)).Eliminar();
+                return SerializadorJSON.Serializar(true, "Respuesta");
+            }
+            catch (Exception)
+            {
+                return SerializadorJSON.Serializar(false, "Respuesta");
+            }
+        }
+
+
+        #endregion
 
         #endregion
 

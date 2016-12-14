@@ -18,13 +18,13 @@ namespace Servicio.Negocio
 
         public Ubicacion() {
             this.Codigo = 0;
-            this.Fila = ' ';
+            this.Fila = new char();
             this.Recinto = 0;
         }
 
         public Ubicacion(Newtonsoft.Json.Linq.JObject JObject)
         {            
-            this.Recinto            = Convert.ToInt32(JObject["Nombre"].ToString());  
+            this.Codigo            = Convert.ToInt32(JObject["Codigo"].ToString());  
             this.Fila               = Convert.ToChar(JObject["Fecha"].ToString());
             this.Recinto            = Convert.ToInt32(JObject["Nombre"].ToString());  
         }
