@@ -48,22 +48,7 @@ namespace Servicio.Negocio
 
         public int CapacidadMaxima { get; set; }
 
-        private string _fono;
-        public string Fono
-        {
-            get { return _fono; }
-            set
-            {
-                if (ValidadorDatos.ValidarFono(value.Trim()))
-                {
-                    _fono = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Teléfono no válido");
-                }
-            }
-        }
+        public int Fono { get; set; }
 
         public List<Ubicacion> Ubicaciones { get; set; }
         #endregion
@@ -76,6 +61,16 @@ namespace Servicio.Negocio
         {
             this.Codigo = codigo;
             this.Recuperar();
+        }
+
+        public Recinto(Newtonsoft.Json.Linq.JObject JObject)
+        {
+            this.Codigo             = Convert.ToInt32(JObject["Codigo"].ToString());
+            this.Nombre             = JObject["Nombre"].ToString();
+            this.Direccion          = JObject["Direccion"].ToString();
+            this.Comuna             = new Negocio.Comuna(Convert.ToInt32(JObject["Comuna"]["Codigo"].ToString()));
+            this.Fono               = Convert.ToInt32(JObject["Fono"].ToString());
+            this.CapacidadMaxima    = Convert.ToInt32(JObject["CapacidadMaxima"].ToString());  
         }
 
         public void Recuperar()
@@ -96,7 +91,7 @@ namespace Servicio.Negocio
                         this.Nombre = rows["NOMBRE"].ToString();
                         this.Direccion = rows["DIRECCION"].ToString();
                         this.Comuna = new Comuna(Convert.ToInt32(rows["COMUNA"].ToString()));
-                        this.Fono = rows["FONO"].ToString();
+                        this.Fono = int.Parse(rows["Fono"].ToString());
                         this.CapacidadMaxima = int.Parse(rows["CAPACIDAD_MAXIMA"].ToString());
                     }
 
@@ -122,10 +117,21 @@ namespace Servicio.Negocio
                 var _diccionario = new Dictionary<string, string>();
                 _diccionario.Add("P_NOMBRE", this.Nombre);
                 _diccionario.Add("P_DIRECCION", this.Direccion);
-                _diccionario.Add("P_COMUNA", this.Comuna.ToString());
-                _diccionario.Add("P_FONO", this.Fono);
+                _diccionario.Add("P_COMUNA", this.Comuna.Codigo.ToString());
+                _diccionario.Add("P_FONO", this.Fono.ToString());
                 _diccionario.Add("P_CAPACIDAD_MAX", this.CapacidadMaxima.ToString());
-                OracleSQL.ExecStoredProcedure("SPIN_RECINTO", _diccionario);
+
+                String _codigo;
+                OracleSQL.ExecStoredProcedure("SPIN_RECINTO", out _codigo, _diccionario);
+                this.Codigo = Convert.ToInt32(_codigo);
+
+                if (this.Ubicaciones != null)
+                {
+                    foreach (var ubicacion in this.Ubicaciones)
+                    {
+                        ubicacion.Agregar();
+                    }
+                }
             }
             catch (Exception)
             {
@@ -141,8 +147,8 @@ namespace Servicio.Negocio
                 _diccionario.Add("P_CODIGO", this.Codigo.ToString());
                 _diccionario.Add("P_NOMBRE", this.Nombre);
                 _diccionario.Add("P_DIRECCION", this.Direccion);
-                _diccionario.Add("P_COMUNA", this.Comuna.ToString());
-                _diccionario.Add("P_FONO", this.Fono);
+                _diccionario.Add("P_COMUNA", this.Comuna.Codigo.ToString());
+                _diccionario.Add("P_FONO", this.Fono.ToString());
                 _diccionario.Add("P_CAPACIDAD_MAX", this.CapacidadMaxima.ToString());
                 OracleSQL.ExecStoredProcedure("SPMOD_RECINTO", _diccionario);
             }
@@ -207,6 +213,7 @@ namespace Servicio.Negocio
 
                     _ubicacion.Codigo = Convert.ToInt32(rows["CODIGO"].ToString());
                     _ubicacion.Fila = Convert.ToChar(rows["FILA"]);
+                    _ubicacion.Recinto = Convert.ToInt32(rows["RECINTO"].ToString());
 
                     _ubicaciones.Add(_ubicacion);
                 }

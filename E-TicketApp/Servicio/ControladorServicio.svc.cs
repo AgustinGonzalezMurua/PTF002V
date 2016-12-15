@@ -86,6 +86,19 @@ namespace Servicio
             }
         }
 
+        public string ModificarUsuario(String usuario)
+        {
+            try
+            {
+                new Negocio.Usuario(SerializadorJSON.Parsear(usuario)).Modificar();
+                return SerializadorJSON.Serializar(true, "Respuesta");
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
         public string EliminarUsuario(string run)
         {
             try
@@ -183,7 +196,7 @@ namespace Servicio
         {
             try
             {
-                new Negocio.Evento(codigo).Eliminar();;
+                new Negocio.Evento(codigo).Eliminar();
                 return SerializadorJSON.Serializar(true, "Respuesta");
             }
             catch (Exception ex)
@@ -314,6 +327,134 @@ namespace Servicio
             try
             {
                 return SerializadorJSON.Serializar(new Negocio.Recinto().ListarRecintos());
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
+        public string RegistrarRecinto(string recinto){
+            try
+            {
+                var _recintoJson = JObject.Parse(recinto);
+                var _recinto = new Negocio.Recinto(_recintoJson);
+                
+                _recinto.Agregar();
+
+                return SerializadorJSON.Serializar(true, "Respuesta");
+
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
+        public string ModificarRecinto(string recinto){
+            try
+            {
+                new Negocio.Recinto(SerializadorJSON.Parsear(recinto)).Modificar();
+                return SerializadorJSON.Serializar(true, "Respuesta");
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
+        public string EliminarRecinto(int codigo)
+        {
+            try
+            {
+                new Negocio.Recinto(codigo).Eliminar();
+                return SerializadorJSON.Serializar(true, "Respuesta");
+            }
+            catch (Exception)
+            {
+                return SerializadorJSON.Serializar(false, "Respuesta");
+            }
+        }
+
+        
+
+        #region Ubicacion
+        public string RegistrarUbicacion(string ubicacion)
+        {
+            try
+            {
+                var _ubicacionJson = JObject.Parse(ubicacion);
+                var _ubicacion = new Negocio.Ubicacion(_ubicacionJson);                
+                _ubicacion.Agregar();
+
+                return SerializadorJSON.Serializar(true, "Respuesta");
+
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+        public string RecuperarUbicacion(int codigo)
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Ubicacion(codigo));
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
+        public string ModificarUbicacion(String ubicacion)
+        {
+            try
+            {
+                new Negocio.Ubicacion(SerializadorJSON.Parsear(ubicacion)).Modificar();
+                return SerializadorJSON.Serializar(true, "Respuesta");
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
+        public string EliminarUbicacion(string ubicacion)
+        {
+            try
+            {
+                new Negocio.Ubicacion(SerializadorJSON.Parsear(ubicacion)).Eliminar();
+                return SerializadorJSON.Serializar(true, "Respuesta");
+            }
+            catch (Exception)
+            {
+                return SerializadorJSON.Serializar(false, "Respuesta");
+            }
+        }
+
+        public string ListarUbicacionesPorRecinto(int recinto)
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Recinto().ListarUbicacionesPorRecinto(recinto));
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Comuna
+        public string ListarComunas()
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Comuna().ListarComunas());
             }
             catch (Exception ex)
             {
