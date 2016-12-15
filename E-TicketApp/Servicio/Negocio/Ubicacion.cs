@@ -29,8 +29,8 @@ namespace Servicio.Negocio
         public Ubicacion(Newtonsoft.Json.Linq.JObject JObject)
         {            
             this.Codigo            = Convert.ToInt32(JObject["Codigo"].ToString());  
-            this.Fila               = Convert.ToChar(JObject["Fecha"].ToString());
-            this.Recinto            = Convert.ToInt32(JObject["Nombre"].ToString());  
+            this.Fila               = Convert.ToChar(JObject["Fila"].ToString());
+            this.Recinto            = Convert.ToInt32(JObject["Recinto"].ToString());  
         }
     
         public void Recuperar()
@@ -49,7 +49,7 @@ namespace Servicio.Negocio
                     foreach (DataRow rows in _dt.Rows)
                     {
                         this.Fila = Convert.ToChar(rows["FILA"].ToString());
-                        this.Recinto = int.Parse(rows["Fono"].ToString());
+                        this.Recinto = int.Parse(rows["RECINTO"].ToString());
                     }
                 }
                 else
