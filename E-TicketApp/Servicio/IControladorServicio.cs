@@ -39,6 +39,7 @@ namespace Servicio
         [OperationContract] string ListarEventos_Activos();
         [OperationContract] string RegistrarEvento(string evento, int cantidadMaxima, int valor);
         [OperationContract] string ModificarEvento(string evento);
+        [OperationContract] string ObtenerEvento_Precio(string codigo);
         #endregion
 
         #region Recinto

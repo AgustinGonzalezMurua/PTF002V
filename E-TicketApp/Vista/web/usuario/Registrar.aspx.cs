@@ -51,7 +51,7 @@ namespace Vista
                 {
                     System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
                     msg.To.Add(txtCorreo.Text);
-                    msg.From = new MailAddress("katherine.93824736@gmail.com", "Tu Nombre", System.Text.Encoding.UTF8);
+                    msg.From = new MailAddress("eticketpf@gmail.com", "Tu Nombre", System.Text.Encoding.UTF8);
                     msg.Subject = "Prueba de correo a GMail";
                     msg.SubjectEncoding = System.Text.Encoding.UTF8;
                     msg.Body = "Cuerpo del mensaje";
@@ -60,7 +60,7 @@ namespace Vista
 
                     //Aquí es donde se hace lo especial
                     SmtpClient client = new SmtpClient();
-                    client.Credentials = new System.Net.NetworkCredential("katherine.93824736@gmail.com", ".anibal.");
+                    client.Credentials = new System.Net.NetworkCredential("eticketpf@gmail.com", "eticket123");
                     client.Port = 587;
                     client.Host = "smtp.gmail.com";
                     client.EnableSsl = true; //Esto es para que vaya a través de SSL que es obligatorio con GMail

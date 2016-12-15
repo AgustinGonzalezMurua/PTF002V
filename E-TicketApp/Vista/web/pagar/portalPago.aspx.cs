@@ -14,11 +14,9 @@ namespace Vista.web.pagar
         protected void Page_Load(object sender, EventArgs e)
         {
             // Si la sesión es válida y contiene ítems en carrito
-            if (true)
+            if (Session["Usuario"] != null)
             {
-
-                //cadena de entradas también se saca de sesión
-                var _cadenaEntradas = "128;142;150;166";
+                var _cadenaEntradas = ((carritoClase.CarroDeCompras)Session["Carrito"]).obtenerCodigos();
                 var _entradas = JArray.Parse(new Servicio.ControladorServicioClient().RecuperarEntradas(_cadenaEntradas));
                 var _dt = new System.Data.DataTable();
                 _dt.Columns.Add("Codigo");
