@@ -280,6 +280,20 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
+
+        public string ObtenerEvento_Precio(string codigo)
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Evento().ObtenerEvento_Precio(codigo));
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
+
         #endregion
 
         #region Recinto

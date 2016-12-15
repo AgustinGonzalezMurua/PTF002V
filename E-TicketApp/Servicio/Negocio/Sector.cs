@@ -30,6 +30,7 @@ namespace Servicio.Negocio
         }
 
         private int _precio;
+        private int p;
         public int Precio
         {
             get { return _precio; }
@@ -60,6 +61,12 @@ namespace Servicio.Negocio
         public Sector(Evento evento)
         {
             this.Evento = evento;
+        }
+
+        public Sector(int p)
+        {
+            // TODO: Complete member initialization
+            this.p = p;
         }
 
         public void Recuperar()

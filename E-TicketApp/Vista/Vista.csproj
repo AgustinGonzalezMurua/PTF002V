@@ -62,10 +62,13 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="im\Captura.jpg" />
     <Content Include="im\product-2.jpg" />
     <Content Include="im\product-3.jpg" />
     <Content Include="im\product-5.jpg" />
+    <Content Include="web\carrito\Carrito.aspx" />
     <Content Include="web\catalogo\CatalogoEvento.aspx" />
+    <Content Include="web\catalogo\Detalle.aspx" />
     <Content Include="web\pagar\portalPago.aspx" />
     <Content Include="web\usuario\Registrar.aspx" />
     <Content Include="Home.aspx" />
@@ -152,13 +155,30 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="carritoClase\CarroDeCompras.cs" />
+    <Compile Include="carritoClase\Producto.cs" />
+    <Compile Include="carritoClase\ProductosAlCarro.cs" />
     <Compile Include="util\jTableModelListarEventos.cs" />
+    <Compile Include="web\carrito\Carrito.aspx.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\carrito\Carrito.aspx.designer.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
+    </Compile>
     <Compile Include="web\catalogo\CatalogoEvento.aspx.cs">
       <DependentUpon>CatalogoEvento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="web\catalogo\CatalogoEvento.aspx.designer.cs">
       <DependentUpon>CatalogoEvento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web\catalogo\Detalle.aspx.cs">
+      <DependentUpon>Detalle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\catalogo\Detalle.aspx.designer.cs">
+      <DependentUpon>Detalle.aspx</DependentUpon>
     </Compile>
     <Compile Include="web\pagar\portalPago.aspx.cs">
       <DependentUpon>portalPago.aspx</DependentUpon>
@@ -207,7 +227,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="web\carrito\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
@@ -227,7 +246,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>52575</DevelopmentServerPort>
+          <DevelopmentServerPort>52480</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

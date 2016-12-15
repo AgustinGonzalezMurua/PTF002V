@@ -255,3 +255,12 @@ E-TicketApp/Servicio/Web.config
 E-TicketApp/Vista/web/usuario/Registrar.aspx.cs
 E-TicketApp/Servicio/Web.config
 E-TicketApp/Servicio/Web.config
+E-TicketApp/Servicio/Web.config
+E-TicketApp/Servicio/Web.config
+E-TicketApp/Servicio/Web.config
+*.cs
+E-TicketApp/Vista/Service References/Servicio/ControladorServicio.wsdl
+*.xsd
+E-TicketApp/Vista/web/usuario/Registrar.aspx.cs
+E-TicketApp/Vista/Service References/Servicio/ControladorServicio.wsdl
+E-TicketApp/Servicio/Web.config

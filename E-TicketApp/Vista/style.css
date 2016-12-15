@@ -665,10 +665,8 @@ input[type="submit"]:hover, button[type=submit]:hover {background-color: #222}
     overflow: hidden;
 }
 .product-gallery img {
-    height: auto;
-    margin-left: 15px;
-    width: 76px;
-}
+    margin-left: 82px;
+    }
 .product-name {
     font-size: 25px;
     margin-bottom: 20px;
