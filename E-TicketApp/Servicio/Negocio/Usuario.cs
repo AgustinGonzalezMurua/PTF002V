@@ -111,7 +111,7 @@ namespace Servicio.Negocio
             this.RUN = JObject["RUN"].ToString();
             this.Fono = JObject["Fono"].ToString();
             this.Email = JObject["Correo"].ToString();
-            this.Tipo = JObject["Tipo"] != null ? Convert.ToInt32(JObject["Tipo"].ToString()) : 4;
+            this.Tipo = Convert.ToInt32(JObject["Tipo"].ToString());
         }
      
         public void Recuperar()

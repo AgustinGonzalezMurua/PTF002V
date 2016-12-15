@@ -324,7 +324,7 @@ namespace Servicio
             try
             {
                 var _recintoJson = JObject.Parse(recinto);
-                var _recinto = new Negocio.Ubicacion(_recintoJson);
+                var _recinto = new Negocio.Recinto(_recintoJson);
                 
                 _recinto.Agregar();
 
@@ -365,19 +365,27 @@ namespace Servicio
         
 
         #region Ubicacion
-        public string RegistrarUbicacion(string ubicacion, int codigo, char fila, int recinto)
+        public string RegistrarUbicacion(string ubicacion)
         {
             try
             {
                 var _ubicacionJson = JObject.Parse(ubicacion);
-                var _ubicacion = new Negocio.Ubicacion(_ubicacionJson);
-                _ubicacion.Codigo = codigo;
-                _ubicacion.Fila = fila;
-                _ubicacion.Recinto = recinto;
+                var _ubicacion = new Negocio.Ubicacion(_ubicacionJson);                
                 _ubicacion.Agregar();
 
                 return SerializadorJSON.Serializar(true, "Respuesta");
 
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+        public string RecuperarUbicacion(int codigo)
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Ubicacion(codigo));
             }
             catch (Exception ex)
             {
@@ -411,9 +419,34 @@ namespace Servicio
             }
         }
 
+        public string ListarUbicacionesPorRecinto(int recinto)
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Recinto().ListarUbicacionesPorRecinto(recinto));
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
 
         #endregion
 
+        #endregion
+
+        #region Comuna
+        public string ListarComunas()
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Comuna().ListarComunas());
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
         #endregion
 
         #region Tipos

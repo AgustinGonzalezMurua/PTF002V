@@ -47,9 +47,15 @@ namespace Servicio
         [OperationContract] string RegistrarRecinto(string recinto);
         [OperationContract] string ModificarRecinto(string recinto);
         [OperationContract] string EliminarRecinto(int recinto);
-        [OperationContract] string RegistrarUbicacion(string ubicacion,int codigo, char fila, int recinto);
+        [OperationContract] string RegistrarUbicacion(string ubicacion);
+        [OperationContract] string RecuperarUbicacion(int codigo);
         [OperationContract] string ModificarUbicacion(string ubicacion);
         [OperationContract] string EliminarUbicacion(string ubicacion);
+        [OperationContract] string ListarUbicacionesPorRecinto(int recinto);
+        #endregion
+
+        #region Comuna
+        [OperationContract] string ListarComunas();
         #endregion
 
         #region Tipos

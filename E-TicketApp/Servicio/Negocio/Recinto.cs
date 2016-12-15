@@ -68,7 +68,7 @@ namespace Servicio.Negocio
             this.Codigo             = Convert.ToInt32(JObject["Codigo"].ToString());
             this.Nombre             = JObject["Nombre"].ToString();
             this.Direccion          = JObject["Direccion"].ToString();
-            this.Comuna             = new Negocio.Comuna(Convert.ToInt32(JObject["Comuna"].ToString()));
+            this.Comuna             = new Negocio.Comuna(Convert.ToInt32(JObject["Comuna"]["Codigo"].ToString()));
             this.Fono               = Convert.ToInt32(JObject["Fono"].ToString());
             this.CapacidadMaxima    = Convert.ToInt32(JObject["CapacidadMaxima"].ToString());  
         }
@@ -117,7 +117,7 @@ namespace Servicio.Negocio
                 var _diccionario = new Dictionary<string, string>();
                 _diccionario.Add("P_NOMBRE", this.Nombre);
                 _diccionario.Add("P_DIRECCION", this.Direccion);
-                _diccionario.Add("P_COMUNA", this.Comuna.ToString());
+                _diccionario.Add("P_COMUNA", this.Comuna.Codigo.ToString());
                 _diccionario.Add("P_FONO", this.Fono.ToString());
                 _diccionario.Add("P_CAPACIDAD_MAX", this.CapacidadMaxima.ToString());
 
@@ -125,9 +125,12 @@ namespace Servicio.Negocio
                 OracleSQL.ExecStoredProcedure("SPIN_RECINTO", out _codigo, _diccionario);
                 this.Codigo = Convert.ToInt32(_codigo);
 
-                foreach (var ubicacion in this.Ubicaciones)
+                if (this.Ubicaciones != null)
                 {
-                    ubicacion.Agregar();
+                    foreach (var ubicacion in this.Ubicaciones)
+                    {
+                        ubicacion.Agregar();
+                    }
                 }
             }
             catch (Exception)
@@ -144,7 +147,7 @@ namespace Servicio.Negocio
                 _diccionario.Add("P_CODIGO", this.Codigo.ToString());
                 _diccionario.Add("P_NOMBRE", this.Nombre);
                 _diccionario.Add("P_DIRECCION", this.Direccion);
-                _diccionario.Add("P_COMUNA", this.Comuna.ToString());
+                _diccionario.Add("P_COMUNA", this.Comuna.Codigo.ToString());
                 _diccionario.Add("P_FONO", this.Fono.ToString());
                 _diccionario.Add("P_CAPACIDAD_MAX", this.CapacidadMaxima.ToString());
                 OracleSQL.ExecStoredProcedure("SPMOD_RECINTO", _diccionario);
@@ -210,6 +213,7 @@ namespace Servicio.Negocio
 
                     _ubicacion.Codigo = Convert.ToInt32(rows["CODIGO"].ToString());
                     _ubicacion.Fila = Convert.ToChar(rows["FILA"]);
+                    _ubicacion.Recinto = Convert.ToInt32(rows["RECINTO"].ToString());
 
                     _ubicaciones.Add(_ubicacion);
                 }

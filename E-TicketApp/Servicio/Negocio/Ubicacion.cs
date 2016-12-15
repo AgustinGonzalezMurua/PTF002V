@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Servicio.Util;
+using System.Data;
+using System.Text;
+
 
 namespace Servicio.Negocio
 {
@@ -16,10 +19,11 @@ namespace Servicio.Negocio
 
         #region metodos
 
-        public Ubicacion() {
-            this.Codigo = 0;
-            this.Fila = new char();
-            this.Recinto = 0;
+        public Ubicacion(){}
+
+        public Ubicacion(int codigo) {
+            this.Codigo = codigo;
+            this.Recuperar();
         }
 
         public Ubicacion(Newtonsoft.Json.Linq.JObject JObject)
@@ -31,15 +35,41 @@ namespace Servicio.Negocio
     
         public void Recuperar()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _datos = new Dictionary<string, string>();
+                var _dt = new DataTable();
+
+                _datos.Add("P_CODIGO", this.Codigo.ToString());
+
+                OracleSQL.ExecStoredProcedure("SPREC_UBICACION", _dt, _datos);
+
+                if (_dt.Rows.Count > 0)
+                {
+                    foreach (DataRow rows in _dt.Rows)
+                    {
+                        this.Fila = Convert.ToChar(rows["FILA"].ToString());
+                        this.Recinto = int.Parse(rows["Fono"].ToString());
+                    }
+                }
+                else
+                {
+                    throw new KeyNotFoundException("Ubicación no encontrada");
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public void Agregar()
         {
             try
             {
-                var _diccionario = new Dictionary<string, string>();
-                _diccionario.Add("P_CODIGO", this.Codigo.ToString());
+                var _diccionario = new Dictionary<string, string>();              
                 _diccionario.Add("P_FILA", this.Fila.ToString());
                 _diccionario.Add("P_RECINTO", this.Recinto.ToString());
 
