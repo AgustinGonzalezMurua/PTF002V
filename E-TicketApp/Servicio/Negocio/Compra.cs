@@ -15,6 +15,19 @@ namespace Servicio.Negocio
         #endregion
 
         #region metodos
+
+        public Compra() { }
+
+        public Compra(string cadenaEntradas, string usuario)
+        {
+            string[] _arrEntradas = cadenaEntradas.Split(';');
+            foreach (var cadenaEntrada in _arrEntradas)
+            {
+                this.Entradas.Add(new Entrada(cadenaEntrada));
+            }
+            this.Usuario = new Usuario(usuario);
+        }
+
         public void Recuperar()
         {
             throw new NotImplementedException();
@@ -35,6 +48,11 @@ namespace Servicio.Negocio
             throw new NotImplementedException();
         }
 
+        public void Finalizar()
+        {
+            throw new NotImplementedException();
+        }
+
         public void AgregarEntrada(Entrada entrada)
         {
             try
@@ -46,7 +64,6 @@ namespace Servicio.Negocio
                 throw ex;
             }
         }
-
         public void RemoverEntrada(int codigo_entrada)
         {
             try

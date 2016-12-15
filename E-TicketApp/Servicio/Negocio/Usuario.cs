@@ -85,7 +85,6 @@ namespace Servicio.Negocio
         #endregion
 
         #region metodos
-
         public Usuario() { }
 
         /// <summary>
@@ -99,12 +98,21 @@ namespace Servicio.Negocio
                 this.RUN = run;
                 this.Recuperar();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
+
+        public Usuario(Newtonsoft.Json.Linq.JObject JObject)
+        {
+            this.Nombre = JObject["Nombre"].ToString();
+            this.RUN = JObject["RUN"].ToString();
+            this.Fono = JObject["Fono"].ToString();
+            this.Email = JObject["Correo"].ToString();
+            this.Tipo = Convert.ToInt32(JObject["Tipo"].ToString());
+        }
      
         public void Recuperar()
         {
@@ -116,7 +124,7 @@ namespace Servicio.Negocio
                 var _dt = new DataTable();
                 OracleSQL.ExecStoredProcedure("SPREC_USUARIO", _dt, _datos);
 
-                if (_dt.Rows.Count != 0)
+                if (this.ExisteUsuario(_dt))
                 {
                     foreach (DataRow rows in _dt.Rows)
                     {
@@ -132,10 +140,10 @@ namespace Servicio.Negocio
                 }
                 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 
-                throw;
+                throw ex;
             }
         }
 
@@ -153,9 +161,9 @@ namespace Servicio.Negocio
 
               OracleSQL.ExecStoredProcedure("SPIN_USUARIO", _diccionario);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
@@ -173,9 +181,9 @@ namespace Servicio.Negocio
 
                 OracleSQL.ExecStoredProcedure("SPIN_USUARIO", _diccionario);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
@@ -184,12 +192,9 @@ namespace Servicio.Negocio
             throw new InvalidProgramException("Debido a razones de seguridad se exige poseer una clave, este método se encuentra sin uso intencionalmente.");
         }
 
-        public void Modificar()
-        {
-            throw new InvalidProgramException("Debido a razones de seguridad se exige poseer una clave, este método se encuentra sin uso intencionalmente.");
-        }
+        
 
-        public void Modificar(string contrasena)
+        public void Modificar()
         {
             try
             {
@@ -198,16 +203,13 @@ namespace Servicio.Negocio
                 _diccionario.Add("P_NOMBRE", this.Nombre);
                 _diccionario.Add("P_TELEFONO", this.Fono);
                 _diccionario.Add("P_EMAIL", this.Email);
-                _diccionario.Add("P_TIPO_USUARIO", this.Tipo.ToString());
-                _diccionario.Add("P_CONTRASEÑA", contrasena.ToString());
-                _diccionario.Add("P_ESTADO", (this.Estado).ToString());
+                _diccionario.Add("P_TIPO_USUARIO", this.Tipo.ToString());           
 
                 OracleSQL.ExecStoredProcedure("SPMOD_USUARIO", _diccionario);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
         }
 
@@ -215,11 +217,8 @@ namespace Servicio.Negocio
         {
             try
             {
-
                 var _diccionario = new Dictionary<string, string>();
                 _diccionario.Add("P_RUN", this.RUN);
-                _diccionario.Add("P_ESTADO", (this.Estado).ToString());
-
                 OracleSQL.ExecStoredProcedure("SPMOD_ESTADO_USUARIO", _diccionario);
 
             }
@@ -311,11 +310,11 @@ namespace Servicio.Negocio
             }
         }
 
+
+        private bool ExisteUsuario(DataTable dt)
+        {
+            return dt.Rows.Count != 0;
+        }
         #endregion
-
-
-
-
-
     }
 }

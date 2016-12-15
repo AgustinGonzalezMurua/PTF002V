@@ -14,14 +14,6 @@ namespace Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-          string nombre = "LOGIN";
-            Session["nombre"]= nombre;
-
-      
-            if (nombre == null)
-            {
-                Session["lOGIN"] = nombre;
-            } 
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -40,7 +32,8 @@ namespace Vista
             var _resultado = JObject.Parse(new Servicio.ControladorServicioClient().ValidarUsuario(txtUsuario.Text, pass.ToString()));
             if (Convert.ToBoolean(_resultado["Respuesta"].ToString()))
             {
-                Response.Write("<script>window.alert('Bienvenido');</script>");
+                Session["Usuario"] = _resultado;
+                Response.Write("<script>window.alert('Bienvenido ');</script>");
                 Server.Transfer("/Home.aspx", true);
             }
             else

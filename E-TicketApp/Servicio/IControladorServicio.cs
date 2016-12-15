@@ -16,8 +16,9 @@ namespace Servicio
         #region Usuario
         [OperationContract] string ValidarUsuario(string usuario, string contrasena);
         [OperationContract] string RecuperarUsuario(string run);
-        [OperationContract] string RegistrarUsuario(string usuario);
-        [OperationContract] string RegistrarUsuarioDesdeAdmin(string usuario);
+        [OperationContract] string RegistrarUsuario(string usuario, string contrasena);
+        [OperationContract] string RegistrarUsuarioDesdeAdmin(string usuario, string contrasena);
+        [OperationContract] string ModificarUsuario(String usuario);
         [OperationContract] string EliminarUsuario(string run);
         [OperationContract] string RecuperarUsuario_Todos();
         [OperationContract] string ListarComprasUsuario(string run);
@@ -38,16 +39,38 @@ namespace Servicio
         [OperationContract] string ListarEventos_Activos();
         [OperationContract] string RegistrarEvento(string evento, int cantidadMaxima, int valor);
         [OperationContract] string ModificarEvento(string evento);
+        [OperationContract] string ObtenerEvento_Precio(string codigo);
         #endregion
 
         #region Recinto
         [OperationContract] string RecuperarRecinto_Codigo(int codigo);
         [OperationContract] string RecuperarRecinto_Todos();
+        [OperationContract] string RegistrarRecinto(string recinto);
+        [OperationContract] string ModificarRecinto(string recinto);
+        [OperationContract] string EliminarRecinto(int recinto);
+        [OperationContract] string RegistrarUbicacion(string ubicacion);
+        [OperationContract] string RecuperarUbicacion(int codigo);
+        [OperationContract] string ModificarUbicacion(string ubicacion);
+        [OperationContract] string EliminarUbicacion(string ubicacion);
+        [OperationContract] string ListarUbicacionesPorRecinto(int recinto);
+        #endregion
+
+        #region Comuna
+        [OperationContract] string ListarComunas();
         #endregion
 
         #region Tipos
         [OperationContract] string RecuperarTipo_Eventos();
         [OperationContract] string RecuperarTipo_Usuarios();
+        #endregion
+
+        #region Entrada
+        [OperationContract] string RecuperarEntradas(string cadena);
+        #endregion
+
+        #region Compra
+        [OperationContract] string RegistrarOrdenCompra(string cadena, string usuario);
+        [OperationContract] string FinalizarOrdenCompra(string codigoOrdenCompra);
         #endregion
     }
 }

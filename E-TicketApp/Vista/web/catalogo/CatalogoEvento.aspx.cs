@@ -16,9 +16,11 @@ namespace Vista.web.catalogo
 {
     public partial class CatalogoEvento : System.Web.UI.Page
     {
+        string valor = null;
         protected void Page_Load(object sender, EventArgs e)
         {
 
+<<<<<<< HEAD
             string nombre = "LOGIN";
             Session["nombre"] = nombre;
 
@@ -28,6 +30,8 @@ namespace Vista.web.catalogo
                 Session["lOGIN"] = nombre;
             } 
 
+=======
+>>>>>>> refs/remotes/origin/CarritoCueck
             DataTable dt = new DataTable();
             var _resultado = JArray.Parse(new Servicio.ControladorServicioClient().ListarEventos_Activos().ToString());
 
@@ -38,6 +42,7 @@ namespace Vista.web.catalogo
             {
                 foreach (JObject item in _resultado)
                 {
+<<<<<<< HEAD
                      Label3.Text = _resultado[0].ToString();
                      if (_resultado[0].ToString() != null)
                      {
@@ -61,64 +66,55 @@ namespace Vista.web.catalogo
                          Label16.Text = (string)_resultado[2]["Recinto"]["Nombre"];
                      }                     
                 }
+=======
+                    Label3.Text = (string)_resultado[0].ToString();
+                    if (_resultado[0].ToString() != null)
+                    {
+                        valor = (string)_resultado[0]["Codigo"];
+                        Label2.Text = (string)_resultado[0]["Nombre"];
+                        Label5.Text = (string)_resultado[0]["Fecha"];
+                        Label7.Text = (string)_resultado[0]["Recinto"]["Nombre"];
+                    }
+                    if (_resultado[1].ToString() != null)
+                        {
+                            valor = (string)_resultado[1]["Codigo"];
+                            Label1.Text = (string)_resultado[1]["Nombre"];
+                            Label9.Text = (string)_resultado[1]["Fecha"];
+                            Label11.Text = (string)_resultado[1]["Recinto"]["Nombre"];
+                        }
+                       if (_resultado[2].ToString() != null)
+                            {
+                                valor = (string)_resultado[2]["Codigo"];
+                                Label12.Text = (string)_resultado[2]["Nombre"];
+                                Label14.Text = (string)_resultado[2]["Fecha"];
+                                Label16.Text = (string)_resultado[2]["Recinto"]["Nombre"];
+                            }
+                 }
+>>>>>>> refs/remotes/origin/CarritoCueck
             }
             else
             {
-                //mensaje de error;
+                Label3.Text = "No hay eventos disponibles por el momento";
             }
 
-
-            
-
-
-   /*         DataTable dt = new DataTable();
-            this._eventos = new Evento();
-            
-
-            
-
-        //    DataTable dat = new Evento().ListarEventosActivos().ToString();
-         //   DataTable dt = (DataTable)JsonConvert.DeserializeObject(dat,typeof(DataTable));
-
-
-            /*
-             * var _evento = new Evento();
-            var _dat = _evento.ListarEventosActivos().AsEnumerable().ToList();
-            
-             * 
-            GridView1.DataSource = dt;
-            GridView1.DataBind();
-            Evento ev = new Evento();
-            dt.Columns.Add("Id");
-            dt.Columns.Add("Nombre");
-            dt.Columns.Add("Fecha Evento");
-
-            DataRow row = dt.NewRow();
-            row["Id"] = 1;
-            row["Nombre"] = ev.Nombre;
-            row["Fecha Evento"] = ev.Fecha;
-            dt.Rows.Add(row);
-
-            row = dt.NewRow();
-            row["Id"] = 2;
-            row["Nombre"] = "Federico";
-            row["Fecha Evento"] = "PM";
-            dt.Rows.Add(row);
-
-            row = dt.NewRow();
-            row["Id"] = 3;
-            row["Nombre"] = "Leonardo";
-            row["Fecha Evento"] = "Developer";
-            dt.Rows.Add(row);
-
-            return dt; */
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            if (Session["Usuario"] != null)
+            {
+                // derivar a detalle
+                Response.Redirect("/web/Catalogo/Detalle.aspx" + "?" + "codigo=" + valor);
+            }
+            else
+            {
+                Server.Transfer("/Login.aspx");
+            }
+            /*
             lblModalTitle.Text = "Validation Errors List for HP7 Citation";
             lblModalBody.Text = "This is modal body";
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
             upModal.Update();
+             * */
         }
         protected void btnComEntrada_Click(object sender, EventArgs e)
         {

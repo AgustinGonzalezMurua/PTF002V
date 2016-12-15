@@ -2,10 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
 <!-- modal -->
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- Bootstrap Modal Dialog -->
+    <!-- Bootstrap Modal Dialog
     <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <asp:UpdatePanel ID="upModal" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
@@ -27,16 +26,22 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
+    </div> -->
+
+    
+
+
+    <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>Listado de Eventos</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-
-
-    <div class="col-md-12">
-        <div class="product-bit-title text-center"></div>
-            <h2> Listado de Eventos </h2>
-    </div>
-
 
     <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
 
@@ -44,13 +49,13 @@
     <!-- Inicio de listado -->
 
     <div class="single-product-area">
-        <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <form action="default.aspx" method="post">
                     </form>
                     <div class="single-shop-product">
+
                                     <div class="product-upper">
                         &nbsp;<asp:Image ID="Image1" runat="server" BorderStyle="None" Height="276px" ImageUrl="~/im/product-2.jpg" 
                             Width="294px" />
@@ -77,10 +82,14 @@
                         <div class="product-option-shop">
                                
                             <asp:Button ID="btnSubmit" class="btn-info" runat="server" Text="Detalle" OnClick="btnSubmit_Click"></asp:Button>
+<<<<<<< HEAD
                             <br />
                        </div>
                        <div class="product-option-shop">        
                             <asp:Button ID="btnComEntrada" class="btn-info" runat="server" Text="Comprar" OnClick="btnComEntrada_Click"></asp:Button>
+=======
+	                                        
+>>>>>>> refs/remotes/origin/CarritoCueck
                         </div>                       
                     </div>
                 </div>
@@ -143,6 +152,7 @@
             </div>
         </div>
     </div>
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="JavasScriptContent" runat="server">
    

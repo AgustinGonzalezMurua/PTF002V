@@ -24,6 +24,7 @@ namespace Servicio
                 return SerializadorJSON.Serializar(false, "Respuesta"); ;
             }
         }
+
         public string RecuperarUsuario(string run)
         {
             try
@@ -36,64 +37,68 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
-        public string RegistrarUsuario(string usuario)
+
+        public string RegistrarUsuario(string usuario, string contrasena)
         {
             try
             {
-                var _usuarioJson = JObject.Parse(usuario);
-                var _usuario = new Negocio.Usuario();
-                _usuario.Nombre = _usuarioJson["Nombre"].ToString();
-                _usuario.RUN = _usuarioJson["Run"].ToString();
-                _usuario.Fono = _usuarioJson["Fono"].ToString();
-                _usuario.Email = _usuarioJson["Correo"].ToString();
+                var _usuario = new Negocio.Usuario(JObject.Parse(usuario));
 
-                if (Util.ValidadorDatos.ValidarCadena(_usuarioJson["Contrasegna"].ToString()))
+                if (Util.ValidadorDatos.ValidarCadena(contrasena))
                 {
-                    _usuario.AgregarNuevoUsuario(_usuarioJson["Contrasegna"].ToString());
+                    _usuario.AgregarNuevoUsuario(contrasena);
                 }
                 else
                 {
-
-                    // tirar mensaje .-
+                    throw new ArgumentException("Contraseña no válida");
                 }
 
                 return SerializadorJSON.Serializar(true, "Respuesta");
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return SerializadorJSON.Serializar(false, "Respuesta");
+                return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
-        public string RegistrarUsuarioDesdeAdmin(string usuario)
+
+        public string RegistrarUsuarioDesdeAdmin(string usuario, string contrasena)
         {
             try
             {
-                var _usuarioJson = JObject.Parse(usuario);
-                var _usuario = new Negocio.Usuario();
-                _usuario.Nombre = _usuarioJson["Nombre"].ToString();
-                _usuario.RUN = _usuarioJson["Run"].ToString();
-                _usuario.Fono = _usuarioJson["Fono"].ToString();
-                _usuario.Email = _usuarioJson["Correo"].ToString();
-                _usuario.Tipo = Convert.ToInt32(_usuarioJson["Tipo"]);
-                if (Util.ValidadorDatos.ValidarCadena(_usuarioJson["Contrasegna"].ToString()))
+                var _usuario = new Negocio.Usuario(JObject.Parse(usuario));
+
+                if (Util.ValidadorDatos.ValidarCadena(contrasena))
                 {
-                    _usuario.AgregarNuevoUsuarioPrivilegios(_usuarioJson["Contrasegna"].ToString());
+                    _usuario.AgregarNuevoUsuarioPrivilegios(contrasena);
                 }
                 else
                 {
-
-                    // tirar mensaje .-
+                    throw new ArgumentException("Usuario no válido");
                 }
 
                 return SerializadorJSON.Serializar(true, "Respuesta");
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
+
+        public string ModificarUsuario(String usuario)
+        {
+            try
+            {
+                new Negocio.Usuario(SerializadorJSON.Parsear(usuario)).Modificar();
+                return SerializadorJSON.Serializar(true, "Respuesta");
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
         public string EliminarUsuario(string run)
         {
             try
@@ -106,6 +111,7 @@ namespace Servicio
                 return SerializadorJSON.Serializar(false, "Respuesta"); 
             }
         }
+
         public string RecuperarUsuario_Todos()
         {
             try
@@ -117,6 +123,7 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
+
         public string ListarComprasUsuario(string run)
         {
             try
@@ -143,6 +150,7 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
+
         public string RecuperarOrganizacion_RUN(string rut)
         {
             try
@@ -155,6 +163,7 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
+
         public string DesactivarOrganizacion(string rut)
         {
             try
@@ -167,6 +176,7 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
+
         public string ModificarOrganizacion(string organizacion)
         {
             try
@@ -186,7 +196,7 @@ namespace Servicio
         {
             try
             {
-                new Negocio.Evento(codigo).Eliminar();;
+                new Negocio.Evento(codigo).Eliminar();
                 return SerializadorJSON.Serializar(true, "Respuesta");
             }
             catch (Exception ex)
@@ -194,6 +204,7 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
+
         public string RecuperarEvento_Codigo(string codigo)
         {
             try
@@ -205,6 +216,7 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
+
         public string RecuperarEventos_Organizacion(string rut)
         {
             try
@@ -216,6 +228,7 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
+
         public string RecuperarEventos_UltimosEventos()
         {
             try
@@ -227,6 +240,7 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
+
         public string ListarEventos_Activos()
         {
             try
@@ -239,6 +253,7 @@ namespace Servicio
             }
 
         }
+
         public string RegistrarEvento(string evento, int cantidadMaxima, int valor)
        {
             try
@@ -264,6 +279,7 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
+
         public string ModificarEvento(string evento)
         {
             try
@@ -277,8 +293,21 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
-        #endregion
 
+        public string ObtenerEvento_Precio(string codigo)
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Evento().ObtenerEvento_Precio(codigo));
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
+
+        #endregion
 
         #region Recinto
         public string RecuperarRecinto_Codigo(int codigo)
@@ -292,11 +321,140 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
+
         public string RecuperarRecinto_Todos()
         {
             try
             {
                 return SerializadorJSON.Serializar(new Negocio.Recinto().ListarRecintos());
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
+        public string RegistrarRecinto(string recinto){
+            try
+            {
+                var _recintoJson = JObject.Parse(recinto);
+                var _recinto = new Negocio.Recinto(_recintoJson);
+                
+                _recinto.Agregar();
+
+                return SerializadorJSON.Serializar(true, "Respuesta");
+
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
+        public string ModificarRecinto(string recinto){
+            try
+            {
+                new Negocio.Recinto(SerializadorJSON.Parsear(recinto)).Modificar();
+                return SerializadorJSON.Serializar(true, "Respuesta");
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
+        public string EliminarRecinto(int codigo)
+        {
+            try
+            {
+                new Negocio.Recinto(codigo).Eliminar();
+                return SerializadorJSON.Serializar(true, "Respuesta");
+            }
+            catch (Exception)
+            {
+                return SerializadorJSON.Serializar(false, "Respuesta");
+            }
+        }
+
+        
+
+        #region Ubicacion
+        public string RegistrarUbicacion(string ubicacion)
+        {
+            try
+            {
+                var _ubicacionJson = JObject.Parse(ubicacion);
+                var _ubicacion = new Negocio.Ubicacion(_ubicacionJson);                
+                _ubicacion.Agregar();
+
+                return SerializadorJSON.Serializar(true, "Respuesta");
+
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+        public string RecuperarUbicacion(int codigo)
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Ubicacion(codigo));
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
+        public string ModificarUbicacion(String ubicacion)
+        {
+            try
+            {
+                new Negocio.Ubicacion(SerializadorJSON.Parsear(ubicacion)).Modificar();
+                return SerializadorJSON.Serializar(true, "Respuesta");
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
+        public string EliminarUbicacion(string ubicacion)
+        {
+            try
+            {
+                new Negocio.Ubicacion(SerializadorJSON.Parsear(ubicacion)).Eliminar();
+                return SerializadorJSON.Serializar(true, "Respuesta");
+            }
+            catch (Exception)
+            {
+                return SerializadorJSON.Serializar(false, "Respuesta");
+            }
+        }
+
+        public string ListarUbicacionesPorRecinto(int recinto)
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Recinto().ListarUbicacionesPorRecinto(recinto));
+            }
+            catch (Exception ex)
+            {
+                return SerializadorJSON.Serializar(ex.Message, "Error");
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Comuna
+        public string ListarComunas()
+        {
+            try
+            {
+                return SerializadorJSON.Serializar(new Negocio.Comuna().ListarComunas());
             }
             catch (Exception ex)
             {
@@ -317,6 +475,7 @@ namespace Servicio
                 return SerializadorJSON.Serializar(ex.Message, "Error");
             }
         }
+
         public string RecuperarTipo_Usuarios()
         {
             try
@@ -330,6 +489,23 @@ namespace Servicio
         }
         #endregion
 
+        #region Entrada
+        public string RecuperarEntradas(string cadena)
+        {
+            return SerializadorJSON.Serializar(new Negocio.Entrada().ListarEntradas(cadena));
+        }
+        #endregion
 
+        #region Compra
+        public string RegistrarOrdenCompra(string cadena, string usuario)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string FinalizarOrdenCompra(string codigoOrdenCompra)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }

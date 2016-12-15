@@ -22,10 +22,10 @@ namespace Vista.Servicio {
         string RecuperarUsuario(string run);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IControladorServicio/RegistrarUsuario", ReplyAction="http://tempuri.org/IControladorServicio/RegistrarUsuarioResponse")]
-        string RegistrarUsuario(string usuario);
+        string RegistrarUsuario(string usuario, string contrasena);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IControladorServicio/RegistrarUsuarioDesdeAdmin", ReplyAction="http://tempuri.org/IControladorServicio/RegistrarUsuarioDesdeAdminResponse")]
-        string RegistrarUsuarioDesdeAdmin(string usuario);
+        string RegistrarUsuarioDesdeAdmin(string usuario, string contrasena);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IControladorServicio/EliminarUsuario", ReplyAction="http://tempuri.org/IControladorServicio/EliminarUsuarioResponse")]
         string EliminarUsuario(string run);
@@ -69,6 +69,9 @@ namespace Vista.Servicio {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IControladorServicio/ModificarEvento", ReplyAction="http://tempuri.org/IControladorServicio/ModificarEventoResponse")]
         string ModificarEvento(string evento);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IControladorServicio/ObtenerEvento_Precio", ReplyAction="http://tempuri.org/IControladorServicio/ObtenerEvento_PrecioResponse")]
+        string ObtenerEvento_Precio(string codigo);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IControladorServicio/RecuperarRecinto_Codigo", ReplyAction="http://tempuri.org/IControladorServicio/RecuperarRecinto_CodigoResponse")]
         string RecuperarRecinto_Codigo(int codigo);
         
@@ -80,6 +83,15 @@ namespace Vista.Servicio {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IControladorServicio/RecuperarTipo_Usuarios", ReplyAction="http://tempuri.org/IControladorServicio/RecuperarTipo_UsuariosResponse")]
         string RecuperarTipo_Usuarios();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IControladorServicio/RecuperarEntradas", ReplyAction="http://tempuri.org/IControladorServicio/RecuperarEntradasResponse")]
+        string RecuperarEntradas(string cadena);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IControladorServicio/RegistrarOrdenCompra", ReplyAction="http://tempuri.org/IControladorServicio/RegistrarOrdenCompraResponse")]
+        string RegistrarOrdenCompra(string cadena, string usuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IControladorServicio/FinalizarOrdenCompra", ReplyAction="http://tempuri.org/IControladorServicio/FinalizarOrdenCompraResponse")]
+        string FinalizarOrdenCompra(string codigoOrdenCompra);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -117,12 +129,12 @@ namespace Vista.Servicio {
             return base.Channel.RecuperarUsuario(run);
         }
         
-        public string RegistrarUsuario(string usuario) {
-            return base.Channel.RegistrarUsuario(usuario);
+        public string RegistrarUsuario(string usuario, string contrasena) {
+            return base.Channel.RegistrarUsuario(usuario, contrasena);
         }
         
-        public string RegistrarUsuarioDesdeAdmin(string usuario) {
-            return base.Channel.RegistrarUsuarioDesdeAdmin(usuario);
+        public string RegistrarUsuarioDesdeAdmin(string usuario, string contrasena) {
+            return base.Channel.RegistrarUsuarioDesdeAdmin(usuario, contrasena);
         }
         
         public string EliminarUsuario(string run) {
@@ -181,6 +193,10 @@ namespace Vista.Servicio {
             return base.Channel.ModificarEvento(evento);
         }
         
+        public string ObtenerEvento_Precio(string codigo) {
+            return base.Channel.ObtenerEvento_Precio(codigo);
+        }
+        
         public string RecuperarRecinto_Codigo(int codigo) {
             return base.Channel.RecuperarRecinto_Codigo(codigo);
         }
@@ -195,6 +211,18 @@ namespace Vista.Servicio {
         
         public string RecuperarTipo_Usuarios() {
             return base.Channel.RecuperarTipo_Usuarios();
+        }
+        
+        public string RecuperarEntradas(string cadena) {
+            return base.Channel.RecuperarEntradas(cadena);
+        }
+        
+        public string RegistrarOrdenCompra(string cadena, string usuario) {
+            return base.Channel.RegistrarOrdenCompra(cadena, usuario);
+        }
+        
+        public string FinalizarOrdenCompra(string codigoOrdenCompra) {
+            return base.Channel.FinalizarOrdenCompra(codigoOrdenCompra);
         }
     }
 }

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Servicio.Util;
+using System.Data;
+using System.Text;
+
 
 namespace Servicio.Negocio
 {
@@ -11,22 +14,64 @@ namespace Servicio.Negocio
         #region propiedades
         public int Codigo { get; set; }        
         public char Fila { get; set; }
+        public int Recinto { get; set; }
         #endregion
 
         #region metodos
 
+        public Ubicacion(){}
+
+        public Ubicacion(int codigo) {
+            this.Codigo = codigo;
+            this.Recuperar();
+        }
+
+        public Ubicacion(Newtonsoft.Json.Linq.JObject JObject)
+        {            
+            this.Codigo            = Convert.ToInt32(JObject["Codigo"].ToString());  
+            this.Fila               = Convert.ToChar(JObject["Fecha"].ToString());
+            this.Recinto            = Convert.ToInt32(JObject["Nombre"].ToString());  
+        }
+    
         public void Recuperar()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var _datos = new Dictionary<string, string>();
+                var _dt = new DataTable();
+
+                _datos.Add("P_CODIGO", this.Codigo.ToString());
+
+                OracleSQL.ExecStoredProcedure("SPREC_UBICACION", _dt, _datos);
+
+                if (_dt.Rows.Count > 0)
+                {
+                    foreach (DataRow rows in _dt.Rows)
+                    {
+                        this.Fila = Convert.ToChar(rows["FILA"].ToString());
+                        this.Recinto = int.Parse(rows["Fono"].ToString());
+                    }
+                }
+                else
+                {
+                    throw new KeyNotFoundException("Ubicación no encontrada");
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public void Agregar()
         {
             try
             {
-                var _diccionario = new Dictionary<string, string>();
-                _diccionario.Add("P_CODIGO", this.Codigo.ToString());
+                var _diccionario = new Dictionary<string, string>();              
                 _diccionario.Add("P_FILA", this.Fila.ToString());
+                _diccionario.Add("P_RECINTO", this.Recinto.ToString());
 
                 OracleSQL.ExecStoredProcedure("SPIN_UBICACION", _diccionario);
             }
@@ -43,6 +88,7 @@ namespace Servicio.Negocio
                 var _diccionario = new Dictionary<string, string>();
                 _diccionario.Add("P_CODIGO", this.Codigo.ToString());
                 _diccionario.Add("P_FILA", this.Fila.ToString());
+                _diccionario.Add("P_RECINTO", this.Recinto.ToString());
 
                 OracleSQL.ExecStoredProcedure("SPMOD_UBICACION", _diccionario);
             }
