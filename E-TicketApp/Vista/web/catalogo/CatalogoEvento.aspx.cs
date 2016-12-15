@@ -9,6 +9,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Data.SqlClient;
 using System.Collections;
+using Vista.carrito;
 
 
 namespace Vista.web.catalogo
@@ -19,14 +20,53 @@ namespace Vista.web.catalogo
         protected void Page_Load(object sender, EventArgs e)
         {
 
+<<<<<<< HEAD
+            string nombre = "LOGIN";
+            Session["nombre"] = nombre;
+
+
+            if (nombre == null)
+            {
+                Session["lOGIN"] = nombre;
+            } 
+
+=======
+>>>>>>> refs/remotes/origin/CarritoCueck
             DataTable dt = new DataTable();
             var _resultado = JArray.Parse(new Servicio.ControladorServicioClient().ListarEventos_Activos().ToString());
+
+            
      //       var name = (string)_resultado[0]["Codigo"];
 
             if (_resultado != null)
             {
                 foreach (JObject item in _resultado)
                 {
+<<<<<<< HEAD
+                     Label3.Text = _resultado[0].ToString();
+                     if (_resultado[0].ToString() != null)
+                     {
+                         Label18.Text = (string)_resultado[0]["Codigo"];
+                         Label2.Text = (string)_resultado[0]["Nombre"];
+                         Label5.Text = (string)_resultado[0]["Fecha"];
+                         Label7.Text = (string)_resultado[0]["Recinto"]["Nombre"];
+                     }
+                     if (_resultado[1].ToString() != null)
+                         {
+
+                             Label1.Text = (string)_resultado[1]["Nombre"];
+                             Label9.Text = (string)_resultado[1]["Fecha"];
+                             Label11.Text = (string)_resultado[1]["Recinto"]["Nombre"];
+                         }
+                     if (_resultado[2].ToString() != null)
+                     {
+
+                         Label12.Text = (string)_resultado[2]["Nombre"];
+                         Label14.Text = (string)_resultado[2]["Fecha"];
+                         Label16.Text = (string)_resultado[2]["Recinto"]["Nombre"];
+                     }                     
+                }
+=======
                     Label3.Text = (string)_resultado[0].ToString();
                     if (_resultado[0].ToString() != null)
                     {
@@ -50,6 +90,7 @@ namespace Vista.web.catalogo
                                 Label16.Text = (string)_resultado[2]["Recinto"]["Nombre"];
                             }
                  }
+>>>>>>> refs/remotes/origin/CarritoCueck
             }
             else
             {
@@ -75,5 +116,15 @@ namespace Vista.web.catalogo
             upModal.Update();
              * */
         }
+        protected void btnComEntrada_Click(object sender, EventArgs e)
+        {
+
+            Carrodecompra carrito = Carrodecompra.CapturarProducto();
+           string pCodigo = Label8.ToString();
+            carrito.Agregar(pCodigo);
+        
+        } 
+    
+        
     }
 }
