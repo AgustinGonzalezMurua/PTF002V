@@ -32,11 +32,7 @@
                     <div class="user-menu">
                         <ul>
                             <li><a href="/Login.aspx#"><i class="fa fa-user"></i> Mi Cuenta</a>  </li>
-<<<<<<< HEAD
-                            <li><a href="/web/carrito/CarroDeCompra.aspx#"><i class="fa fa-user"></i> Mi Carrito</a></li>
-=======
                             <li><a href="/web/carrito/Carrito.aspx#"><i class="fa fa-user"></i> Mi Carrito</a></li>
->>>>>>> refs/remotes/origin/CarritoCueck
                             <li><a href="/web/pagar/"><i class="fa fa-user"></i> Pagar</a></li>
                             <li><a href="/web/usuario/Registrar.aspx#"><i class="fa fa-user"></i> Registrar </a></li>
 

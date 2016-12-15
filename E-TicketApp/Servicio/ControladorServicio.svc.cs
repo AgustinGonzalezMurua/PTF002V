@@ -298,7 +298,7 @@ namespace Servicio
         {
             try
             {
-                return SerializadorJSON.Serializar(new Negocio.Evento().ObtenerEvento_Precio(codigo));
+                return SerializadorJSON.Serializar(new Negocio.Entrada().ObtenerEvento_Precio(codigo));
             }
             catch (Exception ex)
             {

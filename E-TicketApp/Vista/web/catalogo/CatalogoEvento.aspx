@@ -4,33 +4,6 @@
 <!-- modal -->
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- Bootstrap Modal Dialog
-    <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <asp:UpdatePanel ID="upModal" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
-                <ContentTemplate>
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title"><asp:Label ID="lblModalTitle" runat="server" Text=""></asp:Label></h4>
-                        </div>
-                        <div class="modal-body">
-                            <asp:Label ID="lblModalBody" runat="server" Text=""></asp:Label>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
-                            <button data-dismiss="modal" class="btn btn-large"> Close</button>
-                        </div>
-                       
-                    </div>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>
-    </div> -->
-
-    
-
-
     <div class="product-big-title-area">
         <div class="container">
             <div class="row">
@@ -42,8 +15,6 @@
             </div>
         </div>
     </div>
-
-    <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
 
 
     <!-- Inicio de listado -->
@@ -77,20 +48,10 @@
                         <asp:Label ID="Label18" runat="server" Text="Label"></asp:Label>
 
                         &nbsp;&nbsp;<br />
-
-
                         <div class="product-option-shop">
-                               
-                            <asp:Button ID="btnSubmit" class="btn-info" runat="server" Text="Detalle" OnClick="btnSubmit_Click"></asp:Button>
-<<<<<<< HEAD
-                            <br />
+                        <asp:Button ID="btnSubmit" class="btn-info" runat="server" Text="Detalle" OnClick="btnSubmit_Click"></asp:Button>
+                        <br />
                        </div>
-                       <div class="product-option-shop">        
-                            <asp:Button ID="btnComEntrada" class="btn-info" runat="server" Text="Comprar" OnClick="btnComEntrada_Click"></asp:Button>
-=======
-	                                        
->>>>>>> refs/remotes/origin/CarritoCueck
-                        </div>                       
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
@@ -113,7 +74,7 @@
 
 
                     <div class="product-option-shop">
-                        <asp:Button ID="Button2" runat="server" Text="Comprar" />
+                        <asp:Button ID="Button2" runat="server" Text="Detalle"  OnClick="btnSubmit_Click"/>
                     </div>                       
                 </div>                    
                 </div>
@@ -138,7 +99,7 @@
 
 
                     <div class="product-option-shop">
-                        <asp:Button ID="Button3" runat="server" Text="Comprar" />
+                        <asp:Button ID="Button3" runat="server" Text="Detalle"  OnClick="btnSubmit_Click"/>
                     </div>                       
                 </div>            
                    

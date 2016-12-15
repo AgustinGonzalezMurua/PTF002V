@@ -16,8 +16,7 @@ namespace Vista.web.pagar
             // Si la sesión es válida y contiene ítems en carrito
             if (Session["Usuario"] != null)
             {
-                var _cadenaEntradas = ((carritoClase.CarroDeCompras)Session["Carrito"]).obtenerCodigos();
-                var _entradas = JArray.Parse(new Servicio.ControladorServicioClient().RecuperarEntradas(_cadenaEntradas));
+                var _entradas = ((Vista.Util.Carro)Session["Carrito"]).ListaProductos;
                 var _dt = new System.Data.DataTable();
                 _dt.Columns.Add("Codigo");
                 _dt.Columns.Add("Evento");
@@ -25,15 +24,15 @@ namespace Vista.web.pagar
 
 
                 var _total = 0;
-                foreach (JObject entrada in _entradas)
+                foreach (Vista.Util.Producto entrada in _entradas)
                 {
                     DataRow newRow = _dt.NewRow();
-                    newRow[0] = entrada["Codigo"];
-                    newRow[1] = JObject.Parse(entrada["Evento"].ToString())["Nombre"];
-                    newRow[2] = entrada["Precio"];
+                    newRow[0] = entrada.Codigo;
+                    newRow[1] = entrada.Evento;
+                    newRow[2] = entrada.Precio;
                     _dt.Rows.Add(newRow);
 
-                    _total += Convert.ToInt32(entrada["Precio"].ToString());
+                    _total += Convert.ToInt32(entrada.Precio.ToString());
                 }
 
                 DataRow precioRow = _dt.NewRow();
@@ -50,6 +49,11 @@ namespace Vista.web.pagar
         protected void btnConfimarCompra_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("/web/catalogo/CatalogoEvento.aspx#");
         }
     }
 }

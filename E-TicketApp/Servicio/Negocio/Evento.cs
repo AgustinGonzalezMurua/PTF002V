@@ -83,7 +83,17 @@ namespace Servicio.Negocio
             this.Estado             = Convert.ToBoolean(int.Parse(JObject["Estado"].ToString()));
             this.Organizacion       = new Negocio.Organizacion(JObject["Organizacion"].ToString());
             this.Recinto            = new Negocio.Recinto(int.Parse(JObject["Recinto"].ToString()));
-            this.Sector             = new Negocio.Sector(int.Parse(JObject["Sector"].ToString()));
+
+            if (JObject["Sector"] != null)
+            {
+                this.Sector = new Negocio.Sector(int.Parse(JObject["Sector"].ToString()));
+            }
+            else
+            {
+                this.Sector = null;
+            }
+
+            
         }
     
         /// <summary>
@@ -324,44 +334,12 @@ namespace Servicio.Negocio
 
                 return _eventos;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
-
-
-        public List<Evento> ObtenerEvento_Precio(string codigo)
-        {
-            try
-            {
-                var _eventos = new List<Evento>();
-                var _datos = new Dictionary<string, string>();
-                var _dt = new DataTable();
-                _datos.Add("P_Codigo", codigo);
-
-                OracleSQL.ExecStoredProcedure("SPREC_EVENTOS_VALOR_ENTRADA", _dt, _datos);
-               
-                foreach (DataRow rows in _dt.Rows)
-                {
-                    var _evento = new Evento();
-                    _evento.Codigo = rows["CODIGO"].ToString(); 
-                    _evento.Nombre = rows["NOMBRE"].ToString();
-                    _evento.Sector.Precio = int.Parse(rows["PRECIO"].ToString());
-                    _eventos.Add(_evento);
-                }
-                return _eventos;
-            }
-            catch (Exception)
-                {
-                    throw;
-                }
-            
-        }
-        
-        
-        
         #endregion
     }
 }

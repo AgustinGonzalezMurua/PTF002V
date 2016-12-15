@@ -28,7 +28,8 @@ namespace Servicio.Negocio
                 }
             }
         }
-        
+
+        public String NombreEvento { get; set; }
         public Asiento Asiento { get; set; }
         public Evento Evento { get; set; }
         public Recinto Recinto { get; set; }
@@ -103,11 +104,39 @@ namespace Servicio.Negocio
 
             foreach (string ent in _cadenaEntradas)
             {
-                var _entrada = new Entrada(ent);
-                _listaEntradas.Add(_entrada);
+                if (!String.IsNullOrEmpty(ent))
+                {
+                    var _entrada = new Entrada(ent);
+                    _listaEntradas.Add(_entrada);
+                }
             }
 
             return _listaEntradas;
+        }
+
+        public Entrada ObtenerEvento_Precio(string codigo)
+        {
+            try
+            {
+                var _datos = new Dictionary<string, string>();
+                var _dt = new DataTable();
+                _datos.Add("P_Codigo", codigo);
+
+                OracleSQL.ExecStoredProcedure("SPREC_EVENTOS_VALOR_ENTRADA", _dt, _datos);
+               
+                foreach (DataRow rows in _dt.Rows)
+                {
+                    this.Codigo =  Convert.ToInt32(rows["CODIGO"].ToString());
+                    this.NombreEvento = rows["NOMBRE"].ToString();
+                    this.Precio = Convert.ToInt32(rows["PRECIO"].ToString());
+                }
+                return this;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
         #endregion
     }

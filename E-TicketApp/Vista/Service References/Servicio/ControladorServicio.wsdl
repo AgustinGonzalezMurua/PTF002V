@@ -30,6 +30,12 @@
   <wsdl:message name="IControladorServicio_RegistrarUsuarioDesdeAdmin_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegistrarUsuarioDesdeAdminResponse" />
   </wsdl:message>
+  <wsdl:message name="IControladorServicio_ModificarUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_ModificarUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarUsuarioResponse" />
+  </wsdl:message>
   <wsdl:message name="IControladorServicio_EliminarUsuario_InputMessage">
     <wsdl:part name="parameters" element="tns:EliminarUsuario" />
   </wsdl:message>
@@ -132,6 +138,60 @@
   <wsdl:message name="IControladorServicio_RecuperarRecinto_Todos_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarRecinto_TodosResponse" />
   </wsdl:message>
+  <wsdl:message name="IControladorServicio_RegistrarRecinto_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarRecinto" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RegistrarRecinto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarRecintoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_ModificarRecinto_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarRecinto" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_ModificarRecinto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarRecintoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_EliminarRecinto_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarRecinto" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_EliminarRecinto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarRecintoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RegistrarUbicacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarUbicacion" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RegistrarUbicacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarUbicacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarUbicacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarUbicacion" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_RecuperarUbicacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarUbicacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_ModificarUbicacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarUbicacion" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_ModificarUbicacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarUbicacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_EliminarUbicacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarUbicacion" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_EliminarUbicacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarUbicacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_ListarUbicacionesPorRecinto_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarUbicacionesPorRecinto" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_ListarUbicacionesPorRecinto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarUbicacionesPorRecintoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_ListarComunas_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarComunas" />
+  </wsdl:message>
+  <wsdl:message name="IControladorServicio_ListarComunas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarComunasResponse" />
+  </wsdl:message>
   <wsdl:message name="IControladorServicio_RecuperarTipo_Eventos_InputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarTipo_Eventos" />
   </wsdl:message>
@@ -178,6 +238,10 @@
     <wsdl:operation name="RegistrarUsuarioDesdeAdmin">
       <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RegistrarUsuarioDesdeAdmin" message="tns:IControladorServicio_RegistrarUsuarioDesdeAdmin_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RegistrarUsuarioDesdeAdminResponse" message="tns:IControladorServicio_RegistrarUsuarioDesdeAdmin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/ModificarUsuario" message="tns:IControladorServicio_ModificarUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/ModificarUsuarioResponse" message="tns:IControladorServicio_ModificarUsuario_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="EliminarUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/EliminarUsuario" message="tns:IControladorServicio_EliminarUsuario_InputMessage" />
@@ -247,6 +311,42 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarRecinto_Todos" message="tns:IControladorServicio_RecuperarRecinto_Todos_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarRecinto_TodosResponse" message="tns:IControladorServicio_RecuperarRecinto_Todos_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="RegistrarRecinto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RegistrarRecinto" message="tns:IControladorServicio_RegistrarRecinto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RegistrarRecintoResponse" message="tns:IControladorServicio_RegistrarRecinto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarRecinto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/ModificarRecinto" message="tns:IControladorServicio_ModificarRecinto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/ModificarRecintoResponse" message="tns:IControladorServicio_ModificarRecinto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarRecinto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/EliminarRecinto" message="tns:IControladorServicio_EliminarRecinto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/EliminarRecintoResponse" message="tns:IControladorServicio_EliminarRecinto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarUbicacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RegistrarUbicacion" message="tns:IControladorServicio_RegistrarUbicacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RegistrarUbicacionResponse" message="tns:IControladorServicio_RegistrarUbicacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarUbicacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarUbicacion" message="tns:IControladorServicio_RecuperarUbicacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarUbicacionResponse" message="tns:IControladorServicio_RecuperarUbicacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarUbicacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/ModificarUbicacion" message="tns:IControladorServicio_ModificarUbicacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/ModificarUbicacionResponse" message="tns:IControladorServicio_ModificarUbicacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarUbicacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/EliminarUbicacion" message="tns:IControladorServicio_EliminarUbicacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/EliminarUbicacionResponse" message="tns:IControladorServicio_EliminarUbicacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarUbicacionesPorRecinto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/ListarUbicacionesPorRecinto" message="tns:IControladorServicio_ListarUbicacionesPorRecinto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/ListarUbicacionesPorRecintoResponse" message="tns:IControladorServicio_ListarUbicacionesPorRecinto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarComunas">
+      <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/ListarComunas" message="tns:IControladorServicio_ListarComunas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/ListarComunasResponse" message="tns:IControladorServicio_ListarComunas_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="RecuperarTipo_Eventos">
       <wsdl:input wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarTipo_Eventos" message="tns:IControladorServicio_RecuperarTipo_Eventos_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IControladorServicio/RecuperarTipo_EventosResponse" message="tns:IControladorServicio_RecuperarTipo_Eventos_OutputMessage" />
@@ -299,6 +399,15 @@
     </wsdl:operation>
     <wsdl:operation name="RegistrarUsuarioDesdeAdmin">
       <soap:operation soapAction="http://tempuri.org/IControladorServicio/RegistrarUsuarioDesdeAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarUsuario">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/ModificarUsuario" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -452,6 +561,87 @@
     </wsdl:operation>
     <wsdl:operation name="RecuperarRecinto_Todos">
       <soap:operation soapAction="http://tempuri.org/IControladorServicio/RecuperarRecinto_Todos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarRecinto">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/RegistrarRecinto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarRecinto">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/ModificarRecinto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarRecinto">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/EliminarRecinto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarUbicacion">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/RegistrarUbicacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarUbicacion">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/RecuperarUbicacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarUbicacion">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/ModificarUbicacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarUbicacion">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/EliminarUbicacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarUbicacionesPorRecinto">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/ListarUbicacionesPorRecinto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarComunas">
+      <soap:operation soapAction="http://tempuri.org/IControladorServicio/ListarComunas" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

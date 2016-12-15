@@ -7,8 +7,6 @@
             <div class="form-group">
             <h2> Login </h2>
             </div>
-
-
               <div class="form-group">
                 <label for="Rut">Rut:</label>
                 <asp:TextBox class="form-control"  id="txtUsuario" type="text" name="txtCorreo" 

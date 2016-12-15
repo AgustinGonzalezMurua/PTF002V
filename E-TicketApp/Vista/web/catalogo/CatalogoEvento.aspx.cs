@@ -9,7 +9,6 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Data.SqlClient;
 using System.Collections;
-using Vista.carrito;
 
 
 namespace Vista.web.catalogo
@@ -19,14 +18,6 @@ namespace Vista.web.catalogo
         string valor = null;
         protected void Page_Load(object sender, EventArgs e)
         {
-            string nombre = "LOGIN";
-            Session["nombre"] = nombre;
-
-
-            if (nombre == null)
-            {
-                Session["lOGIN"] = nombre;
-            }
             DataTable dt = new DataTable();
             var _resultado = JArray.Parse(new Servicio.ControladorServicioClient().ListarEventos_Activos().ToString());
 
@@ -35,35 +26,18 @@ namespace Vista.web.catalogo
 
             if (_resultado != null)
             {
-                foreach (JObject item in _resultado)
-                {
-                    Label3.Text = (string)_resultado[0].ToString();
-                    if (_resultado[0].ToString() != null)
-                    {
-                        valor = (string)_resultado[0]["Codigo"];
-                        Label2.Text = (string)_resultado[0]["Nombre"];
-                        Label5.Text = (string)_resultado[0]["Fecha"];
-                        Label7.Text = (string)_resultado[0]["Recinto"]["Nombre"];
-                    }
-                    if (_resultado[1].ToString() != null)
-                    {
-                        valor = (string)_resultado[1]["Codigo"];
-                        Label1.Text = (string)_resultado[1]["Nombre"];
-                        Label9.Text = (string)_resultado[1]["Fecha"];
-                        Label11.Text = (string)_resultado[1]["Recinto"]["Nombre"];
-                    }
-                    if (_resultado[2].ToString() != null)
-                    {
-                        valor = (string)_resultado[2]["Codigo"];
-                        Label12.Text = (string)_resultado[2]["Nombre"];
-                        Label14.Text = (string)_resultado[2]["Fecha"];
-                        Label16.Text = (string)_resultado[2]["Recinto"]["Nombre"];
-                    }
-                }
-            }
-            else
-            {
-                Label3.Text = "No hay eventos disponibles por el momento";
+                valor = (string)_resultado[0]["Codigo"];
+                Label2.Text = (string)_resultado[0]["Nombre"];
+                Label5.Text = (string)_resultado[0]["Fecha"];
+                Label7.Text = (string)_resultado[0]["Recinto"]["Nombre"];
+                valor = (string)_resultado[1]["Codigo"];
+                Label1.Text = (string)_resultado[1]["Nombre"];
+                Label9.Text = (string)_resultado[1]["Fecha"];
+                Label11.Text = (string)_resultado[1]["Recinto"]["Nombre"];
+                valor = (string)_resultado[2]["Codigo"];
+                Label12.Text = (string)_resultado[2]["Nombre"];
+                Label14.Text = (string)_resultado[2]["Fecha"];
+                Label16.Text = (string)_resultado[2]["Recinto"]["Nombre"];
             }
         }
 
@@ -85,16 +59,6 @@ namespace Vista.web.catalogo
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
             upModal.Update();
              * */
-        }
-        protected void btnComEntrada_Click(object sender, EventArgs e)
-        {
-
-            Carrodecompra carrito = Carrodecompra.CapturarProducto();
-           string pCodigo = Label8.ToString();
-            carrito.Agregar(pCodigo);
-        
-        } 
-    
-        
+        }        
     }
 }

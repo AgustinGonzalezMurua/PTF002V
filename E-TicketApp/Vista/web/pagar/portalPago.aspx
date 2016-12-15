@@ -40,6 +40,11 @@
                     <asp:button style="float-right" runat="server" text="Confirmar Compra" 
                         id="btnConfimarCompra" onclick="btnConfimarCompra_Click" />
                 </center>
+                        <br />
+                <center>
+                    <asp:button style="float-right" runat="server" text="Volver" 
+                    id="btnVolver" onclick="btnVolver_Click" />
+                </center>
             </div>
         </div>
     </form>
