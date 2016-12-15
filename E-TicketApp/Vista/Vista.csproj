@@ -158,7 +158,6 @@
     </Compile>
     <Compile Include="carrito\Carrodecompra.cs" />
     <Compile Include="carrito\Productosalcarro.cs" />
-    <Compile Include="util\jTableModelListarEventos.cs" />
     <Compile Include="web\carrito\CarroDeCompra.aspx.cs">
       <DependentUpon>CarroDeCompra.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -169,7 +168,6 @@
     <Compile Include="carritoClase\CarroDeCompras.cs" />
     <Compile Include="carritoClase\Producto.cs" />
     <Compile Include="carritoClase\ProductosAlCarro.cs" />
-    <Compile Include="util\jTableModelListarEventos.cs" />
     <Compile Include="web\carrito\Carrito.aspx.cs">
       <DependentUpon>Carrito.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -238,7 +236,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="web\pagar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
